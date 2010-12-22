@@ -1,5 +1,5 @@
 module MiniClient
-  class Commands < Minicom::Catalog
+  class Commands < Minicom::Catalog(__FILE__, __LINE__)
     
     #
     # Print help 
@@ -7,7 +7,7 @@ module MiniClient
     # Usage: mini_client help
     #
     class Help < Minicom::Command(__FILE__, __LINE__)
-    end
+    end # class Help
     
     class Say < Minicom::Catalog(__FILE__, __LINE__)
 

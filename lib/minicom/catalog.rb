@@ -8,12 +8,6 @@ module Minicom
       # The command catalog
       attr_accessor :catalog
       
-      # Raises an error as Catalog is an abstract 
-      # class
-      def new
-        raise "Minicom catalogs may not be instantiated"
-      end
-      
       # Returns the array of defined commands and/or sub catalogs
       # in the catalog
       def children
@@ -23,6 +17,11 @@ module Minicom
       # Returns the array of defined commands in the catalog
       def commands
         children.select{|s| s.ancestors.include?(Command)}
+      end
+      
+      # Runs the command
+      def run(file, argv)
+        self.new.run(file, argv)
       end
       
     end # module ClassMethods

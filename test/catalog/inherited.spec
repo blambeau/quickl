@@ -6,9 +6,5 @@ module Minicom
       MiniClient::Commands.should respond_to(:commands)
     end
     
-    it "should make catalogs non newable" do
-      lambda{ MiniClient::Commands.new }.should raise_error
-    end
-    
   end # Catalog::inherited
 end # module Minicom
