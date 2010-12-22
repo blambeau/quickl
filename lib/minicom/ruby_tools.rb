@@ -4,21 +4,13 @@ module Minicom
     # Returns the parent module of a class
     def parent_module(clazz)
       name = clazz.name
-      if name =~ /^(.*?)::([^:]+)$/
-        Kernel.eval($1)
-      else
-        nil
-      end
+      (name =~ /^(.*?)::([^:]+)$/) ? Kernel.eval($1) : nil
     end
 
     # Returns the unqualified name of a class
     def class_unqualified_name(clazz)
       name = clazz.name
-      if name =~ /::([^:]+)$/
-        $1
-      else
-        name
-      end
+      (name =~ /::([^:]+)$/) ? $1 : name
     end
     alias :unqualified_class_name :class_unqualified_name
 
