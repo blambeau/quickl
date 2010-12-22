@@ -1,6 +1,7 @@
 require File.expand_path('../../spec_helper', __FILE__)
 module Minicom
   module Fixtures
+
     #
     # This is a fixtures helper that matches documentation conventions.
     #
@@ -15,7 +16,12 @@ module Minicom
     #
     module RubyTools
     end # module RubyTools
+    
+    #
+    # This is the documentation of the Utils module
+    #
     module Utils
     end # module Utils
+
   end # module Fixtures
 end # module Minicom

@@ -36,9 +36,18 @@ module Minicom
     end
 
     # Extracts the rdoc of a given ruby file source
-    def extract_file_rdoc(file)
-      source, doc, started = File.read(file), "", false
-      source.each_line{|line|
+    def extract_file_rdoc(file, from = nil, reverse = false)
+      lines = File.readlines(file)
+      if from.nil? and reverse
+        lines = lines.reverse
+      elsif !reverse
+        lines = lines[(from || 0)..-1]
+      else
+        lines = lines[0...(from || -1)].reverse
+      end
+      
+      doc, started = [], false
+      lines.each{|line|
         if /^\s*[#]/ =~ line
           doc << line
           started = true
@@ -46,6 +55,9 @@ module Minicom
           break
         end 
       }
+      
+      doc = reverse ? doc.reverse[0...-1] : doc[0...-1]
+      doc = doc.join("\n")
       doc.gsub(/^\s*[#] ?/, "")
     end
 

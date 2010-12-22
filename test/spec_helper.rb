@@ -7,6 +7,7 @@ require 'spec/autorun'
 require 'pp'
 require 'fileutils'
 require 'minicom'
+require 'mini_client'
 
 Spec::Runner.configure do |config|
 end
