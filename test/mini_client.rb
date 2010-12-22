@@ -1,5 +1,5 @@
 module MiniClient
-  class Commands < Minicom::Command(__FILE__, __LINE__)
+  class Command < Minicom::Command(__FILE__, __LINE__)
     
     #
     # Print help 
@@ -30,5 +30,5 @@ module MiniClient
 
     end # class Say
     
-  end # class Commands
+  end # class Command
 end # module MiniClient

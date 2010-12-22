@@ -3,16 +3,16 @@ module Minicom
   describe "Command::subcommands /" do
     
     it "should return installed commands in an array" do
-      MiniClient::Commands.subcommands.should == [ 
-        MiniClient::Commands::Help, 
-        MiniClient::Commands::Say 
+      MiniClient::Command.subcommands.should == [ 
+        MiniClient::Command::Help, 
+        MiniClient::Command::Say 
       ]
     end
     
     it "should return installed commands in an array" do
-      MiniClient::Commands::Say.subcommands.should == [ 
-        MiniClient::Commands::Say::Hello,
-        MiniClient::Commands::Say::Goodbye
+      MiniClient::Command::Say.subcommands.should == [ 
+        MiniClient::Command::Say::Hello,
+        MiniClient::Command::Say::Goodbye
       ]
     end
 
