@@ -1,5 +1,5 @@
 module MiniClient
-  class Command < Minicom::Command(__FILE__, __LINE__)
+  class Command < Minicom::Delegate(__FILE__, __LINE__)
     
     #
     # Print help 
@@ -7,6 +7,11 @@ module MiniClient
     # Usage: mini_client help
     #
     class Help < Minicom::Command(__FILE__, __LINE__)
+
+        def run(*args)
+          :help
+        end
+        
     end # class Help
     
     class Say < Minicom::Delegate(__FILE__, __LINE__)
