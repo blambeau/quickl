@@ -1,4 +1,6 @@
+require 'minicom/errors'
 require 'minicom/ruby_tools'
+require 'minicom/naming'
 require 'minicom/command'
 module Minicom
 

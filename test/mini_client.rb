@@ -9,7 +9,7 @@ module MiniClient
     class Help < Minicom::Command(__FILE__, __LINE__)
     end # class Help
     
-    class Say < Minicom::Command(__FILE__, __LINE__)
+    class Say < Minicom::Delegate(__FILE__, __LINE__)
 
       #
       # Say hello to the user whose name is requested on the
@@ -18,6 +18,11 @@ module MiniClient
       # Usage: mini_client say:hello
       #
       class Hello < Minicom::Command(__FILE__, __LINE__)
+        
+        def run(*args)
+          :hello
+        end
+        
       end # class Hello
 
       #
@@ -26,6 +31,11 @@ module MiniClient
       # Usage: mini_client say:goodbye
       #
       class Goodbye < Minicom::Command(__FILE__, __LINE__)
+
+        def run(*args)
+          :goodbye
+        end
+        
       end # class Goodbye
 
     end # class Say

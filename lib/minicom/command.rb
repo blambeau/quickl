@@ -1,4 +1,5 @@
 require 'minicom/command/builder'
+require 'minicom/command/robustness'
 module Minicom
   class Command
     
@@ -29,7 +30,7 @@ module Minicom
       end
       
       # Runs the command
-      def run(file, argv)
+      def run(file = '.', argv = [])
         self.new.run(file, argv)
       end
       
@@ -45,7 +46,7 @@ module Minicom
       # This method is intended to be overriden and does nothing
       # by default.
       #
-      def run(file, argv)
+      def run(file = '.', argv = [])
       end
     
     end # module InstanceMethods
@@ -57,3 +58,4 @@ module Minicom
     
   end # class Command
 end # module Minicom
+require 'minicom/command/delegate'

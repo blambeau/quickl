@@ -16,7 +16,7 @@ module Minicom
       
       # Adds some command instance modules
       def instance_modules(*mods)
-        @instance_modules ||= [ Command::InstanceMethods ]
+        @instance_modules ||= [ Command::InstanceMethods, Command::Robustness ]
         @instance_modules += mods
       end
       alias :instance_module instance_modules
