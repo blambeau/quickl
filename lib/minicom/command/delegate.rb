@@ -4,7 +4,7 @@ module Minicom
   module Command::Delegate
     
     # Run the command by delegation
-    def run(file = '.', argv = [])
+    def run(argv = [])
       # My own options
       my_argv = []
       while argv.first =~ /^--/
@@ -12,7 +12,7 @@ module Minicom
       end
       
       # Run the subcommand now
-      has_command!(argv.shift).run(file, argv)
+      has_command!(argv.shift).run(argv)
     end
     
   end # module Command::Delegate

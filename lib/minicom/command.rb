@@ -30,8 +30,8 @@ module Minicom
       end
       
       # Runs the command
-      def run(file = '.', argv = [])
-        self.new.run(file, argv)
+      def run(*args)
+        self.new.run(*args)
       end
       
     end # module ClassMethods
@@ -46,7 +46,7 @@ module Minicom
       # This method is intended to be overriden and does nothing
       # by default.
       #
-      def run(file = '.', argv = [])
+      def run(*args)
       end
     
     end # module InstanceMethods

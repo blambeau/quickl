@@ -8,14 +8,14 @@ module Minicom
     end
 
     it "when invoked on a delegate command" do
-      MiniClient::Command.run(__FILE__, ["help"]).should == :help
-      MiniClient::Command::Say.run(__FILE__, ["hello"]).should == :hello
-      MiniClient::Command::Say.run(__FILE__, ["goodbye"]).should == :goodbye
+      MiniClient::Command.run(["help"]).should == :help
+      MiniClient::Command::Say.run(["hello"]).should == :hello
+      MiniClient::Command::Say.run(["goodbye"]).should == :goodbye
     end
 
     it "when invoked on qualified command names" do
-      MiniClient::Command.run(__FILE__, ["say:hello"]).should == :hello
-      MiniClient::Command.run(__FILE__, ["say:goodbye"]).should == :goodbye
+      MiniClient::Command.run(["say:hello"]).should == :hello
+      MiniClient::Command.run(["say:goodbye"]).should == :goodbye
     end
 
   end # Command::command
