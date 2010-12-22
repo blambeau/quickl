@@ -1,7 +1,8 @@
+require 'minicom/command/builder'
 module Minicom
   class Command
     
-    # Methods installed on the class
+    # Methods installed on all command classes
     module ClassMethods
       
       # The super command, if any
@@ -21,6 +22,12 @@ module Minicom
         @subcommands ||= []
       end
       
+      # Returns true if this command has at least one 
+      # subcommand
+      def has_sub_commands?
+        @subcommands and !@subcommands.empty?
+      end
+      
       # Runs the command
       def run(file, argv)
         self.new.run(file, argv)
@@ -28,28 +35,24 @@ module Minicom
       
     end # module ClassMethods
     
+    # Methods installed on all command instances
+    module InstanceMethods
+
+      #
+      # Runs the command from a requester file with command-line
+      # arguments.
+      #
+      # This method is intended to be overriden and does nothing
+      # by default.
+      #
+      def run(file, argv)
+      end
+    
+    end # module InstanceMethods
+    
     # Tracks child classes
     def self.inherited(command)
-      # create the command
-      command.extend(ClassMethods)
-      
-      # install documentation
-      Minicom.consume_tracking do |file,line|
-        rdoc = RubyTools::extract_file_rdoc(file, line, true)
-        rdoc = RubyTools::rdoc_paragraphs(rdoc)
-        command.summary     = (rdoc.shift || "")
-        command.usage       = (rdoc.shift || "").strip
-        command.description = rdoc.join("\n")
-      end
-
-      # install hierarchy
-      parent = RubyTools::parent_module(command)
-      if Minicom.looks_a_command?(parent)
-        command.super_command = parent
-        parent.subcommands << command
-      end
-      
-      command
+      Minicom.build_command(command)
     end
     
   end # class Command

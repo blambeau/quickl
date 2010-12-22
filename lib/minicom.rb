@@ -10,31 +10,33 @@ module Minicom
     who.ancestors.include?(Command)
   end
   
-  # Installs documentation tracking info
-  def self.install_tracking(file, line)
-    @tracking = [file, line]
+  # Yields the block with the current command builder.
+  # A new builder is created if required
+  def self.command_builder 
+    @builder ||= Command::Builder.new
+    yield @builder if block_given?
+    @builder
   end
   
-  # Is documentation tracking information currently 
-  # installed ?
-  def self.has_tracking?
-    @tracking
-  end
-  
-  # Consumes tracking information currently installed
-  def self.consume_tracking
-    unless has_tracking?
-      raise "No documentation tracking information installed"
+  # Builds _command_ using the current builder. 
+  #
+  # The builder is considered consumed and removed as
+  # a side effect. 
+  def self.build_command(command)
+    unless @builder
+      raise "No command builder currently installed"
     else
-      yield(*@tracking)
-      @tracking = nil
+      @builder.run(command)
+      @builder = nil
     end
   end
   
   # Helper to create command with attached 
   # documentation
-  def self.Command(file, line)
-    install_tracking(file, line)
+  def self.Command(*args)
+    command_builder do |b|
+      b.document *args
+    end
     Command
   end
   
