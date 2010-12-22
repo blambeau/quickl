@@ -1,15 +1,9 @@
 require 'minicom/ruby_tools'
-require 'minicom/catalog'
 require 'minicom/command'
 module Minicom
 
   # Minicom VERSION
   VERSION = '0.1.0'
-  
-  # Checks if _who_ looks a command catalog
-  def self.looks_a_catalog?(who)
-    who.ancestors.include?(Catalog)
-  end
   
   # Checks if _who_ looks a command
   def self.looks_a_command?(who)
@@ -42,13 +36,6 @@ module Minicom
   def self.Command(file, line)
     install_tracking(file, line)
     Command
-  end
-  
-  # Helper to create catalog with attached 
-  # documentation
-  def self.Catalog(file, line)
-    install_tracking(file, line)
-    Catalog
   end
   
 end # module Minicom

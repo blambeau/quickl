@@ -1,5 +1,5 @@
 module MiniClient
-  class Commands < Minicom::Catalog(__FILE__, __LINE__)
+  class Commands < Minicom::Command(__FILE__, __LINE__)
     
     #
     # Print help 
@@ -9,7 +9,7 @@ module MiniClient
     class Help < Minicom::Command(__FILE__, __LINE__)
     end # class Help
     
-    class Say < Minicom::Catalog(__FILE__, __LINE__)
+    class Say < Minicom::Command(__FILE__, __LINE__)
 
       #
       # Say hello to the user whose name is requested on the

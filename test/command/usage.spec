@@ -7,5 +7,5 @@ module Minicom
       MiniClient::Commands::Say::Goodbye.usage.should == "Usage: mini_client say:goodbye"
     end
 
-  end # Catalog::command
+  end # Command::command
 end # module Minicom

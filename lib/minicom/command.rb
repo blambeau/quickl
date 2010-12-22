@@ -4,8 +4,8 @@ module Minicom
     # Methods installed on the class
     module ClassMethods
       
-      # The command catalog
-      attr_accessor :catalog
+      # The super command, if any
+      attr_accessor :super_command
       
       # Command's summary
       attr_accessor :summary
@@ -15,6 +15,16 @@ module Minicom
       
       # Command's description
       attr_accessor :description
+      
+      # Returns the array of defined subcommands
+      def subcommands
+        @subcommands ||= []
+      end
+      
+      # Runs the command
+      def run(file, argv)
+        self.new.run(file, argv)
+      end
       
     end # module ClassMethods
     
@@ -27,18 +37,16 @@ module Minicom
       Minicom.consume_tracking do |file,line|
         rdoc = RubyTools::extract_file_rdoc(file, line, true)
         rdoc = RubyTools::rdoc_paragraphs(rdoc)
-        command.summary     = rdoc.shift
-        command.usage       = rdoc.shift.strip
+        command.summary     = (rdoc.shift || "")
+        command.usage       = (rdoc.shift || "").strip
         command.description = rdoc.join("\n")
       end
 
       # install hierarchy
       parent = RubyTools::parent_module(command)
-      if Minicom.looks_a_catalog?(parent)
-        command.catalog = parent
-        parent.children << command
-      else
-        raise "Invalid command hierarchy, #{parent} is not a command catalog"
+      if Minicom.looks_a_command?(parent)
+        command.super_command = parent
+        parent.subcommands << command
       end
       
       command
