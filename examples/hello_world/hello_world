@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby -I../../lib
+require "minicom"
+
+#
+# Say hello 
+#
+# SYNOPSIS
+#   hello_world [--help] [--version] [WHO]
+#
+# OPTIONS
+# #{summarized_options}
+#
+# DESCRIPTION
+#   Without any argument, says hello to the world. When a single argument 
+#   is given says hello to the user.
+#
+class HelloWorld < Minicom::Command(__FILE__, __LINE__)
+  
+  # Command's version
+  VERSION = "0.1.0"
+  
+  # Install command options
+  options do |opt|
+
+    # Show the help and exit
+    opt.on_tail("--help", "Show help") do
+      puts_and_exit help
+    end
+
+    # Show version and exit
+    opt.on_tail("--version", "Show version") do
+      puts_and_exit "#{opt.program_name} #{VERSION} (c) 2010, Bernard Lambeau"
+    end
+    
+  end
+  
+  # Execute the command on some arguments
+  def execute(args)
+    needless_arguments!(args, 1)
+    case args.size
+      when 0
+        puts "Hello World!"
+      when 1
+        puts "Hello #{args}!"
+    end
+  end
+  
+end # class HelloWorld
+
+if __FILE__ == $0
+  HelloWorld.run(ARGV)
+end

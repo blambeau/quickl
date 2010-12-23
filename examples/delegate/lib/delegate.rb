@@ -17,7 +17,7 @@ class Delegate < Minicom::Delegate(__FILE__, __LINE__)
   COPYRIGHT = "#{VERSION} (c) 2010, Bernard Lambeau"
 
   # Install command options
-  option_builder help_and_version(COPYRIGHT)
+  options help_and_version(COPYRIGHT)
  
   # 
   # Usage: delegate help COMMAND
@@ -27,7 +27,7 @@ class Delegate < Minicom::Delegate(__FILE__, __LINE__)
   class Help < Minicom::Command(__FILE__, __LINE__)
     
     # Install command options
-    option_builder help_and_version(COPYRIGHT)
+    options help_and_version(COPYRIGHT)
   
     # Command execution
     def execute(args)
@@ -48,7 +48,7 @@ class Delegate < Minicom::Delegate(__FILE__, __LINE__)
   class Hello < Minicom::Command(__FILE__, __LINE__)
     
     # Install command options
-    option_builder help_and_version(COPYRIGHT)
+    options help_and_version(COPYRIGHT)
 
     # Command execution
     def execute(args)

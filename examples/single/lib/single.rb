@@ -13,7 +13,7 @@ class Single < Minicom::Command(__FILE__, __LINE__)
   VERSION = "0.1.0"
 
   # Install command options
-  option_builder do |opt|
+  options do |opt|
     
     # Show the help and exit
     opt.on_tail("--help", "Show help") do

@@ -5,12 +5,6 @@ module Minicom
       # Installed options builders
       attr_reader :option_builders
     
-      # Adds an option builder
-      def option_builder(builder = nil, &block)
-        @option_builders ||= []
-        @option_builders << (builder || block)
-      end
-    
       # Builds an OptionParser instance
       def build_options(scope = self)
         OptionParser.new do |opt|
@@ -24,7 +18,17 @@ module Minicom
           }
         end
       end
-      alias :options :build_options
+      
+      # Without builder nor block, returns built options.
+      # Otherwise, adds a new option builder 
+      def options(builder = nil, &block)
+        if b = (builder || block)
+          @option_builders ||= []
+          @option_builders << b
+        else
+          build_options
+        end
+      end
       
       # Returns summarized options
       def summarized_options

@@ -4,7 +4,7 @@ module Minicom
   module Command::Delegate
     
     # Run the command by delegation
-    def run(argv = [])
+    def _run(argv = [])
       # My own options
       my_argv = []
       while argv.first =~ /^--/

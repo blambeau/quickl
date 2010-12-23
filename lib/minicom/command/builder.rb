@@ -11,7 +11,8 @@ module Minicom
       def class_modules(*mods)
         @class_modules ||= [ 
           Command::ClassMethods,
-          Command::Options::ClassMethods
+          Command::Options::ClassMethods,
+          Command::ErrorHandling
         ]
         @class_modules += mods
       end
@@ -42,6 +43,9 @@ module Minicom
         if @file and @line
           command.doc_place = [@file, @line]
         end
+        
+        # install error handlers
+        command.default_error_handlers
 
         # install hierarchy
         parent = RubyTools::parent_module(command)

@@ -36,12 +36,20 @@ module Minicom
       def documentation
         @documentation ||= instance_eval("%Q{#{doc_src}}")
       end
+      alias :help :documentation
       
       # Returns command usage
       def usage
-        documentation.split("\n").find{|s|
-          s =~ /Usage:/ 
-        } || "no usage available"
+        doc = documentation.split("\n")
+        doc.each_with_index{|line,i|
+          case line
+            when /Usage:/ 
+              return line.strip
+            when /SYNOPSIS/
+              return doc[i+1].strip || "no usage available"
+          end
+        } 
+        "no usage available"
       end
       
       # Runs the command
@@ -78,6 +86,9 @@ module Minicom
       # by default.
       #
       def run(argv)
+        _run(argv)
+      rescue Exception => ex
+        self.class.handle_error(ex)
       end
     
     end # module InstanceMethods
@@ -90,6 +101,7 @@ module Minicom
   end # class Command
 end # module Minicom
 require 'minicom/command/builder'
+require 'minicom/command/error_handling'
 require 'minicom/command/robustness'
 require 'minicom/command/options'
 require 'minicom/command/single'

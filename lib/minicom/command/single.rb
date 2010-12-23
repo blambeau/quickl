@@ -7,7 +7,7 @@ module Minicom
     attr_reader :args
 
     # Run the command by delegation
-    def run(argv = [])
+    def _run(argv = [])
       execute(options.parse!(argv))
     end
     

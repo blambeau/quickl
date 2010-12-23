@@ -13,6 +13,16 @@ module Minicom
         raise NoSuchCommandError, "No such command #{name}", ex.backtrace
       end
       
+      # Raises an exception if args.size is greater than
+      # max_size
+      def needless_arguments!(args, max_size = 0)
+        if args && args.size > max_size
+          raise OptionParser::NeedlessArgument, args
+        else
+          args
+        end
+      end
+      
     end # module Robustness
   end # class Command
 end # module Minicom
