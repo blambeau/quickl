@@ -10,46 +10,55 @@ Kernel.load File.expand_path('../hello_world', __FILE__)
 
 class HelloWorldTest < Test::Unit::TestCase
     
-  def hello_run(*args)
+  def assert_exits(match, exit_code)  
+    yield
+    assert_false true, "Expected to exit with #{match}, nothing raised"
+  rescue Quickl::Exit => ex
+    assert_equal ex.exit_code, exit_code
+    assert ex.message =~ match
+  end
+  
+  def run_command(*args)
     $stdout = StringIO.new
-    $stderr = StringIO.new
-    begin
-      HelloWorld.run args
-    rescue Quickl::Error
-    end
+    HelloWorld.no_react_to(Quickl::Exit)
+    HelloWorld.run args
     $stdout.string
   ensure
     $stdout = STDOUT
   end
   
   def test_normal_runs
-    assert_equal "Hello world!\n",    hello_run
-    assert_equal "Hello blambeau!\n", hello_run("blambeau")
+    assert_equal "Hello world!\n",    run_command
+    assert_equal "Hello blambeau!\n", run_command("blambeau")
   end
   
   def test_capitalize
-    assert_equal "Hello World!\n",    hello_run("--capitalize")
-    assert_equal "Hello Blambeau!\n", hello_run("--capitalize", "blambeau")
+    assert_equal "Hello World!\n",    run_command("--capitalize")
+    assert_equal "Hello Blambeau!\n", run_command("--capitalize", "blambeau")
   end
   
-  # def test_help_option
-  #   HelloWorld.run("--help") =~ /DESCRIPTION/
-  #   assert @last_exception.is_a?(Quickl::Exit)
-  # end
+  def test_help_option
+    assert_exits(/DESCRIPTION/, 0){ 
+      run_command("--help") 
+    }
+  end
   
-  # def test_too_many_arguments
-  #   hello_run('hello', 'too')
-  #   assert @last_exception.is_a?(OptionParser::NeedlessArgument)
-  # end
-  # 
-  # def test_help_option_shows_options
-  #   assert hello_run("--help") =~ /Show help/
-  #   assert @last_exception.is_a?(Quickl::Exit)
-  # end
-  # 
-  # def test_version_option
-  #   assert hello_run("--version") =~ /(c)/
-  #   assert @last_exception.is_a?(Quickl::Exit)
-  # end
+  def test_version_option
+    assert_exits(/(c)/, 0){ 
+      run_command("--version") 
+    }
+  end
+  
+  def test_no_such_option
+    assert_exits(/invalid option/, -1){ 
+      run_command("--no-such-option") 
+    }
+  end
+  
+  def test_too_many_arguments
+    assert_exits(/Wrong arguments/, -1){ 
+      run_command('hello', 'too') 
+    }
+  end
   
 end

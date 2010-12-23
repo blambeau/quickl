@@ -63,8 +63,7 @@ module Quickl
     # Default behavior is to print cause's message
     # and reraise a Help
     def react!
-      $stderr.puts cause.message
-      raise Help.new(-1)
+      raise Exit.new("#{cause.message}\n#{command.help}", -1)
     end
     
   end # class OptionError
@@ -83,8 +82,7 @@ module Quickl
     # Default behavior is to print cause's message
     # and reraise a Help
     def react!
-      $stderr.puts "Wrong arguments: #{args.join(' ')}"
-      raise Help.new(-1)
+      raise Exit.new("Wrong arguments: #{args.join(' ')}\n#{command.help}", -1)
     end
     
   end

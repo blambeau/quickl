@@ -11,8 +11,17 @@ require 'delegate'
 
 class DelegateTest < Test::Unit::TestCase
 
-  def delegate_run(*args)
+  def assert_exits(match, exit_code)  
+    yield
+    assert_false true, "Expected to exit with #{match}, nothing raised"
+  rescue Quickl::Exit => ex
+    assert_equal ex.exit_code, exit_code
+    assert ex.message =~ match
+  end
+  
+  def run_command(*args)
     $stdout = StringIO.new
+    Delegate.no_react_to(Quickl::Exit)
     Delegate.run args
     $stdout.string
   ensure
@@ -20,21 +29,39 @@ class DelegateTest < Test::Unit::TestCase
   end
   
   def test_alone
-    #assert delegate_run =~ /Delegate execution to a sub command/
+    assert_exits(/Delegate execution to a sub command/, 0){ run_command }
+  end
+  
+  def test_help_option
+    assert_exits(/DESCRIPTION/, 0){ 
+      run_command("--help") 
+    }
+  end
+  
+  def test_version_option
+    assert_exits(/(c)/, 0){ 
+      run_command("--version") 
+    }
+  end
+  
+  def test_no_such_option
+    assert_exits(/invalid option/, -1){ 
+      run_command("--no-such-option") 
+    }
   end
   
   def test_help_delegation
-    assert delegate_run("help", "hello-world") =~ /Say hello/
+    assert run_command("help", "hello-world") =~ /Say hello/
   end
   
   def test_hello_delegation
-    assert_equal "Hello world!\n", delegate_run("hello-world")
-    assert_equal "Hello bob!\n", delegate_run("hello-world", "bob")
+    assert_equal "Hello world!\n", run_command("hello-world")
+    assert_equal "Hello bob!\n", run_command("hello-world", "bob")
   end
   
   def test_hello_capitalize
-    assert_equal "Hello World!\n", delegate_run("hello-world", "--capitalize")
-    assert_equal "Hello Bob!\n", delegate_run("hello-world", "bob", "--capitalize")
+    assert_equal "Hello World!\n", run_command("hello-world", "--capitalize")
+    assert_equal "Hello Bob!\n", run_command("hello-world", "bob", "--capitalize")
   end
   
 end
