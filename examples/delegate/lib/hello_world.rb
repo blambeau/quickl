@@ -14,9 +14,6 @@ class Delegate
   #
   class HelloWorld < Quickl::Command(__FILE__, __LINE__)
   
-    # Command's version
-    VERSION = "0.1.0"
-  
     # Install command options
     options do |opt|
 
@@ -29,10 +26,13 @@ class Delegate
   
     # Execute the command on some arguments
     def execute(args)
-      needless_arguments!(args, 1)
-      name = args.first || "world"
-      name = name.capitalize if @capitalize
-      puts "Hello #{name}!"
+      if args.size <= 1
+        name = args.first || "world"
+        name = name.capitalize if @capitalize
+        puts "Hello #{name}!"
+      else
+        raise Quickl::CommandArgumentError, args
+      end
     end
   
   end # class HelloWorld
