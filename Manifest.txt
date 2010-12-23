@@ -1,7 +1,0 @@
-History.txt
-Manifest.txt
-README.txt
-Rakefile
-bin/minicom
-lib/minicom.rb
-test/test_minicom.rb

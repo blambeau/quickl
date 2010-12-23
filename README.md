@@ -1,18 +1,10 @@
-# minicom
+# Minicom
 
 * http://github.com/blambeau/minicom
 
 ## DESCRIPTION:
 
 Minicom helps you create commandline programs.
-
-## FEATURES/PROBLEMS:
-
-## SYNOPSIS:
-
-Minicom helps you create commandline programs.
-
-## REQUIREMENTS:
 
 ## INSTALL:
 
