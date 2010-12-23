@@ -33,13 +33,4 @@ module Minicom
     end
   end
   
-  # Helper to create command with attached 
-  # documentation
-  def self.Command(*args)
-    command_builder do |b|
-      b.document *args
-    end
-    Command
-  end
-  
 end # module Minicom

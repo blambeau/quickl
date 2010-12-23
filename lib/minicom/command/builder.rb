@@ -9,14 +9,20 @@ module Minicom
       
       # Adds some command class modules
       def class_modules(*mods)
-        @class_modules ||= [ Command::ClassMethods ]
+        @class_modules ||= [ 
+          Command::ClassMethods,
+          Command::Hooks
+        ]
         @class_modules += mods
       end
       alias :class_module class_modules
       
       # Adds some command instance modules
       def instance_modules(*mods)
-        @instance_modules ||= [ Command::InstanceMethods, Command::Robustness ]
+        @instance_modules ||= [ 
+          Command::InstanceMethods, 
+          Command::Robustness 
+        ]
         @instance_modules += mods
       end
       alias :instance_module instance_modules
@@ -25,7 +31,7 @@ module Minicom
       def run(command)
         # install class and instance methods
         class_modules.each{|mod|
-          command.extend(ClassMethods)
+          command.extend(mod)
         }
         instance_modules.each{|mod|
           command.instance_eval{ include mod } 
@@ -42,7 +48,7 @@ module Minicom
 
         # install hierarchy
         parent = RubyTools::parent_module(command)
-        if Minicom.looks_a_command?(parent)
+        if parent && Minicom.looks_a_command?(parent)
           command.super_command = parent
           parent.subcommands << command
         end
