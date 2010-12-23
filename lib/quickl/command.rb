@@ -1,5 +1,5 @@
 require 'optparse'
-module Minicom
+module Quickl
   class Command
     
     # Methods installed on all command classes
@@ -75,7 +75,7 @@ module Minicom
       # Puts something and exit
       def puts_and_exit(what, exit_code = 0)
         puts what
-        raise Minicom::Exit.new(exit_code)
+        raise Quickl::Exit.new(exit_code)
       end
 
       #
@@ -95,14 +95,14 @@ module Minicom
     
     # Tracks child classes
     def self.inherited(command)
-      Minicom.build_command(command)
+      Quickl.build_command(command)
     end
     
   end # class Command
-end # module Minicom
-require 'minicom/command/builder'
-require 'minicom/command/error_handling'
-require 'minicom/command/robustness'
-require 'minicom/command/options'
-require 'minicom/command/single'
-require 'minicom/command/delegate'
+end # module Quickl
+require 'quickl/command/builder'
+require 'quickl/command/error_handling'
+require 'quickl/command/robustness'
+require 'quickl/command/options'
+require 'quickl/command/single'
+require 'quickl/command/delegate'

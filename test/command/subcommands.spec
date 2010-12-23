@@ -1,5 +1,5 @@
 require File.expand_path('../../spec_helper', __FILE__)
-module Minicom
+module Quickl
   describe "Command::subcommands /" do
     
     it "should return installed commands in an array" do
@@ -17,4 +17,4 @@ module Minicom
     end
 
   end # Command::subcommand
-end # module Minicom
+end # module Quickl

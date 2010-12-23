@@ -1,10 +1,10 @@
 require 'test/unit'
 require 'stringio'
 begin 
-  require 'minicom'
+  require 'quickl'
 rescue LoadError
   $LOAD_PATH.unshift File.expand_path('../../../lib', __FILE__)
-  require 'minicom'
+  require 'quickl'
 end
 Kernel.load File.expand_path('../hello_world', __FILE__)
 
@@ -38,17 +38,17 @@ class HelloWorldTest < Test::Unit::TestCase
   
   def test_help_option
     assert hello_run("--help") =~ /DESCRIPTION/
-    assert @last_exception.is_a?(Minicom::Exit)
+    assert @last_exception.is_a?(Quickl::Exit)
   end
 
   def test_help_option_shows_options
     assert hello_run("--help") =~ /Show help/
-    assert @last_exception.is_a?(Minicom::Exit)
+    assert @last_exception.is_a?(Quickl::Exit)
   end
   
   def test_version_option
     assert hello_run("--version") =~ /(c)/
-    assert @last_exception.is_a?(Minicom::Exit)
+    assert @last_exception.is_a?(Quickl::Exit)
   end
   
 end

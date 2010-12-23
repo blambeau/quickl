@@ -1,5 +1,5 @@
 require File.expand_path('../../spec_helper', __FILE__)
-module Minicom
+module Quickl
   module Fixtures
 
     #
@@ -24,4 +24,4 @@ module Minicom
     end # module Utils
 
   end # module Fixtures
-end # module Minicom
+end # module Quickl

@@ -1,4 +1,4 @@
-module Minicom
+module Quickl
   class Command
     class Builder
       
@@ -49,7 +49,7 @@ module Minicom
 
         # install hierarchy
         parent = RubyTools::parent_module(command)
-        if parent && Minicom.looks_a_command?(parent)
+        if parent && Quickl.looks_a_command?(parent)
           command.super_command = parent
           parent.subcommands << command
         end
@@ -59,4 +59,4 @@ module Minicom
       
     end # class Builder
   end # class Command
-end # module Minicom
+end # module Quickl

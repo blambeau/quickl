@@ -1,4 +1,4 @@
-module Minicom
+module Quickl
   module RubyTools
 
     # Returns the parent module of a class
@@ -79,4 +79,4 @@ module Minicom
 
     extend(RubyTools)
   end # module RubyTools
-end # module Minicom
+end # module Quickl

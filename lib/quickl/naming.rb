@@ -1,4 +1,4 @@
-module Minicom
+module Quickl
   module Naming
     
     def command2module(name)
@@ -13,4 +13,4 @@ module Minicom
     end
     
   end # module Naming
-end # module Minicom
+end # module Quickl

@@ -1,6 +1,6 @@
-module Minicom
+module Quickl
   
-  # Main class of all Minicom's errors
+  # Main class of all Quickl's errors
   class Error < StandardError; end
   
   # Raised when a command cannot be found
@@ -19,4 +19,4 @@ module Minicom
     
   end # class Exit
   
-end # module Minicom
+end # module Quickl

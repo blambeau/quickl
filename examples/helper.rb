@@ -1,6 +1,6 @@
 begin 
-  require 'minicom'
+  require 'quickl'
 rescue LoadError
   $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-  require 'minicom'
+  require 'quickl'
 end

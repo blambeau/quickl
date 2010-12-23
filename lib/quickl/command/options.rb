@@ -1,4 +1,4 @@
-module Minicom
+module Quickl
   module Command::Options
     module ClassMethods
       
@@ -60,4 +60,4 @@ module Minicom
       
     end # module InstanceMethods
   end # module Command::Options
-end # module Minicom
+end # module Quickl

@@ -1,12 +1,12 @@
 module MiniClient
-  class Command < Minicom::Delegate(__FILE__, __LINE__)
+  class Command < Quickl::Delegate(__FILE__, __LINE__)
     
     #
     # Print help 
     #
     # Usage: mini_client help
     #
-    class Help < Minicom::Command(__FILE__, __LINE__)
+    class Help < Quickl::Command(__FILE__, __LINE__)
 
         def run(*args)
           :help
@@ -14,7 +14,7 @@ module MiniClient
         
     end # class Help
     
-    class Say < Minicom::Delegate(__FILE__, __LINE__)
+    class Say < Quickl::Delegate(__FILE__, __LINE__)
 
       #
       # Say hello to the user whose name is requested on the
@@ -25,7 +25,7 @@ module MiniClient
       # And an explanation here
       # on multiple lines
       #
-      class Hello < Minicom::Command(__FILE__, __LINE__)
+      class Hello < Quickl::Command(__FILE__, __LINE__)
         
         def run(*args)
           :hello
@@ -38,7 +38,7 @@ module MiniClient
       #
       # Usage: mini_client say:goodbye
       #
-      class Goodbye < Minicom::Command(__FILE__, __LINE__)
+      class Goodbye < Quickl::Command(__FILE__, __LINE__)
 
         def run(*args)
           :goodbye

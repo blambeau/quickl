@@ -1,5 +1,5 @@
 require File.expand_path('../../spec_helper', __FILE__)
-module Minicom
+module Quickl
   describe "Command::run /" do
     
     it "when invoked on a terminal command" do
@@ -19,4 +19,4 @@ module Minicom
     end
 
   end # Command::command
-end # module Minicom
+end # module Quickl

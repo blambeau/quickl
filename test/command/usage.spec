@@ -1,5 +1,5 @@
 require File.expand_path('../../spec_helper', __FILE__)
-module Minicom
+module Quickl
   describe "Command::usage /" do
     
     it "should be installed from inline rdoc" do
@@ -7,5 +7,5 @@ module Minicom
       MiniClient::Command::Say::Goodbye.usage.should == "Usage: mini_client say:goodbye"
     end
 
-  end # Command::command
-end # module Minicom
+  end # Command::usage
+end # module Quickl

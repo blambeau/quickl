@@ -1,5 +1,5 @@
 require File.expand_path('../fixtures', __FILE__)
-module Minicom
+module Quickl
   describe "RubyTools#class_unqualified_name /" do
   
     subject{ RubyTools::class_unqualified_name(clazz) }
@@ -15,12 +15,12 @@ module Minicom
     end
   
     describe "when called on long qualified class" do
-      let(:clazz){ Minicom::Fixtures::Utils }
+      let(:clazz){ Quickl::Fixtures::Utils }
       it{ should == "Utils" }
     end
   
     describe "when piped with parent_module" do
-      let(:clazz){ RubyTools::parent_module(Minicom::Fixtures::Utils) }
+      let(:clazz){ RubyTools::parent_module(Quickl::Fixtures::Utils) }
       it{ should == "Fixtures" }
     end
 

@@ -8,7 +8,7 @@ require File.expand_path('../../../helper', __FILE__)
 #
 # Show how to write a delegate command
 #
-class Delegate < Minicom::Delegate(__FILE__, __LINE__)
+class Delegate < Quickl::Delegate(__FILE__, __LINE__)
 
   # Single command version
   VERSION = "0.1.0"
@@ -24,7 +24,7 @@ class Delegate < Minicom::Delegate(__FILE__, __LINE__)
   # 
   # Show help about a specific command
   #
-  class Help < Minicom::Command(__FILE__, __LINE__)
+  class Help < Quickl::Command(__FILE__, __LINE__)
     
     # Install command options
     options help_and_version(COPYRIGHT)
@@ -45,7 +45,7 @@ class Delegate < Minicom::Delegate(__FILE__, __LINE__)
   #
   # Usage: delegate [opts] hello WHO...
   #
-  class Hello < Minicom::Command(__FILE__, __LINE__)
+  class Hello < Quickl::Command(__FILE__, __LINE__)
     
     # Install command options
     options help_and_version(COPYRIGHT)

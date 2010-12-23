@@ -1,4 +1,4 @@
-module Minicom
+module Quickl
   module Command::ErrorHandling
     
     # Adds an error handler
@@ -9,7 +9,7 @@ module Minicom
     
     # Builds default error handlers
     def default_error_handlers
-      error_handler(Minicom::Exit){|cmd, e|
+      error_handler(Quickl::Exit){|cmd, e|
         exit(e.exit_code)
       }
       error_handler(Interrupt){|cmd, e|
@@ -34,4 +34,4 @@ module Minicom
     end
     
   end # module Command::ErrorHandling
-end # module Minicom
+end # module Quickl

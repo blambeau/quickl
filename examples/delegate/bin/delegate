@@ -7,6 +7,6 @@ begin
   Delegate.run(ARGV)
 rescue Interrupt => e
   $stderr.puts "Interrupted"
-rescue Minicom::Exit => e
+rescue Quickl::Exit => e
   exit(e.exit_code)
 end 

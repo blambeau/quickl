@@ -1,11 +1,11 @@
-require 'minicom/ext/object'
-require 'minicom/errors'
-require 'minicom/ruby_tools'
-require 'minicom/naming'
-require 'minicom/command'
-module Minicom
+require 'quickl/ext/object'
+require 'quickl/errors'
+require 'quickl/ruby_tools'
+require 'quickl/naming'
+require 'quickl/command'
+module Quickl
 
-  # Minicom VERSION
+  # Quickl VERSION
   VERSION = '0.1.0'
   
   # Checks if _who_ looks a command
@@ -34,4 +34,4 @@ module Minicom
     end
   end
   
-end # module Minicom
+end # module Quickl

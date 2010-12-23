@@ -1,10 +1,10 @@
-# Minicom
+# Quickl
 
-* http://github.com/blambeau/minicom
+* http://github.com/blambeau/quickl
 
 ## DESCRIPTION:
 
-Minicom helps you create commandline programs as simply as:
+Quickl helps you create commandline programs as simply as:
 
     #
     # Short description here
@@ -18,7 +18,7 @@ Minicom helps you create commandline programs as simply as:
     # DESCRIPTION
     #   Long description here...
     #
-    class SimpleCommand < Minicom::Command(__FILE__, __LINE__)
+    class SimpleCommand < Quickl::Command(__FILE__, __LINE__)
     
       # install options below
       options do |opt|
@@ -36,7 +36,7 @@ Running them as simply as:
 
     SimpleCommand.run(ARGV)
     
-From simple command to complex delegate (_ala_ 'git [--version] [--help] COMMAND [cmd options] ARGS...'), Minicom provides (or aims at providing) the following features:
+From simple command to complex delegate (_ala_ 'git [--version] [--help] COMMAND [cmd options] ARGS...'), Quickl provides (or aims at providing) the following features:
 
 * Simple command creations via simple classes
 * Delegate commands and categories via ruby namespaces and naming conventions
@@ -47,11 +47,11 @@ From simple command to complex delegate (_ala_ 'git [--version] [--help] COMMAND
 
 ## INSTALL:
 
-    sudo gem install minicom
+    sudo gem install quickl
 
 ## THEN?
 
-* [hello_world example](https://github.com/blambeau/minicom/blob/master/examples/hello_world)
+* [hello_world example](https://github.com/blambeau/quickl/blob/master/examples/hello_world)
 
 
 ## LICENSE:

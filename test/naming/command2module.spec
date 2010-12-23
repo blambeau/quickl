@@ -1,5 +1,5 @@
 require File.expand_path('../../spec_helper', __FILE__)
-module Minicom
+module Quickl
   describe "Naming::command2module /" do
     include Naming
     
@@ -13,5 +13,5 @@ module Minicom
       command2module(:"say-hello").should == :SayHello
     end
     
-  end # module Minicom
-end # module Minicom
+  end # module Quickl
+end # module Quickl

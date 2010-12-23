@@ -1,5 +1,5 @@
 require File.expand_path('../fixtures', __FILE__)
-module Minicom
+module Quickl
   describe "RubyTools#extract_file_rdoc /" do
     
     let(:file){ File.expand_path('../fixtures.rb', __FILE__) }
@@ -25,4 +25,4 @@ module Minicom
     end
   
   end # RubyTools#extract_file_rdoc
-end # module Minicom
+end # module Quickl

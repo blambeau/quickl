@@ -1,4 +1,4 @@
-module Minicom
+module Quickl
   class Command
     module Robustness
       include Naming
@@ -25,4 +25,4 @@ module Minicom
       
     end # module Robustness
   end # class Command
-end # module Minicom
+end # module Quickl

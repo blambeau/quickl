@@ -1,4 +1,4 @@
-module Minicom
+module Quickl
   
   # Instance method for being a single command
   module Command::Single
@@ -24,4 +24,4 @@ module Minicom
     Command
   end
   
-end # module Minicom
+end # module Quickl

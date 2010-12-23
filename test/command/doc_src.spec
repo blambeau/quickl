@@ -11,7 +11,7 @@ on multiple lines
 EOF
 
 require File.expand_path('../../spec_helper', __FILE__)
-module Minicom
+module Quickl
   describe "Command::doc_src /" do
     
     it "should be correctly installed" do
@@ -19,4 +19,4 @@ module Minicom
     end
 
   end # Command::command
-end # module Minicom
+end # module Quickl

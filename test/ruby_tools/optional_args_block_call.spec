@@ -1,5 +1,5 @@
 require File.expand_path('../fixtures', __FILE__)
-module Minicom
+module Quickl
   describe "RubyTools#optional_args_block_call /" do
   
     subject{ RubyTools::optional_args_block_call(block, args) }

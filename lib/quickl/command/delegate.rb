@@ -1,4 +1,4 @@
-module Minicom
+module Quickl
   
   # Instance method for being a delegate command
   module Command::Delegate
@@ -33,4 +33,4 @@ module Minicom
     Command
   end
   
-end # module Minicom
+end # module Quickl

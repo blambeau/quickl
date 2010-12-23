@@ -1,5 +1,5 @@
 require File.expand_path('../fixtures', __FILE__)
-module Minicom
+module Quickl
   describe "RubyTools#extract_file_rdoc /" do
   
     subject{ RubyTools::rdoc_file_paragraphs(File.expand_path('../fixtures.rb', __FILE__)) }
