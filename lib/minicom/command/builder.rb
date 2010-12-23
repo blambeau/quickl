@@ -11,7 +11,7 @@ module Minicom
       def class_modules(*mods)
         @class_modules ||= [ 
           Command::ClassMethods,
-          Command::Hooks
+          Command::Options::ClassMethods
         ]
         @class_modules += mods
       end
@@ -21,7 +21,8 @@ module Minicom
       def instance_modules(*mods)
         @instance_modules ||= [ 
           Command::InstanceMethods, 
-          Command::Robustness 
+          Command::Robustness,
+          Command::Options::InstanceMethods
         ]
         @instance_modules += mods
       end

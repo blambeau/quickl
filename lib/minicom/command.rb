@@ -28,24 +28,6 @@ module Minicom
         @subcommands and !@subcommands.empty?
       end
       
-      # Build and return an OptionParser instance
-      def options
-        @options ||= OptionParser.new do |opt|
-          opt.program_name = File.basename $0
-          if const_defined?(:VERSION)
-            opt.version = const_get(:VERSION)
-          end
-          opt.summary_indent = ' ' * 2
-          opt.banner = self.usage
-        end
-        @options
-      end
-      
-      # Returns command help
-      def help
-        options.to_s
-      end
-      
       # Runs the command
       def run(*args)
         self.new.run(*args)
@@ -64,6 +46,12 @@ module Minicom
         else
           super
         end
+      end
+      
+      # Puts something and exit
+      def puts_and_exit(what, exit_code = 0)
+        puts what
+        raise Minicom::Exit.new(exit_code)
       end
 
       #
@@ -87,6 +75,6 @@ module Minicom
 end # module Minicom
 require 'minicom/command/builder'
 require 'minicom/command/robustness'
-require 'minicom/command/hooks'
+require 'minicom/command/options'
 require 'minicom/command/single'
 require 'minicom/command/delegate'

@@ -8,10 +8,7 @@ module Minicom
 
     # Run the command by delegation
     def run(argv = [])
-      args = options.parse!(argv)
-      self.class.executions.reverse.each{|exec|
-        exec.call(args)
-      }
+      execute(options.parse!(argv))
     end
     
   end # module Command::Delegate

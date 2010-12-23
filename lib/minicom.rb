@@ -1,3 +1,4 @@
+require 'minicom/ext/object'
 require 'minicom/errors'
 require 'minicom/ruby_tools'
 require 'minicom/naming'

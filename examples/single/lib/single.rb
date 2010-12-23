@@ -18,22 +18,23 @@ class Single < Minicom::Command(__FILE__, __LINE__)
   # Single command version
   VERSION = "0.1.0"
 
-  # Show the help and exit
-  options.on_tail("--help", "Show help") do
-    execute_and_exit{ 
-      puts help 
-    }
-  end
+  # Install command options
+  option_builder do |opt|
+    
+    # Show the help and exit
+    opt.on_tail("--help", "Show help") do
+      puts_and_exit opt
+    end
 
-  # Show version and exit
-  options.on_tail("--version", "Show version") do
-    execute_and_exit{ 
-      puts "single " << VERSION << " (c) 2010, Bernard Lambeau"
-    }
-  end
+    # Show version and exit
+    opt.on_tail("--version", "Show version") do
+      puts_and_exit "single " << VERSION << " (c) 2010, Bernard Lambeau"
+    end
+    
+  end # option_builder
   
   # Normal command execution
-  execute do |args|
+  def execute(args)
     puts "Running on #{args.inspect}"
   end
   
