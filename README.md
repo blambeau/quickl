@@ -51,7 +51,7 @@ From simple command to complex delegate (_ala_ 'git [--version] [--help] COMMAND
 
 ## THEN?
 
-* [hello_world example](https://github.com/blambeau/minicom/blob/master/examples/hello_world/README.md)
+* [hello_world example](https://github.com/blambeau/minicom/blob/master/examples/hello_world)
 
 
 ## LICENSE:
