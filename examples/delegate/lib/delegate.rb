@@ -26,12 +26,12 @@ class Delegate < Quickl::Delegate(__FILE__, __LINE__)
     
     # Show the help and exit
     opt.on_tail("--help", "Show help") do
-      puts_and_exit help
+      raise Quickl::Help
     end
 
     # Show version and exit
     opt.on_tail("--version", "Show version") do
-      puts_and_exit "#{opt.program_name} #{VERSION} (c) 2010, Bernard Lambeau"
+      raise Quickl::Exit.new("#{opt.program_name} #{VERSION} (c) 2010, Bernard Lambeau", 0)
     end
     
   end 

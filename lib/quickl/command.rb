@@ -84,12 +84,14 @@ module Quickl
         end
       end
       
-      # Puts something and exit
-      def puts_and_exit(what, exit_code = 0)
-        puts what
-        raise Quickl::Exit.new(exit_code)
+      # Handles a command error
+      def handle_error(ex)
+        ex.command = self
+        ex.react!
+      rescue Quickl::Error => ex2
+        handle_error(ex2)
       end
-
+      
       #
       # Runs the command from a requester file with command-line
       # arguments.
@@ -100,10 +102,7 @@ module Quickl
       def run(argv)
         _run(argv)
       rescue Quickl::Error => ex
-        ex.command = self
-        self.class.handle_error(ex, self)
-      rescue Exception => ex
-        self.class.handle_error(ex, self)
+        handle_error(ex)
       end
     
     end # module InstanceMethods
@@ -116,7 +115,6 @@ module Quickl
   end # class Command
 end # module Quickl
 require 'quickl/command/builder'
-require 'quickl/command/error_handling'
 require 'quickl/command/robustness'
 require 'quickl/command/options'
 require 'quickl/command/single'

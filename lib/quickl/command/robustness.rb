@@ -17,7 +17,7 @@ module Quickl
       # max_size
       def needless_arguments!(args, max_size = 0)
         if args && args.size > max_size
-          raise OptionParser::NeedlessArgument, args
+          raise Quickl::CommandArgumentError.new(args)
         else
           args
         end

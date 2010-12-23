@@ -43,6 +43,13 @@ module Quickl
         @options ||= self.class.build_options(self)
       end
       
+      # Parses options
+      def parse_options(argv)
+        options.parse!(argv)
+      rescue OptionParser::ParseError => ex
+        raise Quickl::OptionError.new(ex)
+      end
+      
     end # module InstanceMethods
   end # module Command::Options
 end # module Quickl

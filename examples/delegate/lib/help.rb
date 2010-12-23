@@ -13,7 +13,7 @@ class Delegate
         puts super_command.help
       else
         cmd = has_command!(args.first, super_command)
-        puts_and_exit cmd.documentation
+        puts cmd.help
       end
     end
     

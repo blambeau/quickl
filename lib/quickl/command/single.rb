@@ -8,7 +8,7 @@ module Quickl
 
     # Run the command by delegation
     def _run(argv = [])
-      execute(options.parse!(argv))
+      execute(parse_options(argv))
     end
     
   end # module Command::Delegate

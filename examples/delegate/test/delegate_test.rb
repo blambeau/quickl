@@ -13,9 +13,6 @@ class DelegateTest < Test::Unit::TestCase
 
   def delegate_run(*args)
     $stdout = StringIO.new
-    Delegate.error_handler(nil){|cmd,ex|
-      @last_exception = ex
-    }
     Delegate.run args
     $stdout.string
   ensure

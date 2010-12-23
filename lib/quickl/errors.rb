@@ -15,13 +15,16 @@ module Quickl
     attr_reader :exit_code
     
     # Creates an Exit instance
-    def initialize(exit_code)
+    def initialize(msg, exit_code = 0)
+      super(msg)
       @exit_code = exit_code
     end
     
     # Default behavior is to invoke Kernel.exit
     # with the exit code provided at construction
     def react!
+      out = (exit_code < 0 ? $stderr : $stdout)
+      out.puts self.message
       Kernel.exit(exit_code)
     end
     
@@ -41,19 +44,58 @@ module Quickl
     # Default behavior is to print command help
     # then re-raise an Exit with same exit code.
     def react!
-      out = (exit_code < 0 ? $stderr : $stdout)
-      out.puts command.help
-      raise Exit, exit_code
+      raise Exit.new(command.help, exit_code)
     end
     
   end # class Help
+  
+  # Raised when an option parsing occurs
+  class OptionError < Error
+    
+    # Cause 
+    attr_reader :cause
+    
+    # Creates an error with a cause (OptionParser::ParseError)
+    def initialize(cause)
+      @cause = cause
+    end
+    
+    # Default behavior is to print cause's message
+    # and reraise a Help
+    def react!
+      $stderr.puts cause.message
+      raise Help.new(-1)
+    end
+    
+  end # class OptionError
+  
+  # Raised when something goas wrong with command arguments
+  class CommandArgumentError < Error
+
+    # Wrong arguments
+    attr_reader :args
+    
+    # Creates an error with wrong arguments
+    def initialize(args)
+      @args = args
+    end
+    
+    # Default behavior is to print cause's message
+    # and reraise a Help
+    def react!
+      $stderr.puts "Wrong arguments: #{args.join(' ')}"
+      raise Help.new(-1)
+    end
+    
+  end
   
   # Raised when a command cannot be found
   class NoSuchCommandError < Error 
     
     # Default behavior is to reraise a Help(-1)
     def react!
-      raise Help, -1
+      $stderr.puts self.message
+      raise Help.new(-1)
     end
     
   end # class NoSuchCommandError

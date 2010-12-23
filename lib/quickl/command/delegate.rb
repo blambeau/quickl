@@ -9,7 +9,7 @@ module Quickl
         while argv.first =~ /^--/
           my_argv << argv.shift
         end
-        options.parse!(my_argv)
+        parse_options(my_argv)
       
         # Run the subcommand now
         if cmd = argv.shift
