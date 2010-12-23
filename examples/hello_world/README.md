@@ -33,14 +33,6 @@ The structure it follows is simply:
     # shell file
     SimpleCommand.run(ARGV)
     
-## What's magic in here?
-
-* Documentation shown with --help is the rdoc documentation evaluated
-  in the binding of the SimpleCommand class. You can use #{...} to
-  display specific things.
-* Default error handlers are installed by default to catch Interrupt
-  Minicom::Exit and OptionParser::Error. See error_handling example
-  to learn more about them
 
 ## Example
 
@@ -54,3 +46,12 @@ Try the following:
     ./hello_world --help
     ./hello_world too many arguments
     ./hello_world --no-such-option 
+
+## What's magic in here?
+
+* Documentation shown with --help is the rdoc documentation evaluated
+  in the binding of the SimpleCommand class. You can use #{...} to
+  display specific things.
+* Default error handlers are installed by default to catch Interrupt
+  Minicom::Exit and OptionParser::Error. See error_handling example
+  to learn more about them
