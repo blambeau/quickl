@@ -5,11 +5,11 @@ module Quickl
     
     # Command arguments after options parsing
     attr_reader :args
-
+    
     # Run the command by delegation
     def _run(argv = [])
       args = parse_options(argv)
-      wrapper.call lambda{ execute(args) }
+      execute_wrapping{ execute(args) }
     end
     
   end # module Command::Delegate

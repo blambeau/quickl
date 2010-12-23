@@ -146,6 +146,11 @@ module Quickl
         self.class.wrapper(self) || lambda{|cont| cont.call}
       end
       
+      # Executes the block inside the wrapping code
+      def execute_wrapping(&block)
+        wrapper.call(block)
+      end
+
       #
       # Runs the command from a requester file with command-line
       # arguments.

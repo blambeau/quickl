@@ -12,7 +12,7 @@ module Quickl
         parse_options(my_argv)
       
         # Run the subcommand now
-        wrapper.call lambda{ 
+        execute_wrapping{ 
           if cmd = argv.shift
             has_command!(cmd).run(argv)
           else
