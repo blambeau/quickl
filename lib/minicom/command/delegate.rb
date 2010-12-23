@@ -10,9 +10,14 @@ module Minicom
       while argv.first =~ /^--/
         my_argv << argv.shift
       end
+      options.parse!(my_argv)
       
       # Run the subcommand now
-      has_command!(argv.shift).run(argv)
+      if cmd = argv.shift
+        has_command!(cmd).run(argv)
+      else
+        puts_and_exit options
+      end
     end
     
   end # module Command::Delegate

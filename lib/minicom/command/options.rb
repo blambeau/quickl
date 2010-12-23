@@ -6,9 +6,9 @@ module Minicom
       attr_reader :option_builders
     
       # Adds an option builder
-      def option_builder(&block)
+      def option_builder(builder = nil, &block)
         @option_builders ||= []
-        @option_builders << block
+        @option_builders << (builder || block)
       end
     
       # Builds an OptionParser instance
@@ -20,10 +20,25 @@ module Minicom
           end
           opt.summary_indent = ' ' * 2
           opt.banner = self.usage
-          option_builders.each{|b| 
+          (option_builders || []).each{|b| 
             scope.instance_exec(opt, &b)
           }
         end
+      end
+      
+      # Installs options for --help and --version
+      def help_and_version(version)
+        lambda{|opt|
+          # Show the help and exit
+          opt.on_tail("--help", "Show help") do
+            puts_and_exit opt
+          end
+
+          # Show version and exit
+          opt.on_tail("--version", "Show version") do
+            puts_and_exit "#{opt.program_name} #{version}"
+          end
+        }
       end
       
     end # module ClassMethods

@@ -10,7 +10,6 @@ module Minicom
           cur.const_get(command2module(look))
         }
       rescue NameError => ex
-        puts ex.message
         raise NoSuchCommandError, "No such command #{name}", ex.backtrace
       end
       

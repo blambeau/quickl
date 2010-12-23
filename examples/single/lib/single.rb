@@ -1,17 +1,11 @@
-begin 
-  require 'minicom'
-rescue LoadError
-  $LOAD_PATH.unshift File.expand_path('../../../../lib', __FILE__)
-  require 'minicom'
-end
-
+require File.expand_path('../../../helper', __FILE__)
 #
 # Single command line
 #
 # Usage: single [options] ARGS...
 # 
 # This example illustrates how to write a single command line 
-# with options and additional arguments.
+# with options and pending arguments.
 #
 class Single < Minicom::Command(__FILE__, __LINE__)
 
@@ -28,7 +22,7 @@ class Single < Minicom::Command(__FILE__, __LINE__)
 
     # Show version and exit
     opt.on_tail("--version", "Show version") do
-      puts_and_exit "single " << VERSION << " (c) 2010, Bernard Lambeau"
+      puts_and_exit "#{opt.program_name} #{VERSION} (c) 2010, Bernard Lambeau"
     end
     
   end # option_builder
