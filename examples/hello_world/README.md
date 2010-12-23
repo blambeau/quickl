@@ -12,7 +12,7 @@ The structure it follows is simply:
     # SYNOPSIS
     #   Usage: ...
     #
-    # OPTIONS:
+    # OPTIONS
     # #{sumarized_options}
     #
     # DESCRIPTION
