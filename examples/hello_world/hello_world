@@ -22,6 +22,11 @@ class HelloWorld < Minicom::Command(__FILE__, __LINE__)
   # Install command options
   options do |opt|
 
+    # Capitalize user name?
+    opt.on("--capitalize", "-c", "Capitalize user name") do 
+      @capitalize = true
+    end
+
     # Show the help and exit
     opt.on_tail("--help", "Show help") do
       puts_and_exit help
@@ -37,12 +42,9 @@ class HelloWorld < Minicom::Command(__FILE__, __LINE__)
   # Execute the command on some arguments
   def execute(args)
     needless_arguments!(args, 1)
-    case args.size
-      when 0
-        puts "Hello World!"
-      when 1
-        puts "Hello #{args}!"
-    end
+    name = args.first || "world"
+    name = name.capitalize if @capitalize
+    puts "Hello #{name}!"
   end
   
 end # class HelloWorld

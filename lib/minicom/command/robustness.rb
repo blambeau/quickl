@@ -26,4 +26,3 @@ module Minicom
     end # module Robustness
   end # class Command
 end # module Minicom
-  

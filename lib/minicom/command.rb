@@ -88,7 +88,7 @@ module Minicom
       def run(argv)
         _run(argv)
       rescue Exception => ex
-        self.class.handle_error(ex)
+        self.class.handle_error(ex, self)
       end
     
     end # module InstanceMethods

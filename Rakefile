@@ -2,7 +2,18 @@
 $here = File.dirname(__FILE__)
 require 'rubygems'
 require 'hoe'
+require "rake/testtask"
 require 'spec/rake/spectask'
+
+task :default => :test
+task :test    => [:spec, :examples]
+
+desc "Lauches unit tests on examples"
+Rake::TestTask.new(:examples) do |test|
+  test.libs       = [ "lib" ]
+  test.test_files = Dir["examples/**/*_test.rb"]
+  test.verbose    =  true
+end
 
 desc "Run all rspec test"
 Spec::Rake::SpecTask.new(:spec) do |t|

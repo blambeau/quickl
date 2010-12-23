@@ -24,13 +24,13 @@ module Minicom
     end
     
     # Handles an error that occured
-    def handle_error(e)
+    def handle_error(e, command = self)
       raise e unless @error_handlers
       h = @error_handlers.find{|handler|
         handler.first.nil? or e.is_a?(handler.first)
       }
       raise e unless h
-      h.last.call(self, e)
+      h.last.call(command, e)
     end
     
   end # module Command::ErrorHandling
