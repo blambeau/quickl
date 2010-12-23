@@ -5,7 +5,7 @@ require "minicom"
 # Say hello 
 #
 # SYNOPSIS
-#   hello_world [--help] [--version] [WHO]
+#   hello_world [--help] [--version] [--capitalize] [WHO]
 #
 # OPTIONS
 # #{summarized_options}
