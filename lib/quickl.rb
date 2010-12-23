@@ -6,7 +6,7 @@ require 'quickl/command'
 module Quickl
 
   # Quickl VERSION
-  VERSION = '0.1.0'
+  VERSION = '0.1.0'.freeze
   
   # Checks if _who_ looks a command
   def self.looks_a_command?(who)
