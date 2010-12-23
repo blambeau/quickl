@@ -8,7 +8,8 @@ module Quickl
 
     # Run the command by delegation
     def _run(argv = [])
-      execute(parse_options(argv))
+      args = parse_options(argv)
+      wrapper.call lambda{ execute(args) }
     end
     
   end # module Command::Delegate

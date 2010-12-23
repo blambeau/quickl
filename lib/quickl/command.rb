@@ -91,6 +91,27 @@ module Quickl
         !no_react_to?(ex)
       end
       
+      ############################################### Hooks
+      
+      # Wraps command execution with a block if some filter is
+      # true
+      def wrap(filter = nil, &block)
+        @wrapper = [filter, block]
+      end
+      
+      # Returns the wrapper code
+      def wrapper(command)
+        return nil unless @wrapper
+        filter, block = @wrapper
+        lambda{|cont|
+          if !filter || command.instance_eval(&filter)
+            block.call(cont)
+          else
+            cont.call
+          end
+        }
+      end
+      
     end # module ClassMethods
     
     # Methods installed on all command instances
@@ -118,6 +139,11 @@ module Quickl
         else
           raise ex
         end
+      end
+      
+      # Returns code execution wrapper
+      def wrapper
+        self.class.wrapper(self) || lambda{|cont| cont.call}
       end
       
       #

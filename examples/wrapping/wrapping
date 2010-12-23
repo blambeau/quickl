@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+require File.expand_path('../../helper', __FILE__)
+
+#
+# Say hello, wrapping it with timing info 
+#
+# SYNOPSIS
+#   #{command_name} [--[no]-wrap] [WHO]
+#
+# OPTIONS
+# #{summarized_options}
+#
+# DESCRIPTION
+#   Without any argument, says hello to the world. When a single argument 
+#   is given says hello to the user. When --wrap is set, wrap execution 
+#   with debug information about execution time.
+#
+class Wrapping < Quickl::Command(__FILE__, __LINE__)
+  
+  # Command's version
+  VERSION = "0.1.0"
+  
+  # Install command options
+  options do |opt|
+
+    # Show the help and exit
+    opt.on_tail("--[no-]wrap", "Wrap with time info?") do |value|
+      @wrap = value
+    end
+
+    # Show the help and exit
+    opt.on_tail("--help", "Show help") do
+      raise Quickl::Help
+    end
+
+    # Show version and exit
+    opt.on_tail("--version", "Show version") do
+      raise Quickl::Exit.new("#{opt.program_name} #{VERSION} (c) 2010, Bernard Lambeau", 0)
+    end
+    
+  end
+
+  # Wrap with timing information?  
+  wrap(lambda{ @wrap }) do |cont|
+    t1 = Time.now
+    puts "Starting execution..."
+    cont.call
+    t2 = Time.now
+    puts "Execution took (#{t2-t1} ms.)"
+  end
+  
+  # Execute the command on some arguments
+  def execute(args)
+    if args.size <= 1
+      name = args.first || "world"
+      puts "Hello #{name}!"
+    else
+      raise Quickl::CommandArgumentError, args
+    end
+  end
+  
+end # class HelloWorld
+
+if __FILE__ == $0
+  Wrapping.run(ARGV)
+end

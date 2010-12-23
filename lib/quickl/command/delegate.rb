@@ -12,11 +12,13 @@ module Quickl
         parse_options(my_argv)
       
         # Run the subcommand now
-        if cmd = argv.shift
-          has_command!(cmd).run(argv)
-        else
-          raise Quickl::Help, (cmd.nil? ? 0 : -1)
-        end
+        wrapper.call lambda{ 
+          if cmd = argv.shift
+            has_command!(cmd).run(argv)
+          else
+            raise Quickl::Help, (cmd.nil? ? 0 : -1)
+          end
+        }
       end
       
     end
