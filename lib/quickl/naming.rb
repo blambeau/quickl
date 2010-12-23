@@ -12,5 +12,10 @@ module Quickl
       end
     end
     
+    def module2command(mod)
+      name = RubyTools::class_unqualified_name(mod)
+      name.gsub(/[A-Z]/){|x| "-#{x.downcase}"}[1..-1]
+    end
+    
   end # module Naming
 end # module Quickl

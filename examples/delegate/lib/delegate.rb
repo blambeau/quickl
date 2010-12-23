@@ -1,60 +1,41 @@
-require File.expand_path('../../../helper', __FILE__)
-
 #
-# Usage: delegate [--version] [--help] COMMAND [cmd opts] ARGS...
+# Delegate execution to a sub command
 #
-# Options are: 
-# #{summarized_options} 
+# SYNOPSIS
+#   delegate [--version] [--help] COMMAND [cmd opts] ARGS...
 #
-# Show how to write a delegate command
+# OPTIONS
+# #{summarized_options}
+#
+# COMMANDS
+# #{summarized_subcommands}
+#
+# DESCRIPTION
+#   This example shows how to write a delegate command, that is, a
+#   command which delegates to a subcommand
+#
+# See 'delegate help COMMAND' for more information on a specific command.
 #
 class Delegate < Quickl::Delegate(__FILE__, __LINE__)
 
   # Single command version
   VERSION = "0.1.0"
   
-  # Copyright
-  COPYRIGHT = "#{VERSION} (c) 2010, Bernard Lambeau"
-
-  # Install command options
-  options help_and_version(COPYRIGHT)
- 
-  # 
-  # Usage: delegate help COMMAND
-  # 
-  # Show help about a specific command
-  #
-  class Help < Quickl::Command(__FILE__, __LINE__)
+  # Install options
+  options do |opt|
     
-    # Install command options
-    options help_and_version(COPYRIGHT)
-  
-    # Command execution
-    def execute(args)
-      if args.size != 1
-        puts_and_exit super_command.documentation
-      else
-        puts has_command!(args.first, super_command).documentation
-      end
+    # Show the help and exit
+    opt.on_tail("--help", "Show help") do
+      puts_and_exit help
+    end
+
+    # Show version and exit
+    opt.on_tail("--version", "Show version") do
+      puts_and_exit "#{opt.program_name} #{VERSION} (c) 2010, Bernard Lambeau"
     end
     
-  end # class Help
-  
-  # 
-  # Say hello to the first command argument
-  #
-  # Usage: delegate [opts] hello WHO...
-  #
-  class Hello < Quickl::Command(__FILE__, __LINE__)
-    
-    # Install command options
-    options help_and_version(COPYRIGHT)
+  end 
 
-    # Command execution
-    def execute(args)
-      puts "Hello #{args.join(' and ')}"
-    end
-    
-  end # class Hello
-  
-end # class Single
+end # class Delegate
+require "help"
+require "hello_world"

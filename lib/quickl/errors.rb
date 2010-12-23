@@ -7,6 +7,19 @@ module Quickl
   class NoSuchCommandError < Error; end
   
   # Marker to tell that the command should exit
+  class Help < Error
+    
+    # Exit code
+    attr_reader :exit_code
+    
+    # Creates a Help instance
+    def initialize(exit_code = 0)
+      @exit_code = exit_code
+    end
+    
+  end # class Help
+  
+  # Marker to tell that the command should exit
   class Exit < Error
     
     # Exit code

@@ -12,6 +12,16 @@ module Quickl
       error_handler(Quickl::Exit){|cmd, e|
         exit(e.exit_code)
       }
+      error_handler(Quickl::Help){|cmd, e|
+        code = e.exit_code
+        (code < 0 ? $stderr : $stdout).puts cmd.help
+        exit(code) unless code.nil?
+      }
+      error_handler(Quickl::NoSuchCommandError){|cmd, e|
+        $stderr.puts e.message
+        $stderr.puts cmd.help
+        exit(-1)
+      }
       error_handler(Interrupt){|cmd, e|
         $stderr.puts "Interrupted"
         exit(-1)

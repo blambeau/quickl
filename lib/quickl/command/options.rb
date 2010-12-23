@@ -35,21 +35,6 @@ module Quickl
         options.summarize.join.rstrip
       end
       
-      # Installs options for --help and --version
-      def help_and_version(version)
-        lambda{|opt|
-          # Show the help and exit
-          opt.on_tail("--help", "Show help") do
-            puts_and_exit usage + "\n" + summarized_options
-          end
-
-          # Show version and exit
-          opt.on_tail("--version", "Show version") do
-            puts_and_exit "#{opt.program_name} #{version}"
-          end
-        }
-      end
-      
     end # module ClassMethods
     module InstanceMethods
       

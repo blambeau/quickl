@@ -1,6 +1,7 @@
 require 'optparse'
 module Quickl
   class Command
+    extend Naming
     
     # Methods installed on all command classes
     module ClassMethods
@@ -22,6 +23,11 @@ module Quickl
         @subcommands and !@subcommands.empty?
       end
       
+      # Returns command name
+      def command_name
+        module2command(self)
+      end
+      
       # Loads and returns the documentation source
       def doc_src
         @doc_src ||= unless doc_place
@@ -34,7 +40,7 @@ module Quickl
       
       # Returns command documentation
       def documentation
-        @documentation ||= instance_eval("%Q{#{doc_src}}")
+        @documentation ||= instance_eval("%Q{#{doc_src}}", *doc_place)
       end
       alias :help :documentation
       
@@ -50,6 +56,12 @@ module Quickl
           end
         } 
         "no usage available"
+      end
+      
+      # Returns command overview
+      def overview
+        doc = documentation.split("\n")
+        doc.find{|s| !s.strip.empty?} || "no overview available"
       end
       
       # Runs the command

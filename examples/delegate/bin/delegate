@@ -1,12 +1,9 @@
 #!/usr/bin/env ruby
+require File.expand_path('../../../helper', __FILE__)
+
+# Load the delegate tool
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require "delegate"
 
-# Execute the Delegate command
-begin
-  Delegate.run(ARGV)
-rescue Interrupt => e
-  $stderr.puts "Interrupted"
-rescue Quickl::Exit => e
-  exit(e.exit_code)
-end 
+# Run the command
+Delegate.run(ARGV)
