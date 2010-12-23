@@ -7,6 +7,9 @@ class Delegate
   #
   class Help < Quickl::Command(__FILE__, __LINE__)
     
+    # Let NoSuchCommandError be passed to higher stage
+    no_react_to Quickl::NoSuchCommandError
+    
     # Command execution
     def execute(args)
       if args.size != 1

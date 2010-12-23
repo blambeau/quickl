@@ -23,6 +23,8 @@ module Quickl
         @subcommands and !@subcommands.empty?
       end
       
+      ############################################### Textual information about the command 
+      
       # Returns command name
       def command_name
         module2command(self)
@@ -69,6 +71,26 @@ module Quickl
         self.new.run(*args)
       end
       
+      ############################################### Error handling 
+      
+      # Bypass reaction to some exceptions
+      def no_react_to(*args)
+        @no_react_to ||= []
+        @no_react_to += args
+      end
+      
+      # Should I bypass reaction to a given error?
+      def no_react_to?(ex)
+        @no_react_to && @no_react_to.find{|c|
+          ex.is_a?(c)
+        }
+      end
+      
+      # Should I react to a given error?
+      def react_to?(ex)
+        !no_react_to?(ex)
+      end
+      
     end # module ClassMethods
     
     # Methods installed on all command instances
@@ -86,10 +108,16 @@ module Quickl
       
       # Handles a command error
       def handle_error(ex)
-        ex.command = self
-        ex.react!
-      rescue Quickl::Error => ex2
-        handle_error(ex2)
+        if react_to?(ex)
+          begin
+            ex.command = self
+            ex.react!
+          rescue Quickl::Error => ex2
+            handle_error(ex2)
+          end
+        else
+          raise ex
+        end
       end
       
       #
