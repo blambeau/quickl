@@ -105,7 +105,7 @@ module Quickl
         filter, block = @wrapper
         lambda{|cont|
           if !filter || command.instance_eval(&filter)
-            block.call(cont)
+            command.instance_exec(cont, &block)
           else
             cont.call
           end
