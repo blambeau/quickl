@@ -39,13 +39,30 @@ The structure it follows is simply:
 Try the following:
 
     ./hello_world 
-    ./hello_world bob
+    # => Hello world!
+    
     ./hello_world --capitalize
+    # => Hello World!
+
+    ./hello_world bob
+    # => Hello bob!
+    
     ./hello_world --capitalize bob
+    # => Hello Bob!
+    
     ./hello_world --version
+    # => hello_world 0.1.0 (c) 2010, Bernard Lambeau
+    
     ./hello_world --help
+    # => ...
+    
     ./hello_world too many arguments
+    # => needless argument: too many arguments
+    # => hello_world [--help] [--version] [--capitalize] [WHO]
+    
     ./hello_world --no-such-option 
+    # invalid option: --no-such-option
+    # hello_world [--help] [--version] [--capitalize] [WHO]
 
 ## What's magic in here?
 
