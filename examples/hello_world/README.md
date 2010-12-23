@@ -12,6 +12,9 @@ The structure it follows is simply:
     # SYNOPSIS
     #   Usage: ...
     #
+    # OPTIONS:
+    # #{sumarized_options}
+    #
     # DESCRIPTION
     #   Long description here...
     #
@@ -64,11 +67,8 @@ Try the following:
     # invalid option: --no-such-option
     # hello_world [--help] [--version] [--capitalize] [WHO]
 
-## What's magic in here?
+## You have to known that ...
 
-* Documentation shown with --help is the rdoc documentation evaluated
-  in the binding of the SimpleCommand class. You can use #{...} to
-  display specific things.
-* Default error handlers are installed by default to catch Interrupt
-  Minicom::Exit and OptionParser::Error. See error_handling example
-  to learn more about them
+* An **instance** of command is actually executed. Therefore, it is safe to install instance variables through options and to use them in execute().
+* Documentation shown with --help is the rdoc documentation evaluated in the binding of the SimpleCommand **class**. Therefore, you can use #{...} to display specific things (like #{sumarized_options}).
+* Default error handlers are installed by default to catch Interrupt Minicom::Exit and OptionParser::Error. See error_handling example to learn more about them.
