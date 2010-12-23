@@ -19,11 +19,16 @@ module Minicom
             opt.version = const_get(:VERSION)
           end
           opt.summary_indent = ' ' * 2
-          opt.banner = self.usage
           (option_builders || []).each{|b| 
             scope.instance_exec(opt, &b)
           }
         end
+      end
+      alias :options :build_options
+      
+      # Returns summarized options
+      def summarized_options
+        options.summarize.join.rstrip
       end
       
       # Installs options for --help and --version
@@ -31,7 +36,7 @@ module Minicom
         lambda{|opt|
           # Show the help and exit
           opt.on_tail("--help", "Show help") do
-            puts_and_exit opt
+            puts_and_exit usage + "\n" + summarized_options
           end
 
           # Show version and exit

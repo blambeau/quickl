@@ -40,11 +40,7 @@ module Minicom
       
         # install documentation
         if @file and @line
-          rdoc = RubyTools::extract_file_rdoc(@file, @line, true)
-          rdoc = RubyTools::rdoc_paragraphs(rdoc)
-          command.summary     = (rdoc.shift || "")
-          command.usage       = (rdoc.shift || "").strip
-          command.description = rdoc.join("\n")
+          command.doc_place = [@file, @line]
         end
 
         # install hierarchy

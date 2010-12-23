@@ -16,7 +16,7 @@ module Minicom
       if cmd = argv.shift
         has_command!(cmd).run(argv)
       else
-        puts_and_exit options
+        puts_and_exit usage + "\n" + summarized_options
       end
     end
     

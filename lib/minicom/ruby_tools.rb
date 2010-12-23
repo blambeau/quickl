@@ -48,7 +48,7 @@ module Minicom
         end 
       }
       
-      doc = reverse ? doc.reverse[0...-1] : doc[0...-1]
+      doc = reverse ? doc.reverse[0..-1] : doc[0..-1]
       doc = doc.join("\n")
       doc.gsub(/^\s*[#] ?/, "")
     end

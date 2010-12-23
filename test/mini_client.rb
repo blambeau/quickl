@@ -22,6 +22,9 @@ module MiniClient
       #
       # Usage: mini_client say:hello
       #
+      # And an explanation here
+      # on multiple lines
+      #
       class Hello < Minicom::Command(__FILE__, __LINE__)
         
         def run(*args)

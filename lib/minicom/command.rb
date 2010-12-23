@@ -9,13 +9,7 @@ module Minicom
       attr_accessor :super_command
       
       # Command's summary
-      attr_accessor :summary
-      
-      # Command's usage
-      attr_accessor :usage
-      
-      # Command's description
-      attr_accessor :description
+      attr_accessor :doc_place
       
       # Returns the array of defined subcommands
       def subcommands
@@ -26,6 +20,28 @@ module Minicom
       # subcommand
       def has_sub_commands?
         @subcommands and !@subcommands.empty?
+      end
+      
+      # Loads and returns the documentation source
+      def doc_src
+        @doc_src ||= unless doc_place
+          "no documentation available" 
+        else
+          file, line = doc_place
+          RubyTools::extract_file_rdoc(file, line, true)
+        end
+      end
+      
+      # Returns command documentation
+      def documentation
+        @documentation ||= instance_eval("%Q{#{doc_src}}")
+      end
+      
+      # Returns command usage
+      def usage
+        documentation.split("\n").find{|s|
+          s =~ /Usage:/ 
+        } || "no usage available"
       end
       
       # Runs the command
