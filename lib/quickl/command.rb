@@ -99,6 +99,9 @@ module Quickl
       #
       def run(argv)
         _run(argv)
+      rescue Quickl::Error => ex
+        ex.command = self
+        self.class.handle_error(ex, self)
       rescue Exception => ex
         self.class.handle_error(ex, self)
       end
