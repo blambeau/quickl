@@ -3,8 +3,13 @@ module Quickl
   describe "Command::usage /" do
     
     it "should be installed from inline rdoc" do
-      MiniClient::Command::Say::Hello.usage.should == "Usage: mini_client say:hello"
-      MiniClient::Command::Say::Goodbye.usage.should == "Usage: mini_client say:goodbye"
+      MiniClient::Say::Hello.usage.should == "mini-client say:hello"
+      MiniClient::Say::Goodbye.usage.should == "mini-client say:goodbye"
+    end
+    
+    it "should be accessible on instance" do
+      MiniClient::Say::Hello.new.usage.should == "mini-client say:hello"
+      MiniClient::Say::Goodbye.new.usage.should == "mini-client say:goodbye"
     end
 
   end # Command::usage
