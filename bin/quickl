@@ -4,7 +4,7 @@ require 'quickl'
 require 'erb'
 
 #
-# Quickl - Generate Ruby command line apps easily
+# Quickl - Generate Ruby command line apps quickly
 #
 # SYNOPSIS
 #   #{program_name} [options] COMMAND_NAME
