@@ -3,7 +3,7 @@ class Delegate
   # Say hello 
   #
   # SYNOPSIS
-  #   delegate hello-world [--capitalize] [WHO]
+  #   #{program_name} #{command_name} [--capitalize] [WHO]
   #
   # OPTIONS
   # #{summarized_options}

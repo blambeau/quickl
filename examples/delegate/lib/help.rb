@@ -3,7 +3,7 @@ class Delegate
   # Show help about a specific command
   #
   # SYNOPSIS
-  #   delegate help COMMAND
+  #   #{program_name} #{command_name} help COMMAND
   #
   class Help < Quickl::Command(__FILE__, __LINE__)
     
