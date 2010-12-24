@@ -1,9 +1,10 @@
 $LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
+require 'rubygems'
 require 'quickl'
 
 Gem::Specification.new do |s|
   s.name = 'quickl'
-  s.version = Quickl::VERSION
+  s.version = Quickl::VERSION.dup
   s.date = Time.now.strftime('%Y-%m-%d')
 
   s.summary = 'Generate Ruby command line apps quickly'
@@ -15,11 +16,11 @@ Gem::Specification.new do |s|
   s.require_paths = %w{ lib }
 
   s.files = 
-    Dir['lib/**'] +
-    Dir['examples/**'] +
-    Dir['templates/**'] +
-    Dir['bin/**'] +
-    Dir['test/**'] +
+    Dir['lib/**/*'] +
+    Dir['examples/**/*'] +
+    Dir['templates/**/*'] +
+    Dir['bin/**/*'] +
+    Dir['test/**/*'] +
     %w{ quickl.gemspec Rakefile README.md CHANGELOG.md }
 
   s.test_files = s.files.select {|path| path =~ /^test\/.*_test.rb/ }
