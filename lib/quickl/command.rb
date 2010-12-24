@@ -25,6 +25,11 @@ module Quickl
       
       ############################################### Textual information about the command 
       
+      # Returns name of the program under execution
+      def program_name
+        File.basename($0)
+      end
+      
       # Returns command name
       def command_name
         module2command(self)
