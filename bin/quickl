@@ -113,7 +113,4 @@ class Quickl::Main < Quickl::Command(__FILE__, __LINE__)
   end
   
 end # class Quickl::Command::Main
-
-if __FILE__ == $0
-  Quickl::Main.run(ARGV)
-end
+Quickl::Main.run(ARGV)
