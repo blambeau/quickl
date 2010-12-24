@@ -29,7 +29,6 @@ class Hello < Quickl::Command(__FILE__, __LINE__)
 
     # Show the help and exit
     opt.on_tail("--help", "Show help") do
-      puts "Coucou"
       raise Quickl::Help
     end
 
