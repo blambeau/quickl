@@ -53,30 +53,6 @@ module Quickl
       doc.gsub(/^\s*[#] ?/, "")
     end
 
-    # Splits a text obtained through extract_file_rdoc into paragraphs
-    def rdoc_paragraphs(rdoc_text)
-      paragraphs, current = [], ""
-      rdoc_text.each_line do |s|
-        if s.strip.empty?
-          unless current.strip.empty?
-            paragraphs << current 
-          end
-          current = ""
-        else
-          current << s
-        end
-      end
-      unless current.strip.empty?
-        paragraphs << current 
-      end
-      paragraphs
-    end
-
-    # Convenient method for <code>rdoc_paragraphs(extract_file_rdoc(file))</code>
-    def rdoc_file_paragraphs(file)
-      rdoc_paragraphs(extract_file_rdoc(file))
-    end
-
     extend(RubyTools)
   end # module RubyTools
 end # module Quickl
