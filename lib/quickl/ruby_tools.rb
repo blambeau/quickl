@@ -6,13 +6,14 @@ module Quickl
       name = clazz.name
       (name =~ /^(.*?)::([^:]+)$/) ? Kernel.eval($1) : nil
     end
+    module_function :parent_module
 
     # Returns the unqualified name of a class
     def class_unqualified_name(clazz)
       name = clazz.name
       (name =~ /::([^:]+)$/) ? $1 : name
     end
-    alias :unqualified_class_name :class_unqualified_name
+    module_function :class_unqualified_name
 
     # Makes a call to a block that accepts optional arguments
     def optional_args_block_call(block, args)
@@ -26,6 +27,7 @@ module Quickl
         block.call(*args)
       end
     end
+    module_function :optional_args_block_call
 
     # Extracts the rdoc of a given ruby file source.
     def extract_file_rdoc(file, from = nil, reverse = false)
@@ -52,7 +54,7 @@ module Quickl
       doc = doc.join("\n")
       doc.gsub(/^\s*[#] ?/, "")
     end
+    module_function :extract_file_rdoc
 
-    extend(RubyTools)
   end # module RubyTools
 end # module Quickl
