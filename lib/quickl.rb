@@ -8,11 +8,6 @@ module Quickl
   # Quickl VERSION
   VERSION = '0.1.0'.freeze
   
-  # Checks if _who_ looks a command
-  def self.looks_a_command?(who)
-    who.ancestors.include?(Command)
-  end
-  
   # Yields the block with the current command builder.
   # A new builder is created if required
   def self.command_builder 

@@ -45,7 +45,7 @@ module Quickl
 
         # install hierarchy
         parent = RubyTools::parent_module(command)
-        if parent && Quickl.looks_a_command?(parent)
+        if parent && parent.ancestors.include?(Command)
           command.super_command = parent
           parent.subcommands << command
         end
