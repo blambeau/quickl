@@ -51,9 +51,28 @@ From simple command to complex delegate (_ala_ 'git [--version] [--help] COMMAND
 
 ## Then?
 
-* [hello_world example](https://github.com/blambeau/quickl/blob/master/examples/hello_world)
+* [hello world example](https://github.com/blambeau/quickl/blob/master/examples/hello_world)
 * [delegate example](https://github.com/blambeau/quickl/blob/master/examples/delegate)
 
+## Version policy
+
+Until version 1.0.0, moditications of public interfaces increase the minor version, while other changes increase the tiny version. After version 1.0.0, same changes will affect major and minor versions, respectively.
+
+    0.1.0 -> 0.1.1    # enhancements and private API changes
+    0.1.0 -> 0.2.0    # broken API on public interfaces
+    
+Public interfaces are:
+
+* Quickl::Command and Quickl::Delegate calls
+* DSL methods used in "subclasses" built by Quickl::Command and Quickl::Delegate
+* RDoc -> command line documentation recognizers (synopsis, overview, documentation, ...)
+* Naming conventions (module <-> command conversions)
+* Default reactions to errors (Quickl::Help, Quickl::Exit, ...)
+
+Until version 1.0.0, to preserve your application from hurting changes you should require quickl as follows:
+
+    gem 'quickl', '< 0.2.0'    # Assuming current version is 0.1.xx
+    require 'quickl'
 
 ## Licence
 
