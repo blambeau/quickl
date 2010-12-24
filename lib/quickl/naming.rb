@@ -8,6 +8,9 @@ module Quickl
     #   hello -> Hello
     #   hello-world -> HelloWorld
     #
+    # This method is part of Quickl's private interface even
+    # if its effect are considered public.
+    #
     def command2module(name)
       case name
         when String
@@ -25,6 +28,9 @@ module Quickl
     #
     #     Hello -> hello
     #     HelloWorld -> hello-world
+    #
+    # This method is part of Quickl's private interface even
+    # if its effect are considered public.
     #
     def module2command(mod)
       case mod

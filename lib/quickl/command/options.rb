@@ -47,7 +47,7 @@ module Quickl
       def parse_options(argv)
         options.parse!(argv)
       rescue OptionParser::ParseError => ex
-        raise Quickl::OptionError.new(ex)
+        raise Quickl::InvalidOption, ex.message, ex.backtrace
       end
       
     end # module InstanceMethods

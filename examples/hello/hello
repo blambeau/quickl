@@ -29,6 +29,7 @@ class Hello < Quickl::Command(__FILE__, __LINE__)
 
     # Show the help and exit
     opt.on_tail("--help", "Show help") do
+      puts "Coucou"
       raise Quickl::Help
     end
 
@@ -46,7 +47,7 @@ class Hello < Quickl::Command(__FILE__, __LINE__)
       name = name.capitalize if @capitalize
       puts "Hello #{name}!"
     else
-      raise Quickl::CommandArgumentError, args
+      raise Quickl::InvalidArgument, "Useless arguments: #{args.join(' ')}"
     end
   end
   

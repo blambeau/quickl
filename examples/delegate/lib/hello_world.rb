@@ -31,7 +31,7 @@ class Delegate
         name = name.capitalize if @capitalize
         puts "Hello #{name}!"
       else
-        raise Quickl::CommandArgumentError, args
+        raise Quickl::InvalidArgument, "Useless arguments: #{args.join(' ')}"
       end
     end
   

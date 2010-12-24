@@ -4,13 +4,13 @@ module Quickl
       include Naming
       
       # Checks that a command whose name is given exists
-      # or raises a NoSuchCommandError.
+      # or raises a NoSuchCommand.
       def has_command!(name, referer = self.class)
         name.split(':').inject(referer){|cur,look|
           cur.const_get(command2module(look))
         }
       rescue NameError => ex
-        raise NoSuchCommandError, "No such command #{name}", ex.backtrace
+        raise NoSuchCommand, "No such command #{name}", ex.backtrace
       end
       
     end # module Robustness

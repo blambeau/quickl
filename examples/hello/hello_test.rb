@@ -14,7 +14,7 @@ class HelloTest < Test::Unit::TestCase
     yield
     assert_false true, "Expected to exit with #{match}, nothing raised"
   rescue Quickl::Exit => ex
-    assert_equal ex.exit_code, exit_code
+    assert_equal exit_code, ex.exit_code
     assert ex.message =~ match
   end
   
@@ -37,17 +37,18 @@ class HelloTest < Test::Unit::TestCase
     assert_equal "Hello Blambeau!\n", run_command("--capitalize", "blambeau")
   end
   
+  def test_version_option
+    assert_exits(/(c)/, 0){ 
+      run_command("--version") 
+    }
+  end
+  
   def test_help_option
     assert_exits(/DESCRIPTION/, 0){ 
       run_command("--help") 
     }
   end
   
-  def test_version_option
-    assert_exits(/(c)/, 0){ 
-      run_command("--version") 
-    }
-  end
   
   def test_no_such_option
     assert_exits(/invalid option/, -1){ 
@@ -56,7 +57,7 @@ class HelloTest < Test::Unit::TestCase
   end
   
   def test_too_many_arguments
-    assert_exits(/Wrong arguments/, -1){ 
+    assert_exits(/Useless arguments/, -1){ 
       run_command('hello', 'too') 
     }
   end

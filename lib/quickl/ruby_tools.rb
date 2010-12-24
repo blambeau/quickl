@@ -27,7 +27,7 @@ module Quickl
       end
     end
 
-    # Extracts the rdoc of a given ruby file source
+    # Extracts the rdoc of a given ruby file source.
     def extract_file_rdoc(file, from = nil, reverse = false)
       lines = File.readlines(file)
       if from.nil? and reverse

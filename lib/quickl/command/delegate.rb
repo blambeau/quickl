@@ -15,7 +15,7 @@ module Quickl
         if cmd = argv.shift
           has_command!(cmd).run(argv)
         else
-          raise Quickl::Help, (cmd.nil? ? 0 : -1)
+          raise Quickl::Help.new(cmd.nil? ? 0 : -1)
         end
       end
       
