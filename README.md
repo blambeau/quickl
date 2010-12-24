@@ -2,7 +2,7 @@
 
 * http://github.com/blambeau/quickl
 
-## DESCRIPTION:
+## Description
 
 Quickl helps you create commandline programs as simply as:
 
@@ -45,16 +45,17 @@ From simple command to complex delegate (_ala_ 'git [--version] [--help] COMMAND
 * Error handling trought special blocks, assertions methods and dedicated Error classes
 * Unit/spec testing of commands, as they are part of the software
 
-## INSTALL:
+## Install
 
     sudo gem install quickl
 
-## THEN?
+## Then?
 
 * [hello_world example](https://github.com/blambeau/quickl/blob/master/examples/hello_world)
+* [delegate example](https://github.com/blambeau/quickl/blob/master/examples/delegate)
 
 
-## LICENSE:
+## Licence
 
     (The MIT License)
 
