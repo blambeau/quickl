@@ -1,0 +1,48 @@
+begin
+  require 'quickl'
+rescue LoadError
+  require 'rubygems'
+  gem 'quickl'
+  retry  
+end
+
+#
+# FIX: overview
+#
+# SYNOPSIS
+#   #{command_name} [options] ARGS...
+#
+# OPTIONS
+# #{summarized_options}
+#
+# DESCRIPTION
+#   FIX: description 
+#
+class <%= cmd_class_name %> < Quickl::Command(__FILE__, __LINE__)
+
+  VERSION   = "0.1.0"
+
+  # Install options
+  options do |opt|
+    
+    opt.on_tail('--version', 'Show version and exit'){
+      raise Quickl::Exit, "#{program_name} #{VERSION}"
+    }
+    opt.on_tail('--help', "Show this help message"){ 
+      raise Quickl::Help 
+    }
+    
+    # FIX: install your option
+  end
+  
+  # Run the command
+  def execute(args)
+    # FIX: do something here
+    puts "Hello from #{program_name} with #{args.inspect}"
+  end
+
+end # class <%= cmd_class_name %>
+
+if __FILE__ == $0
+  <%= cmd_class_name %>.run(ARGV)
+end

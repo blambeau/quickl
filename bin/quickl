@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'quickl'
+require 'erb'
+
+#
+# Quickl - Generate Ruby command line apps easily
+#
+# SYNOPSIS
+#   #{program_name} [options] COMMAND_NAME
+#
+# OPTIONS
+# #{summarized_options}
+#
+# DESCRIPTION
+#   This tool helps you generating Ruby command line applications
+#
+class Quickl::Main < Quickl::Command(__FILE__, __LINE__)
+  include Quickl::Naming
+  
+  # Name of the command to generate
+  attr_reader :cmd_name
+  
+  # Install options
+  options do |opt|
+    
+    # Show the help and exit
+    opt.on_tail("--help", "Show help") do
+      raise Quickl::Help
+    end
+
+    # Show version and exit
+    opt.on_tail("--version", "Show version") do
+      raise Quickl::Exit, "#{program_name} #{Quickl::VERSION} #{Quickl::COPYRIGHT}"
+    end
+    
+  end
+  
+  # Class name of the command to generate
+  def cmd_class_name
+    command2module(cmd_name)
+  end
+  
+  # Loads template to use
+  def template
+    @template || File.expand_path("../../templates/single.erb", __FILE__)
+  end
+
+  # Execute the command
+  def execute(args)
+    if args.size == 1
+      @cmd_name = args.shift
+      erb = ERB.new(File.read(template))
+      $stdout.puts erb.result(binding)
+    else
+      raise Quickl::InvalidArgument, "Invalid arguments: #{args.join(' ')}"
+    end
+  end
+
+end # class Quickl::Command::Main
+
+if __FILE__ == $0
+  Quickl::Main.run(ARGV)
+end
