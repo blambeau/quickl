@@ -1,4 +1,4 @@
-# Quickl example: hello_world 
+# Quickl example: hello 
 
 This example shows how to create a really simple commandline program. 
 
@@ -41,31 +41,31 @@ The structure it follows is simply:
 
 Try the following:
 
-    ./hello_world 
+    ./hello 
     # => Hello world!
     
-    ./hello_world --capitalize
+    ./hello --capitalize
     # => Hello World!
 
-    ./hello_world bob
+    ./hello bob
     # => Hello bob!
     
-    ./hello_world --capitalize bob
+    ./hello --capitalize bob
     # => Hello Bob!
     
-    ./hello_world --version
-    # => hello_world 0.1.0 (c) 2010, Bernard Lambeau
+    ./hello --version
+    # => hello 0.1.0 (c) 2010, Bernard Lambeau
     
-    ./hello_world --help
+    ./hello --help
     # => ...
     
-    ./hello_world too many arguments
+    ./hello too many arguments
     # => needless argument: too many arguments
-    # => hello_world [--help] [--version] [--capitalize] [WHO]
+    # => hello [--help] [--version] [--capitalize] [WHO]
     
-    ./hello_world --no-such-option 
+    ./hello --no-such-option 
     # invalid option: --no-such-option
-    # hello_world [--help] [--version] [--capitalize] [WHO]
+    # hello [--help] [--version] [--capitalize] [WHO]
 
 ## You have to known that ...
 

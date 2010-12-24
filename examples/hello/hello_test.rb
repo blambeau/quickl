@@ -6,9 +6,9 @@ rescue LoadError
   $LOAD_PATH.unshift File.expand_path('../../../lib', __FILE__)
   require 'quickl'
 end
-Kernel.load File.expand_path('../hello_world', __FILE__)
+Kernel.load File.expand_path('../hello', __FILE__)
 
-class HelloWorldTest < Test::Unit::TestCase
+class HelloTest < Test::Unit::TestCase
     
   def assert_exits(match, exit_code)  
     yield
@@ -20,8 +20,8 @@ class HelloWorldTest < Test::Unit::TestCase
   
   def run_command(*args)
     $stdout = StringIO.new
-    HelloWorld.no_react_to(Quickl::Exit)
-    HelloWorld.run args
+    Hello.no_react_to(Quickl::Exit)
+    Hello.run args
     $stdout.string
   ensure
     $stdout = STDOUT
