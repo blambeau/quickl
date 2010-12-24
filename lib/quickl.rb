@@ -8,24 +8,36 @@ module Quickl
   # Quickl VERSION
   VERSION = '0.1.0'.freeze
   
+  #
   # Yields the block with the current command builder.
-  # A new builder is created if required
+  # A fresh new builder is created if not already done.
+  #
+  # This method is part of Quickl's private interface.
+  #
   def self.command_builder 
     @builder ||= Command::Builder.new
     yield @builder if block_given?
     @builder
   end
   
+  #
   # Builds _command_ using the current builder. 
   #
-  # The builder is considered consumed and removed as
-  # a side effect. 
+  # The current command builder is considered consumed 
+  # and removed as a side effect. A RuntimeError is raised 
+  # if no builder is currently installed.
+  #
+  # Returns the command itself.
+  #
+  # This method is part of Quickl's private interface.
+  #
   def self.build_command(command)
     unless @builder
       raise "No command builder currently installed"
     else
       @builder.run(command)
       @builder = nil
+      command
     end
   end
   
