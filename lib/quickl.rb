@@ -5,8 +5,11 @@ require 'quickl/naming'
 require 'quickl/command'
 module Quickl
 
-  # Quickl VERSION
+  # Quickl's VERSION
   VERSION = '0.1.0'.freeze
+  
+  # Quickl's COPYRIGHT info 
+  COPYRIGHT = "(c) 2010, Bernard Lambeau"
   
   #
   # Yields the block with the current command builder.
