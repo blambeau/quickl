@@ -24,21 +24,13 @@ class <%= cmd_class_name %> < Quickl::Command(__FILE__, __LINE__)
 
   # Install options
   options do |opt|
-    
-    opt.on_tail('--version', 'Show version and exit'){
-      raise Quickl::Exit, "#{program_name} #{VERSION}"
-    }
-    opt.on_tail('--help', "Show this help message"){ 
-      raise Quickl::Help 
-    }
-    
-    # FIX: install your option
+<%= option_helpers.collect{|s| tabto(s,4)}.join("\n") %>
   end
   
   # Run the command
   def execute(args)
     # FIX: do something here
-    puts "Hello from #{program_name} with #{args.inspect}"
+    puts "Hello #{args.join(' and ')} from #{program_name}"
   end
 
 end # class <%= cmd_class_name %>

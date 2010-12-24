@@ -51,6 +51,24 @@ From simple command to complex delegate (_ala_ 'git [--version] [--help] COMMAND
 
 ## Then?
 
+Try this:
+
+  # have a look at options
+  quickl --help
+  
+  # generate a hello.rb single command
+  quickl --layout=single --options=help,version hello > hello.rb
+  
+  # test your command
+  ruby hello.rb --help
+  ruby hello.rb --version
+  ruby hello.rb bob
+  
+  # see what has been generated
+  cat hello.rb
+  
+Additional examples (see examples folder):
+
 * [hello world example](https://github.com/blambeau/quickl/blob/master/examples/hello_world)
 * [delegate example](https://github.com/blambeau/quickl/blob/master/examples/delegate)
 

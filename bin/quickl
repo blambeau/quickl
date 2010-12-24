@@ -18,11 +18,43 @@ require 'erb'
 class Quickl::Main < Quickl::Command(__FILE__, __LINE__)
   include Quickl::Naming
   
+  OPTION_HELPERS = {
+    :version => %q{
+      opt.on_tail('--version', 'Show version and exit'){
+        raise Quickl::Exit, "#{program_name} #{VERSION}"
+      }
+    },
+    :help => %q{
+      opt.on_tail('--help', "Show this help message"){ 
+        raise Quickl::Help 
+      }
+    }
+  }
+  
   # Name of the command to generate
   attr_reader :cmd_name
   
+  # Creates a command instance
+  def initialize
+    @layout = :single
+    @gen_options = [:help, :version]
+  end
+  
   # Install options
   options do |opt|
+    
+    opt.on("--layout=LAYOUT", [:single], 
+           "Select specific command layout (single)") do |l|
+      @layout = l
+    end
+    
+    opt.on('--options x,y,z', Array,
+           "Automatically generate options for... (#{OPTION_HELPERS.keys.join(', ')})") do |list|
+      @gen_options = list.collect{|s| s.to_sym}
+      unless (unknown = @gen_options.reject{|s| OPTION_HELPERS.has_key?(s)}).empty?
+        raise Quickl::InvalidOption, "Unknown option helpers: #{unknown.join(',')}"
+      end
+    end
     
     # Show the help and exit
     opt.on_tail("--help", "Show help") do
@@ -36,14 +68,9 @@ class Quickl::Main < Quickl::Command(__FILE__, __LINE__)
     
   end
   
-  # Class name of the command to generate
-  def cmd_class_name
-    command2module(cmd_name)
-  end
-  
   # Loads template to use
   def template
-    @template || File.expand_path("../../templates/single.erb", __FILE__)
+    @template ||= File.expand_path("../../templates/#{@layout}.erb", __FILE__)
   end
 
   # Execute the command
@@ -57,6 +84,34 @@ class Quickl::Main < Quickl::Command(__FILE__, __LINE__)
     end
   end
 
+  ### ERB scoping
+
+  # Class name of the command to generate
+  def cmd_class_name
+    command2module(cmd_name)
+  end
+  
+  def indent(str, offset)
+    if offset >= 0
+      str.gsub(/^/, ' ' * offset)
+    else
+      str.gsub(/^ {0,#{-offset}}/, "")
+    end
+  end
+      
+  def tabto(str, offset)
+    if str =~ /^( *)\S/
+      indent(str, offset - $1.length)
+    else
+      str
+    end
+  end
+
+  # Returns option helpers to include
+  def option_helpers
+    @gen_options.collect{|s| tabto(OPTION_HELPERS[s], 0).strip}
+  end
+  
 end # class Quickl::Command::Main
 
 if __FILE__ == $0
