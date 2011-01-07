@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.executables = ["quickl"]
 
   s.add_development_dependency('rake')
+  s.add_development_dependency('yard')
 
   s.has_rdoc = true
   s.rdoc_options = %w< --line-numbers --inline-source --title Quickl --main Quickl >
