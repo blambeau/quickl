@@ -23,13 +23,12 @@ Gem::Specification.new do |s|
     Dir['test/**/*'] +
     %w{ quickl.gemspec Rakefile README.md CHANGELOG.md }
 
-  s.test_files = s.files.select {|path| path =~ /^test\/.*_test.rb/ }
-
   s.bindir = "bin"
   s.executables = ["quickl"]
 
   s.add_development_dependency('rake')
-  s.add_development_dependency('yard')
+  s.add_development_dependency('rspec', ">= 2.4.0")
+  s.add_development_dependency('yard', ">= 0.6.4")
 
   s.has_rdoc = true
   s.rdoc_options = %w< --line-numbers --inline-source --title Quickl --main Quickl >

@@ -2,7 +2,7 @@
 $here = File.dirname(__FILE__)
 require 'rubygems'
 require "rake/testtask"
-require 'spec/rake/spectask'
+require "rspec/core/rake_task"
 require "yard"
 
 task :default => :test
@@ -21,10 +21,10 @@ Rake::TestTask.new(:examples) do |test|
   test.verbose    =  true
 end
 
-desc "Run all rspec test"
-Spec::Rake::SpecTask.new(:spec) do |t|
-  t.ruby_opts = ['-I.', '-Ilib', '-Itest']
-  t.spec_files = Dir["#{$here}/test/**/*.spec"]
+desc "Run all examples"
+RSpec::Core::RakeTask.new(:spec) do |t|
+	t.rspec_opts = %w[--color]
+	t.verbose = false
 end
 
 # PACKAGING & INSTALLATION ####################################################
