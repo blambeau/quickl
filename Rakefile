@@ -1,9 +1,9 @@
 # -*- ruby -*-
-$here = File.dirname(__FILE__)
 require 'rubygems'
 require "rake/testtask"
 require "rspec/core/rake_task"
 require "yard"
+require "rake/gempackagetask"
 
 task :default => :test
 task :test    => [:spec, :examples]
@@ -11,7 +11,7 @@ task :test    => [:spec, :examples]
 # About yard documentation
 YARD::Rake::YardocTask.new do |t|
   t.files   = ['lib/**/*.rb', 'examples/**/*.rb']
-  t.options = ['--output-dir', 'doc/api', '-', "README.md", "HISTORY.md"]
+  t.options = ['--output-dir', 'doc/api', '-', "README.md", "CHANGELOG.md"]
 end
 
 desc "Lauches unit tests on examples"
@@ -27,38 +27,11 @@ RSpec::Core::RakeTask.new(:spec) do |t|
 	t.verbose = false
 end
 
-# PACKAGING & INSTALLATION ####################################################
-# Largely inspired from the Citrus project
-
-if defined?(Gem)
-  $spec = eval("#{File.read('quickl.gemspec')}")
-
-  directory 'dist'
-
-  def package(ext='')
-    "dist/#{$spec.name}-#{$spec.version}" + ext
-  end
-
-  file package('.gem') => %w< dist > + $spec.files do |f|
-    sh "gem build quickl.gemspec"
-    mv File.basename(f.name), f.name
-  end
-
-  file package('.tar.gz') => %w< dist > + $spec.files do |f|
-    sh "git archive --format=tar HEAD | gzip > #{f.name}"
-  end
-
-  desc "Build packages"
-  task :package => %w< .gem .tar.gz >.map {|e| package(e) }
-
-  desc "Build and install as local gem"
-  task :install => package('.gem') do |t|
-    sh "gem install #{package('.gem')}"
-  end
-
-  desc "Upload gem to rubygems.org"
-  task :release => package('.gem') do |t|
-    sh "gem push #{package('.gem')}"
-  end
+desc "Create the .gem package"
+$spec = Kernel.eval(File.read(File.expand_path('../quickl.gemspec', __FILE__)))
+Rake::GemPackageTask.new($spec) do |pkg|
+	pkg.need_tar = true
 end
+
+
 # vim: syntax=ruby
