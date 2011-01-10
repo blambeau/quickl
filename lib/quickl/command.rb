@@ -72,8 +72,8 @@ module Quickl
       end
       
       # Runs the command
-      def run(*args)
-        self.new.run(*args)
+      def run(argv = [], requester = nil)
+        self.new.run(argv, requester)
       end
       
       ############################################### Error handling 
@@ -100,6 +100,9 @@ module Quickl
     
     # Methods installed on all command instances
     module InstanceMethods
+      
+      # Who is requesting command execution?
+      attr_reader :requester
       
       # Delegate unrecognized calls to the command class
       # (gives access to options, help, usage, ...)
@@ -132,7 +135,8 @@ module Quickl
       # This method is intended to be overriden and does nothing
       # by default.
       #
-      def run(argv)
+      def run(argv, requester = nil)
+        @requester = requester
         _run(argv)
       rescue Quickl::Error => ex
         handle_error(ex)

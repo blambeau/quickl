@@ -5,14 +5,15 @@ module Quickl
     it "should return installed commands in an array" do
       MiniClient.subcommands.should == [ 
         MiniClient::Help, 
-        MiniClient::Say 
+        MiniClient::Say,
+        MiniClient::Requester
       ]
     end
     
     it "should return installed commands in an array" do
       MiniClient::Say.subcommands.should == [ 
         MiniClient::Say::Hello,
-        MiniClient::Say::Goodbye
+        MiniClient::Say::Goodbye,
       ]
     end
 

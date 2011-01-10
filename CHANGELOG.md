@@ -2,6 +2,7 @@
 
 * Enhancements
 
+  * Command#run now takes a (optional) second argument (get it at command runtime via :requester reader)
   * Renamed Delegate -> Delegator (Quickl::Delegate is kept but should not be used anymore)
   * Added IOAccessError with default reaction to Exit
   * Added valid_read_file! robustness utility

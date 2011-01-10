@@ -3,7 +3,7 @@ module Quickl
     module InstanceMethods
      
       # Run the command by delegation
-      def _run(argv = [], requester = nil)
+      def _run(argv = [])
         # My own options
         my_argv = []
         while argv.first =~ /^--/
@@ -13,7 +13,7 @@ module Quickl
       
         # Run the subcommand now
         if cmd = argv.shift
-          cmd = has_command!(cmd).run(argv)
+          cmd = has_command!(cmd).run(argv, self)
         else
           raise Quickl::Help.new(cmd.nil? ? 0 : -1)
         end

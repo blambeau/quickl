@@ -6,4 +6,4 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require "delegator"
 
 # Run the command
-Delegator.run(ARGV)
+Delegator.run(ARGV, __FILE__)

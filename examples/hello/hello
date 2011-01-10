@@ -53,5 +53,5 @@ class Hello < Quickl::Command(__FILE__, __LINE__)
 end # class Hello
 
 if __FILE__ == $0
-  Hello.run(ARGV)
+  Hello.run(ARGV, __FILE__)
 end

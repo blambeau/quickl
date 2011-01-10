@@ -14,7 +14,7 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
   #
   class Help < Quickl::Command(__FILE__, __LINE__)
 
-    def run(*args)
+    def execute(*args)
       :help
     end
       
@@ -34,7 +34,7 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
     #
     class Hello < Quickl::Command(__FILE__, __LINE__)
       
-      def run(*args)
+      def execute(*args)
         :hello
       end
       
@@ -48,7 +48,7 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
     #
     class Goodbye < Quickl::Command(__FILE__, __LINE__)
 
-      def run(*args)
+      def execute(*args)
         :goodbye
       end
       
@@ -56,4 +56,18 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
 
   end # class Say
     
+  #
+  # Returns the requester object
+  #
+  # SYNOPSIS
+  #   #{MiniClient.command_name} say:requester
+  #
+  class Requester < Quickl::Command(__FILE__, __LINE__)
+
+    def execute(*args)
+      requester
+    end
+    
+  end # class Requester
+
 end # module MiniClient
