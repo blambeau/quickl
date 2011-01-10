@@ -13,6 +13,18 @@ module Quickl
         raise NoSuchCommand, "No such command #{name}", ex.backtrace
       end
       
+      # Checks that _file_ is a readable file or raises an error.
+      # Returns _file_ on success.
+      def valid_read_file!(file, error_class = nil, msg = nil)
+        if File.file?(file) and File.readable?(file)
+          file
+        else
+          error_class ||= Quickl::IOAccessError
+          msg ||= "Not a file or not readable: #{file}"
+          raise error_class, msg, caller
+        end
+      end
+      
     end # module Robustness
   end # class Command
 end # module Quickl

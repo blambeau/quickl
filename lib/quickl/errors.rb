@@ -173,7 +173,7 @@ module Quickl
   
   # 
   # This error can be raised to indicate that a command has not been
-  # found (typically by delegates).
+  # found (typically by delegators).
   #
   # Default exit code:
   #   -1
@@ -192,5 +192,27 @@ module Quickl
     end
     
   end # class NoSuchCommand
+  
+  #
+  # This error can be raised to indicate that some file/dir 
+  # access has failed.
+  #
+  # Default exit code:
+  #   -1
+  #
+  # Default reaction:
+  #   raise Exit.new(code), message, backtrace
+  #
+  class IOAccessError < Error
+
+    def initialize(*args)
+      super(*(args + [ -1 ]))
+    end
+    
+    def react!
+      raise Exit.new(self.exit_code), self.message, backtrace
+    end
+    
+  end # class IOAccessError
   
 end # module Quickl
