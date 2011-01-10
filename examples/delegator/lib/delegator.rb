@@ -11,12 +11,12 @@
 # #{summarized_subcommands}
 #
 # DESCRIPTION
-#   This example shows how to write a delegate command, that is, a
+#   This example shows how to write a delegator command, that is, a
 #   command which delegates to a subcommand
 #
 # See '#{program_name} help COMMAND' for more information on a specific command.
 #
-class Delegate < Quickl::Delegate(__FILE__, __LINE__)
+class Delegator < Quickl::Delegator(__FILE__, __LINE__)
 
   # Single command version
   VERSION = "0.1.0"
@@ -36,6 +36,6 @@ class Delegate < Quickl::Delegate(__FILE__, __LINE__)
 
   end
 
-end # class Delegate
+end # class Delegator
 require "help"
 require "hello_world"

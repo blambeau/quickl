@@ -1,14 +1,14 @@
-# Quickl example: delegate
+# Quickl example: delegator
 
-This example shows how to delegate commands. Delegate commands are command
+This example shows how to create delegator commands. Delegators are commands
 that delegate the actual execution to sub commands (well known example is
-'git'). A delegate command typically has a signature like:
+'git'). A delegator command typically has a signature like:
 
-    delegate [main options] COMMAND [cmd options] ARGS...
+    delegator [main options] COMMAND [cmd options] ARGS...
 
 ## Structure
 
-The structure for delegate commands is as follows:
+The structure for delegator commands is as follows:
 
     #
     # Main command overview
@@ -27,7 +27,7 @@ The structure for delegate commands is as follows:
     #
     # See '#{command_name} help COMMAND' for more information on a specific command.
     #
-    class DelegateCommand < Quickl::Delegate(__FILE__, __LINE__)
+    class DelegatorCommand < Quickl::Delegator(__FILE__, __LINE__)
     
       # install options below
       options do |opt|
@@ -60,26 +60,26 @@ The structure for delegate commands is as follows:
     
     # To run the command, typically in a bin/simple_command 
     # shell file
-    DelegateCommand.run(ARGV)
+    DelegatorCommand.run(ARGV)
     
 
 ## Example
 
 Try the following:
 
-    ./delegate 
+    ./delegator
     # => [ ... complete help with subcommands summary ... ]
     
-    ./delegate --help
+    ./delegator --help
     # => [ ... complete help with subcommands summary ... ]
     
-    ./delegate help 
+    ./delegator help 
     # => [ ... complete help with subcommands summary ... ]
     
-    ./delegate help hello-world 
+    ./delegator help hello-world 
     # => [ ... help of hello-world's subcommand ... ]
 
-    ./delegate hello-world bob
+    ./delegator hello-world bob
     # => Hello bob!
     
     ./hello_world --capitalize bob

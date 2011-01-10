@@ -6,7 +6,7 @@ require 'quickl/command'
 module Quickl
 
   # Quickl's VERSION
-  VERSION = '0.1.2'.freeze
+  VERSION = '0.2.0'.freeze
   
   # Quickl's COPYRIGHT info 
   COPYRIGHT = "(c) 2010, Bernard Lambeau"

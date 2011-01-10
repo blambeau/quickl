@@ -11,10 +11,10 @@ module Quickl
       execute(parse_options(argv))
     end
     
-  end # module Command::Delegate
+  end # module Command::Single
   
   #
-  # Create a delegate command
+  # Create a single command
   #
   def self.Command(*args)
     command_builder do |b|

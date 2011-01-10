@@ -1,9 +1,9 @@
 module Quickl
-  module Command::Delegate
+  module Command::Delegator
     module InstanceMethods
-    
+     
       # Run the command by delegation
-      def _run(argv = [])
+      def _run(argv = [], requester = nil)
         # My own options
         my_argv = []
         while argv.first =~ /^--/
@@ -13,7 +13,7 @@ module Quickl
       
         # Run the subcommand now
         if cmd = argv.shift
-          has_command!(cmd).run(argv)
+          cmd = has_command!(cmd).run(argv)
         else
           raise Quickl::Help.new(cmd.nil? ? 0 : -1)
         end
@@ -36,18 +36,23 @@ module Quickl
       end
       
     end
-  end # module Command::Delegate
+  end # module Command::Delegator
   
   #
-  # Create a delegate command
+  # Create a delegator command
   #
-  def self.Delegate(*args)
+  def self.Delegator(*args)
     command_builder do |b|
       b.document *args
-      b.class_module    Command::Delegate::ClassMethods
-      b.instance_module Command::Delegate::InstanceMethods
+      b.class_module    Command::Delegator::ClassMethods
+      b.instance_module Command::Delegator::InstanceMethods
     end
     Command
+  end
+  
+  # @see Delegator
+  def self.Delegate(*args)
+    self.Delegator(*args)
   end
   
 end # module Quickl

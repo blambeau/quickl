@@ -1,4 +1,4 @@
-class Delegate
+class Delegator
   #
   # Say hello 
   #
@@ -36,4 +36,4 @@ class Delegate
     end
   
   end # class HelloWorld
-end # class Delegate
+end # class Delegator

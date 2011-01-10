@@ -1,7 +1,7 @@
 #
 # MiniClient main command
 #
-class MiniClient < Quickl::Delegate(__FILE__, __LINE__)
+class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
     
   #
   # Print help
@@ -20,7 +20,7 @@ class MiniClient < Quickl::Delegate(__FILE__, __LINE__)
       
   end # class Help
   
-  class Say < Quickl::Delegate(__FILE__, __LINE__)
+  class Say < Quickl::Delegator(__FILE__, __LINE__)
 
     #
     # Say hello to the user whose name is requested on the standard input

@@ -36,10 +36,10 @@ Running them as simply as:
 
     SimpleCommand.run(ARGV)
     
-From simple command to complex delegate (_ala_ 'git [--version] [--help] COMMAND [cmd options] ARGS...'), Quickl provides (or aims at providing) the following features:
+From simple command to complex delegator (_ala_ 'git [--version] [--help] COMMAND [cmd options] ARGS...'), Quickl provides (or aims at providing) the following features:
 
 * Simple command creations via simple classes
-* Delegate commands and categories via ruby namespaces and naming conventions
+* Delegator commands and categories via ruby namespaces and naming conventions
 * Command help and documentation provided through _rdoc_
 * Command options via standard OptionParser
 * Error handling trought special blocks, assertions methods and dedicated Error classes
@@ -70,7 +70,7 @@ Try this:
 Additional examples (see examples folder):
 
 * [hello world example](https://github.com/blambeau/quickl/blob/master/examples/hello_world)
-* [delegate example](https://github.com/blambeau/quickl/blob/master/examples/delegate)
+* [delegator example](https://github.com/blambeau/quickl/blob/master/examples/delegator)
 
 ## Version policy
 
@@ -81,8 +81,8 @@ Until version 1.0.0, moditications of public interfaces increase the minor versi
     
 Public interfaces are:
 
-* Quickl::Command and Quickl::Delegate calls
-* DSL methods used in "subclasses" built by Quickl::Command and Quickl::Delegate
+* Quickl::Command and Quickl::Delegator calls
+* DSL methods used in "subclasses" built by Quickl::Command and Quickl::Delegator
 * RDoc -> command line documentation recognizers (synopsis, overview, documentation, ...)
 * Naming conventions (module <-> command conversions)
 * Default reactions to errors (Quickl::Help, Quickl::Exit, ...)

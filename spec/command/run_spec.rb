@@ -7,7 +7,7 @@ module Quickl
       MiniClient::Say::Goodbye.run.should == :goodbye
     end
 
-    it "when invoked on a delegate command" do
+    it "when invoked on a delegator command" do
       MiniClient.run(["help"]).should == :help
       MiniClient::Say.run(["hello"]).should == :hello
       MiniClient::Say.run(["goodbye"]).should == :goodbye

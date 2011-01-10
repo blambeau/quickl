@@ -7,9 +7,9 @@ rescue LoadError
   require 'quickl'
 end
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'delegate'
+require 'Delegator'
 
-class DelegateTest < Test::Unit::TestCase
+class DelegatorTest < Test::Unit::TestCase
 
   def assert_exits(match, exit_code)  
     yield
@@ -21,8 +21,8 @@ class DelegateTest < Test::Unit::TestCase
   
   def run_command(*args)
     $stdout = StringIO.new
-    Delegate.no_react_to(Quickl::Exit)
-    Delegate.run args
+    Delegator.no_react_to(Quickl::Exit)
+    Delegator.run args
     $stdout.string
   ensure
     $stdout = STDOUT

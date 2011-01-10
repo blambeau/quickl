@@ -1,7 +1,10 @@
-# 0.1.2 / FIX ME
+# 0.2.0 / FIX ME
 
 * Enhancements
 
+  * Renamed Delegate -> Delegator (Quickl::Delegate is kept but should not be used anymore)
+  * Added IOAccessError with default reaction to Exit
+  * Added valid_read_file! robustness utility
   * Moved to rspec 2.4.0, modified Rakefile and tests accordingly  
 
 # 0.1.1 / 2010-12-24

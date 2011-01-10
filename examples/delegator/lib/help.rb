@@ -1,4 +1,4 @@
-class Delegate
+class Delegator
   # 
   # Show help about a specific command
   #
@@ -21,4 +21,4 @@ class Delegate
     end
     
   end # class Help
-end # class Delegate
+end # class Delegator

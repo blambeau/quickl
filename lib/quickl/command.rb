@@ -100,7 +100,7 @@ module Quickl
     
     # Methods installed on all command instances
     module InstanceMethods
-
+      
       # Delegate unrecognized calls to the command class
       # (gives access to options, help, usage, ...)
       def method_missing(name, *args, &block)
@@ -151,4 +151,4 @@ require 'quickl/command/builder'
 require 'quickl/command/robustness'
 require 'quickl/command/options'
 require 'quickl/command/single'
-require 'quickl/command/delegate'
+require 'quickl/command/delegator'
