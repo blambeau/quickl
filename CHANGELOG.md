@@ -1,3 +1,9 @@
+# 0.2.1 / FIX ME
+
+* On the devel side
+
+  * The project structure is handled by ruby.noe 1.3.0
+
 # 0.2.0 / 2011-01-10
 
 * Enhancements
