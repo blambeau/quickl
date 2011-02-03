@@ -45,7 +45,7 @@ begin
     t.warning = false
 
     # Glob pattern to match test files. (default is 'test/test*.rb')
-    t.pattern = "test/test*.rb"
+    t.pattern = "examples/**/*_test.rb"
 
     # Style of test loader to use.  Options are:
     #

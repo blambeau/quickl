@@ -5,6 +5,9 @@
 template-info:
   name: "ruby"
   version: 1.3.0
+  manifest:
+    spec/spec_helper.rb:
+      safe-override: false
 
 # Update to match your own configuration.
 variables:
@@ -51,3 +54,7 @@ variables:
     - {name: bluecloth, version: "~> 2.0.9", groups: [development]}
     # wlang is required to run 'rake debug_mail'. See tasks/debug_mail.rake
     - {name: wlang, version: "~> 0.10.1",    groups: [development]}
+
+  rake_tasks:
+    unit_test: 
+      pattern: examples/**/*_test.rb
