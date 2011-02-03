@@ -1,3 +1,5 @@
+require 'quickl/loader'
+require 'quickl/version'
 require 'quickl/ext/object'
 require 'quickl/errors'
 require 'quickl/ruby_tools'
@@ -5,9 +7,6 @@ require 'quickl/naming'
 require 'quickl/command'
 module Quickl
 
-  # Quickl's VERSION
-  VERSION = '0.2.0'.freeze
-  
   # Quickl's COPYRIGHT info 
   COPYRIGHT = "(c) 2010, Bernard Lambeau"
   
