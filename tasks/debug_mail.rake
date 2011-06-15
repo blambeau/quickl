@@ -35,6 +35,7 @@ begin
   require 'wlang'
   require 'yaml'
   
+  desc "Debug the release announcement mail"
   task :debug_mail do 
     # Check that a .noespec file exists
     noespec_file = File.expand_path('../../quickl.noespec', __FILE__)
