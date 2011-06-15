@@ -71,13 +71,11 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
   end # class Requester
 
   def self.Factor(file, line, arg)
-    res = Quickl::Command(file, line)
-    Quickl.command_builder{|b|
-      b.callback{|cmd| 
+    Quickl::Command(file, line) do |builder|
+      builder.callback{|cmd| 
         cmd.instance_eval{ @factored_arg = arg }
       }
-    }
-    res
+    end
   end
       
   #

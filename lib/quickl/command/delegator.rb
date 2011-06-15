@@ -46,13 +46,14 @@ module Quickl
       b.document *args
       b.class_module    Command::Delegator::ClassMethods
       b.instance_module Command::Delegator::InstanceMethods
+      yield(b) if block_given?
     end
     Command
   end
   
   # @see Delegator
-  def self.Delegate(*args)
-    self.Delegator(*args)
+  def self.Delegate(*args, &block)
+    self.Delegator(*args, &block)
   end
   
 end # module Quickl
