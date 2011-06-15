@@ -1,5 +1,10 @@
 # 0.2.1 / FIX ME
 
+* Enhancements
+
+  * Delegator.summarized_subcommands now takes an optional argument, allowing
+    to specify the list of commands for which documentation must be summarized. 
+
 * On the devel side
 
   * The project structure is handled by ruby.noe 1.3.0

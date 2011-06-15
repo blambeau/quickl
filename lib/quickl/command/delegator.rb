@@ -22,8 +22,8 @@ module Quickl
     end
     module ClassMethods
       
-      def summarized_subcommands
-        doc = subcommands.collect{|cmd| 
+      def summarized_subcommands(subs = subcommands)
+        doc = subs.collect{|cmd| 
           [cmd.command_name, cmd.overview]
         }
         max = doc.inject(0){|memo,pair| 

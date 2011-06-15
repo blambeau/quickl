@@ -2,3 +2,5 @@
 doc/api
 dist
 pkg
+.project
+.buildpath
