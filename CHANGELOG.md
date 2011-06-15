@@ -4,6 +4,8 @@
 
   * Delegator.summarized_subcommands now takes an optional argument, allowing
     to specify the list of commands for which documentation must be summarized. 
+  * Command::Builder accept installing callback blocks that are called when a
+    command is installed (advanced usage).
 
 * On the devel side
 

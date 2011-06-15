@@ -2,7 +2,7 @@
 # MiniClient main command
 #
 class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
-    
+
   #
   # Print help
   #
@@ -60,7 +60,7 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
   # Returns the requester object
   #
   # SYNOPSIS
-  #   #{MiniClient.command_name} say:requester
+  #   #{MiniClient.command_name} requester
   #
   class Requester < Quickl::Command(__FILE__, __LINE__)
 
@@ -70,4 +70,28 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
     
   end # class Requester
 
+  def self.Factor(file, line, arg)
+    res = Quickl::Command(file, line)
+    Quickl.command_builder{|b|
+      b.callback{|cmd| 
+        cmd.instance_eval{ @factored_arg = arg }
+      }
+    }
+    res
+  end
+      
+  #
+  # Returns an argument passed at factoring time
+  #
+  # SYNOPSIS
+  #   #{MiniClient.command_name} factored
+  #
+  class Factored < Factor(__FILE__, __LINE__, :hello)
+    
+    def execute(*args)
+      self.class.instance_eval{ @factored_arg }
+    end
+    
+  end
+  
 end # module MiniClient

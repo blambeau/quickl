@@ -28,6 +28,13 @@ module Quickl
       end
       alias :instance_module instance_modules
       
+      # Installs a callback block to execute at 
+      # install time
+      def callback(&block)
+        @callbacks ||= []
+        @callbacks << block
+      end
+      
       # Installs on a command subclass
       def run(command)
         # install class and instance methods
@@ -49,6 +56,11 @@ module Quickl
           command.super_command = parent
           parent.subcommands << command
         end
+        
+        # execute callbacks
+        @callbacks.each do |blk|
+          blk.call(command)
+        end if @callbacks
       
         command
       end

@@ -6,7 +6,8 @@ module Quickl
       MiniClient.subcommands.should == [ 
         MiniClient::Help, 
         MiniClient::Say,
-        MiniClient::Requester
+        MiniClient::Requester,
+        MiniClient::Factored
       ]
     end
     
