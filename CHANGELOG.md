@@ -2,6 +2,8 @@
 
 * Enhancements
 
+  * Delegator now delegates the command execution to an execute(argv) methods
+    that mimics a Single command
   * Delegator.summarized_subcommands now takes an optional argument, allowing
     to specify the list of commands for which documentation must be summarized. 
   * The factory methods Quickl::Command and Quickl::Delegator now accept an 

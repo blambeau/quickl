@@ -10,8 +10,10 @@ module Quickl
           my_argv << argv.shift
         end
         parse_options(my_argv)
+        execute(argv)
+      end
       
-        # Run the subcommand now
+      def execute(argv)
         if cmd = argv.shift
           cmd = has_command!(cmd).run(argv, self)
         else
