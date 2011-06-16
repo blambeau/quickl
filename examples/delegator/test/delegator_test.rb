@@ -7,7 +7,7 @@ rescue LoadError
   require 'quickl'
 end
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'Delegator'
+require 'delegator'
 
 class DelegatorTest < Test::Unit::TestCase
 
