@@ -17,6 +17,18 @@ module Quickl
         @subcommands ||= []
       end
       
+      # Returns a subcommand by its name, or nil
+      def subcommand_by_name(name)
+        return nil unless has_sub_commands?
+        look  = name.split(':')
+        found = subcommands.find{|cmd| cmd.command_name == look.first}
+        if found.nil? or (look.size == 1)
+          return found 
+        else
+          found.subcommand_by_name(look[1..-1].join(':'))
+        end
+      end
+      
       # Returns true if this command has at least one 
       # subcommand
       def has_sub_commands?

@@ -6,11 +6,10 @@ module Quickl
       # Checks that a command whose name is given exists
       # or raises a NoSuchCommand.
       def has_command!(name, referer = self.class)
-        name.split(':').inject(referer){|cur,look|
-          cur.const_get(command2module(look))
-        }
-      rescue NameError => ex
-        raise NoSuchCommand, "No such command #{name}", ex.backtrace
+        unless cmd = referer.subcommand_by_name(name)
+          raise NoSuchCommand, "No such command #{name}" 
+        end
+        cmd
       end
       
       # Checks that _file_ is a readable file or raises an error.
