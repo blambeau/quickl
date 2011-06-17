@@ -28,6 +28,11 @@ module Quickl
       end
       alias :instance_module instance_modules
       
+      # Sets the parent of the command currently built
+      def command_parent=(p)
+        @parent = p
+      end
+      
       # Installs a callback block to execute at 
       # install time
       def callback(&block)
@@ -51,7 +56,7 @@ module Quickl
         end
 
         # install hierarchy
-        parent = RubyTools::parent_module(command)
+        parent = @parent || RubyTools::parent_module(command)
         if parent && parent.ancestors.include?(Command)
           command.super_command = parent
           parent.subcommands << command

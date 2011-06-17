@@ -8,8 +8,10 @@
     to specify the list of commands for which documentation must be summarized. 
   * The factory methods Quickl::Command and Quickl::Delegator now accept an 
     optional block which is yield with the command builder when present.
-  * Command::Builder accept installing callback blocks that are called when a
-    command is installed (advanced usage).
+  * Command::Builder has a command_parent= accessor that allow bypassing the
+    default (infered) command strategy feature (advanced usage).
+  * Command::Builder accepts callback blocks that are called when a command is 
+    installed (advanced usage).
 
 * On the devel side
 
