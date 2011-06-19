@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   #
   # The description should be more detailed than the summary.  For example,
   # you might wish to copy the entire README into the description.
-  s.description = "Quickl helps you creating commandline ruby programs. From simple commands with\noptions to complex delegators with subcommands, global and local options, simply."
+  s.description = "Quickl helps you creating commandline ruby programs. From simple commands \nwith options to complex delegators with subcommands, global and local \noptions."
   
   # The URL of this gem home page (optional)
   s.homepage = "http://github.com/blambeau/quickl"

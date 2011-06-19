@@ -27,8 +27,9 @@ variables:
   # Project description (~ 5 lines). Project description should be more complete
   # than the summary and will be used to describe your gem on rubygems.org
   description: |-
-    Quickl helps you creating commandline ruby programs. From simple commands with
-    options to complex delegators with subcommands, global and local options, simply.
+    Quickl helps you creating commandline ruby programs. From simple commands 
+    with options to complex delegators with subcommands, global and local 
+    options.
       
   # Authors of the project (- {name: Bob, email: bob@gmail.com}, ...) 
   authors: 
