@@ -4,3 +4,4 @@ dist
 pkg
 .project
 .buildpath
+*.rbc
