@@ -1,3 +1,11 @@
+# 0.2.2 / TODO
+
+* Bug fixes
+
+  * The gem is now shipped with the template/single.erb file. This fixes the 
+    'quickl' commandline that generates skeletons as illustrated in README 
+    (patch and thanks to Rit Li) 
+
 # 0.2.1 / 2011.06.19
 
 * Enhancements
