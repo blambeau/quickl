@@ -4,7 +4,8 @@
 
   * The gem is now shipped with the template/single.erb file. This fixes the 
     'quickl' commandline that generates skeletons as illustrated in README 
-    (patch and thanks to Rit Li) 
+    (patch and thanks to Rit Li)
+  * Broken links to the examples from the README are also fixed (Travis Briggs)
 
 # 0.2.1 / 2011.06.19
 
