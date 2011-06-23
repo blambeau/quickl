@@ -69,7 +69,7 @@ Try this:
   
 Additional examples (see examples folder):
 
-* [hello world example](https://github.com/blambeau/quickl/blob/master/examples/hello_world)
+* [hello world example](https://github.com/blambeau/quickl/blob/master/examples/hello)
 * [delegator example](https://github.com/blambeau/quickl/blob/master/examples/delegator)
 
 ## Version policy
