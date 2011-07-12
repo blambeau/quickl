@@ -1,5 +1,10 @@
 # 0.2.2 / TODO
 
+* Enhancements
+
+  * Added a template/delegator.erb template (quickl --layout=delegator ...)
+  * Added --[no-]header and --[no-]footer options to the template generator
+
 * Bug fixes
 
   * The gem is now shipped with the template/single.erb file. This fixes the 

@@ -34,6 +34,12 @@ class Quickl::Main < Quickl::Command(__FILE__, __LINE__)
   # Name of the command to generate
   attr_reader :cmd_name
   
+  # Generate require header
+  attr_reader :header
+  
+  # Generate require footer
+  attr_reader :footer
+  
   # Creates a command instance
   def initialize
     @layout = :single
@@ -43,8 +49,8 @@ class Quickl::Main < Quickl::Command(__FILE__, __LINE__)
   # Install options
   options do |opt|
     
-    opt.on("--layout=LAYOUT", [:single], 
-           "Select specific command layout (single)") do |l|
+    opt.on("--layout=LAYOUT", [:single, :delegator], 
+           "Select specific command layout (single,delegator)") do |l|
       @layout = l
     end
     
@@ -55,6 +61,18 @@ class Quickl::Main < Quickl::Command(__FILE__, __LINE__)
         raise Quickl::InvalidOption, "Unknown option helpers: #{unknown.join(',')}"
       end
     end
+
+    @header = true
+    opt.on('--[no-]header',
+           "Generate header (require rubygems + quickl)"){|value|
+      @header = value
+    }
+    
+    @footer = true
+    opt.on('--[no-]footer',
+           "Generate footer (command execution)"){|value|
+      @footer = value
+    }
     
     # Show the help and exit
     opt.on_tail("--help", "Show help") do

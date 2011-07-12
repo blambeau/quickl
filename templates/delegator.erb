@@ -11,32 +11,32 @@ end
 # FIX: overview
 #
 # SYNOPSIS
-#   #{command_name} [options] ARGS...
+#   #{program_name} [--version] [--help] [--output=...] COMMAND [cmd opts] ARGS...
 #
 # OPTIONS
 # #{summarized_options}
 #
+# COMMANDS
+# #{summarized_subcommands}
+#
 # DESCRIPTION
 #   FIX: description 
 #
-class <%= cmd_class_name %> < Quickl::Command(__FILE__, __LINE__)
+# See '#{program_name} help COMMAND' for more information on a specific command.
+#
+class <%= cmd_class_name %> <  Quickl::Delegator(__FILE__, __LINE__)
 
-  VERSION   = "0.1.0"
+  VERSION   = "1.0.0"
 
   # Install options
   options do |opt|
 <%= option_helpers.collect{|s| tabto(s,4)}.join("\n") %>
   end
   
-  # Run the command
-  def execute(args)
-    # FIX: do something here
-    puts "Hello #{args.join(' and ')} from #{program_name}"
-  end
-
 end # class <%= cmd_class_name %>
 <% if footer %>
 if __FILE__ == $0
   <%= cmd_class_name %>.run(ARGV)
 end
 <% end %>
+
