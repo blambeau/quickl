@@ -13,7 +13,7 @@ Quickl helps you create commandline programs as simply as:
     #   Usage: ...
     #
     # OPTIONS:
-    # #{sumarized_options}
+    # #{summarized_options}
     #
     # DESCRIPTION
     #   Long description here...
@@ -36,7 +36,8 @@ Running them as simply as:
 
     SimpleCommand.run(ARGV)
     
-From simple command to complex delegator (_ala_ 'git [--version] [--help] COMMAND [cmd options] ARGS...'), Quickl provides (or aims at providing) the following features:
+From simple command to complex delegator (_ala_ 'git [--version] [--help] COMMAND [cmd options] ARGS...'), 
+Quickl provides (or aims at providing) the following features:
 
 * Simple command creations via simple classes
 * Delegator commands and categories via ruby namespaces and naming conventions
@@ -74,7 +75,9 @@ Additional examples (see examples folder):
 
 ## Version policy
 
-Until version 1.0.0, moditications of public interfaces increase the minor version, while other changes increase the tiny version. After version 1.0.0, same changes will affect major and minor versions, respectively.
+Until version 1.0.0, moditications of public interfaces increase the minor version, 
+while other changes increase the tiny version. After version 1.0.0, same changes will 
+affect major and minor versions, respectively.
 
     0.1.0 -> 0.1.1    # enhancements and private API changes
     0.1.0 -> 0.2.0    # broken API on public interfaces
@@ -87,7 +90,8 @@ Public interfaces are:
 * Naming conventions (module <-> command conversions)
 * Default reactions to errors (Quickl::Help, Quickl::Exit, ...)
 
-Until version 1.0.0, to preserve your application from hurting changes you should require quickl as follows:
+Until version 1.0.0, to preserve your application from hurting changes you should 
+require quickl as follows:
 
-    gem 'quickl', '< 0.2.0'    # Assuming current version is 0.1.xx
+    gem 'quickl', '~> 0.2.0'    # Assuming current version is 0.2.xx
     require 'quickl'
