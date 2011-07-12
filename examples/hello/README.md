@@ -13,7 +13,7 @@ The structure it follows is simply:
     #   Usage: ...
     #
     # OPTIONS
-    # #{sumarized_options}
+    # #{summarized_options}
     #
     # DESCRIPTION
     #   Long description here...
@@ -70,5 +70,5 @@ Try the following:
 ## You have to known that ...
 
 * An **instance** of command is actually executed. Therefore, it is safe to install instance variables through options and to use them in execute().
-* Documentation shown with --help is the rdoc documentation evaluated in the binding of the SimpleCommand **class**. Therefore, you can use #{...} to display specific things (like #{sumarized_options}).
+* Documentation shown with --help is the rdoc documentation evaluated in the binding of the SimpleCommand **class**. Therefore, you can use #{...} to display specific things (like #{summarized_options}).
 * Default error handlers are installed by default to catch Interrupt, Quickl::Exit and OptionParser::Error. See error_handling example to learn more about them.
