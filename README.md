@@ -1,6 +1,7 @@
 # Quickl
 
 * http://github.com/blambeau/quickl
+* http://rubydoc.info/github/blambeau/quickl/master/frames
 
 ## Description
 
@@ -72,6 +73,23 @@ Additional examples (see examples folder):
 
 * [hello world example](https://github.com/blambeau/quickl/blob/master/examples/hello)
 * [delegator example](https://github.com/blambeau/quickl/blob/master/examples/delegator)
+
+## Related work
+
+A few other gems similarly provide tools to generate commandline app. 
+
+* https://github.com/wycats/thor provides a way to bundle command line utilities
+  as class methods. It also provides an alternative to Rake and therefore sees 
+  commands as tasks. It is more mature that quickl but is also a bit more 
+  opinionated IMHO. If you want one command by class, use quickl; one command by
+  method, go for thor instead.
+* https://github.com/mdub/clamp is very similar to quickl as well, even more 
+  similar than thor in fact. Clamp supports subcommands and options (not through
+  OptionParser, though). It does not have the quickl's auto-documentation 
+  feature, but has an automatic --help. I would say that Clamp is maybe a bit 
+  lighter and 'straight to the point' than quickl, but also more magic and 
+  opinionated.
+* See also: http://trollop.rubyforge.org/, http://clip.rubyforge.org/
 
 ## Version policy
 
