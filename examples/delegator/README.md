@@ -17,10 +17,10 @@ The structure for delegator commands is as follows:
     #   Usage: #{command_name} [main options] COMMAND [cmd options] ARGS...
     #
     # OPTIONS
-    # #{sumarized_options}
+    # #{summarized_options}
     #
     # COMMANDS
-    # #{summarized_commands}
+    # #{summarized_subcommands}
     #
     # DESCRIPTION
     #   Long description here...
