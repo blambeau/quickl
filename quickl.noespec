@@ -42,7 +42,7 @@ variables:
   # Gem dependencies. (- {name: ..., version: ..., groups: [...]}, ...)
   dependencies: 
     # Rake is required for developers, as usual
-    - {name: rake,      version: "~> 0.8.7", groups: [development]}
+    - {name: rake,      version: "~> 0.9.2", groups: [development]}
     # Bundler is required for developers and is used by the Rakefile
     - {name: bundler,   version: "~> 1.0",   groups: [development]}
     # RSpec is required to run 'rake spec'. See tasks/spec.rake 

@@ -6,9 +6,9 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    bluecloth (2.0.9)
+    bluecloth (2.0.11)
     diff-lcs (1.1.2)
-    rake (0.8.7)
+    rake (0.9.2)
     rspec (2.4.0)
       rspec-core (~> 2.4.0)
       rspec-expectations (~> 2.4.0)
@@ -17,8 +17,8 @@ GEM
     rspec-expectations (2.4.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.4.0)
-    wlang (0.10.1)
-    yard (0.6.4)
+    wlang (0.10.2)
+    yard (0.6.8)
 
 PLATFORMS
   java
@@ -28,7 +28,7 @@ DEPENDENCIES
   bluecloth (~> 2.0.9)
   bundler (~> 1.0)
   quickl!
-  rake (~> 0.8.7)
+  rake (~> 0.9.2)
   rspec (~> 2.4.0)
   wlang (~> 0.10.1)
   yard (~> 0.6.4)
