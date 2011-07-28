@@ -2,7 +2,17 @@
 # MiniClient main command
 #
 class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
+  
+  # Is verbose?
+  attr_accessor :verbose
 
+  options do |opt|
+    @verbose = false
+    opt.on("-v", "--[no-]verbose") do |val|
+      self.verbose = val
+    end
+  end
+  
   #
   # Print help
   #

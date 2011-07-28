@@ -8,7 +8,7 @@ module Quickl
         
         # My own options
         my_argv = []
-        while argv.first =~ /^--/
+        while argv.first =~ /^-/
           my_argv << argv.shift
         end
         parse_options(my_argv)

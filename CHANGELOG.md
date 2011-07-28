@@ -1,3 +1,17 @@
+# 0.3.0 / FIX ME
+
+* Bug fixes
+
+  * A single dash option (e.g. -v) is now correctly recognized by a Delegator
+    command ("No such command -v" was previously raised) 
+
+* Possibly hurting changes to the internals
+
+  * No default behavior is implemented in Command#run anymore (call was 
+    previously delegated to _run and surrounded in a begin/rescue/end block). 
+    The method is now directly implemented in Single and Delegator subclasses. 
+    This may break your code if it redefines _run.
+
 # 0.2.2 / 2011.07.12
 
 * Enhancements
