@@ -28,5 +28,7 @@ variables:
     - {name: bluecloth, version: "~> 2.1.0",  groups: [development]}
     - {name: wlang,     version: "~> 0.10.1", groups: [development]}
   rake_tasks:
+    spec_test:
+      pattern: spec/**/test_*.rb
     unit_test: 
-      pattern: examples/**/*_test.rb
+      pattern: examples/**/test_*.rb
