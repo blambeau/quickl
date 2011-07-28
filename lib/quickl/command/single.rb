@@ -3,9 +3,6 @@ module Quickl
   # Instance method for being a single command
   module Command::Single
     
-    # Command arguments after options parsing
-    attr_reader :args
-
     # Run the command by delegation
     def run(argv = [], requester = nil)
       @requester = requester

@@ -7,6 +7,9 @@
 
 * Possibly hurting changes to the internals
 
+  * An unused and undocumented `args` attribute (attr_reader) has been removed 
+    from Single commands instances.  
+
   * No default behavior is implemented in Command#run anymore (call was 
     previously delegated to _run and surrounded in a begin/rescue/end block). 
     The method is now directly implemented in Single and Delegator subclasses. 
