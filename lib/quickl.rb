@@ -101,6 +101,35 @@ module Quickl
       raise error_class, msg, caller
     end
   end
-  
+
+  #
+  # Parse a string with commandline arguments and returns an array.
+  #
+  # Example:
+  # 
+  #   parse_commandline_args("--text --size=10") # => ['--text', '--size=10']
+  #
+  def self.parse_commandline_args(args)
+    args = args.split(/\s+/)
+    result = []
+    until args.empty?
+      quote = ['"', "'"].find{|q| q == args.first[0,1]}
+      if quote
+        if args.first[-1,1] == quote
+          result << args.shift[1...-1]
+        else
+          block = [ args.shift[1..-1] ]
+          while args.first[-1,1] != quote
+            block << args.shift
+          end 
+          block << args.shift[0...-1]
+          result << block.join(" ")
+        end
+      else
+        result << args.shift
+      end  
+    end
+    result
+  end
   
 end # module Quickl

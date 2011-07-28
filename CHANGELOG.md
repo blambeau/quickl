@@ -5,6 +5,11 @@
   * A single dash option (e.g. -v) is now correctly recognized by a Delegator
     command ("No such command -v" was previously raised) 
 
+* Enhancements
+
+  * Added Quickl.parse_commandline_args that converts a commandline string to
+    an ARGV array. This is mainly provided for testing purposes.
+
 * Deprecations 
 
 The following methods are deprecated and will be removed in 0.4.0 (run with 
