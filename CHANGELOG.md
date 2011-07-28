@@ -5,6 +5,13 @@
   * A single dash option (e.g. -v) is now correctly recognized by a Delegator
     command ("No such command -v" was previously raised) 
 
+* Deprecations
+
+  * Command#method_missing auto-delegation from command instances to command 
+    classes is deprecated and will be removed in 0.4.0. Please use explicit 
+    calls to command methods on the class itself. Examples have been adapted 
+    and can be copy-pasted safely. 
+
 * Possibly hurting changes to the internals
 
   * An unused and undocumented `args` attribute (attr_reader) has been removed 
