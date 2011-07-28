@@ -31,7 +31,7 @@ class Delegator < Quickl::Delegator(__FILE__, __LINE__)
 
     # Show version and exit
     opt.on_tail("--version", "Show version") do
-      raise Quickl::Exit, "#{self.class.program_name} #{VERSION} (c) 2010, Bernard Lambeau"
+      raise Quickl::Exit, "#{Quickl.program_name} #{VERSION} (c) 2010, Bernard Lambeau"
     end
 
   end

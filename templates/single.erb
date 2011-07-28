@@ -31,7 +31,7 @@ class <%= cmd_class_name %> < Quickl::Command(__FILE__, __LINE__)
   # Run the command
   def execute(args)
     # FIX: do something here
-    puts "Hello #{args.join(' and ')} from #{program_name}"
+    puts "Hello #{args.join(' and ')} from #{Quickl.program_name}"
   end
 
 end # class <%= cmd_class_name %>

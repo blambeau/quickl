@@ -8,7 +8,7 @@ require 'quickl/command'
 module Quickl
 
   # Quickl's COPYRIGHT info 
-  COPYRIGHT = "(c) 2010, Bernard Lambeau"
+  COPYRIGHT = "(c) 2010-2011, Bernard Lambeau"
   
   #
   # Yields the block with the current command builder.
@@ -41,6 +41,13 @@ module Quickl
       @builder = nil
       command
     end
+  end
+  
+  #
+  # Convenient method for <code>File.basename($0)</code>
+  #
+  def self.program_name
+    File.basename($0)
   end
   
 end # module Quickl

@@ -39,7 +39,7 @@ module Quickl
       
       # Returns name of the program under execution
       def program_name
-        File.basename($0)
+        Quickl.program_name
       end
       
       # Returns command name

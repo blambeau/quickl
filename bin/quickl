@@ -21,7 +21,7 @@ class Quickl::Main < Quickl::Command(__FILE__, __LINE__)
   OPTION_HELPERS = {
     :version => %q{
       opt.on_tail('--version', 'Show version and exit'){
-        raise Quickl::Exit, "#{program_name} #{VERSION}"
+        raise Quickl::Exit, "#{Quickl.program_name} #{VERSION}"
       }
     },
     :help => %q{
@@ -81,7 +81,7 @@ class Quickl::Main < Quickl::Command(__FILE__, __LINE__)
 
     # Show version and exit
     opt.on_tail("--version", "Show version") do
-      raise Quickl::Exit, "#{program_name} #{Quickl::VERSION} #{Quickl::COPYRIGHT}"
+      raise Quickl::Exit, "#{Quickl.program_name} #{Quickl::VERSION} #{Quickl::COPYRIGHT}"
     end
     
   end
