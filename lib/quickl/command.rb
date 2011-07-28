@@ -101,7 +101,7 @@ module Quickl
       
       # Should I bypass reaction to a given error?
       def no_react_to?(ex)
-        @no_react_to && @no_react_to.find{|c|
+        defined?(@no_react_to) && Array(@no_react_to).find{|c|
           ex.is_a?(c)
         }
       end
