@@ -24,7 +24,9 @@ module Quickl
       
       def split_argv(argv)
         my_argv = []
-        while argv.first =~ /^-/
+        while (!argv.empty?) && 
+              (argv.first[0,1] == '-') && 
+              (argv.first != '--')
           my_argv << argv.shift
         end
         [my_argv, argv]
