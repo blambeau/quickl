@@ -43,7 +43,22 @@ module Quickl
         @options ||= self.class.build_options(self)
       end
       
-      # Parses options
+      #
+      # Parses options in `argv` with an OptionParser instance and returns 
+      # non-options arguments.
+      #
+      # When `sep_support` is true, support for option separator '--' is 
+      # provided. Returned array then contains the non-options arguments
+      # as sub arrays, following those separators.
+      #
+      # Example:
+      #
+      #     parse_options %w{--verbose hello -- quickl and world}
+      #     # => ["hello", "quickl", "and", "world"]
+      #
+      #     parse_options %w{--verbose hello -- quickl and world}, true
+      #     # => [["hello"], ["quickl", "and", "world"]]
+      #
       def parse_options(argv, sep_support = false)
         if sep_support
           rest = []
