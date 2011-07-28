@@ -1,4 +1,5 @@
 module Quickl
+  
   module Command::Delegator
     module InstanceMethods
      
@@ -8,8 +9,6 @@ module Quickl
         my_argv, rest = split_argv(argv)
         parse_options(my_argv)
         execute(rest)
-      rescue Quickl::Error => ex
-        handle_error(ex)
       end
       
       def execute(argv)

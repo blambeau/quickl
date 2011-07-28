@@ -85,7 +85,10 @@ module Quickl
       
       # Runs the command
       def run(argv = [], requester = nil)
-        self.new.run(argv, requester)
+        cmd = self.new
+        cmd.run(argv, requester)
+      rescue Quickl::Error => ex
+        handle_error(ex, cmd)
       end
       
       ############################################### Error handling 
@@ -108,6 +111,20 @@ module Quickl
         !no_react_to?(ex)
       end
       
+      # Handles a command error
+      def handle_error(ex, cmd = self)
+        if react_to?(ex)
+          begin
+            ex.command = cmd
+            ex.react!
+          rescue Quickl::Error => ex2
+            handle_error(ex2, cmd)
+          end
+        else
+          raise ex
+        end
+      end
+  
     end # module ClassMethods
     
     # Methods installed on all command instances
@@ -124,29 +141,6 @@ module Quickl
         else
           super
         end
-      end
-      
-      # Handles a command error
-      def handle_error(ex)
-        if react_to?(ex)
-          begin
-            ex.command = self
-            ex.react!
-          rescue Quickl::Error => ex2
-            handle_error(ex2)
-          end
-        else
-          raise ex
-        end
-      end
-      
-      #
-      # Run the command on command-line arguments.
-      #
-      # This method must be implemented by subclasses.
-      #
-      def run(argv = [], requester = nil)
-        raise NotImplementedError, "Command#run must be implemented by subclasses"
       end
       
     end # module InstanceMethods

@@ -10,8 +10,6 @@ module Quickl
     def run(argv = [], requester = nil)
       @requester = requester
       execute(parse_options(argv))
-    rescue Quickl::Error => ex
-      handle_error(ex)
     end
     
   end # module Command::Single

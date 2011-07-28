@@ -11,6 +11,9 @@
     previously delegated to _run and surrounded in a begin/rescue/end block). 
     The method is now directly implemented in Single and Delegator subclasses. 
     This may break your code if it redefines _run.
+    
+  * Error catching is done in Command.run instead of Command#run. The way to 
+    specify how to react to errors did not change.  
 
 # 0.2.2 / 2011.07.12
 
