@@ -1,5 +1,5 @@
 require 'spec_helper'
-describe "Quickl#parse_commandline_args" do
+describe "Quickl.parse_commandline_args" do
   
   subject{ Quickl.parse_commandline_args(args) }
   

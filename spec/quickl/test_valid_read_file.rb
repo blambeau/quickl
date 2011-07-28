@@ -1,6 +1,6 @@
 require 'spec_helper'
 module Quickl
-  describe "Quickl#valid_read_file!" do
+  describe "Quickl.valid_read_file!" do
     
     let(:r){ Quickl }
     

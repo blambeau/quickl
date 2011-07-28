@@ -1,5 +1,5 @@
 require 'spec_helper'
-describe "Quickl#has_subcommand!" do
+describe "Quickl.has_subcommand!" do
   
   specify "has_subcommand! on a command class" do
     Quickl.has_subcommand!(MiniClient, "help").should be_true

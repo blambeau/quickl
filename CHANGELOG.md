@@ -10,6 +10,9 @@
   * Added Quickl.parse_commandline_args that converts a commandline string to
     an ARGV array. This is mainly provided for testing purposes.
 
+  * Added Quickl.split_commandline_args to split ARGV on the "--" option 
+    separator 
+
 * Deprecations 
 
 The following methods are deprecated and will be removed in 0.4.0 (run with 
