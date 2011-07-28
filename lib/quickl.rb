@@ -11,6 +11,16 @@ module Quickl
   COPYRIGHT = "(c) 2010-2011, Bernard Lambeau"
   
   #
+  # Prints a deprecation message on STDERR if $VERBOSE is set to true
+  #
+  def self.deprecated(who, instead, caller)
+    if $VERBOSE
+      STDERR << "WARN (Quickl): #{who} is deprecated, use #{instead} "\
+                "(#{caller.first})\n"
+    end
+  end
+  
+  #
   # Yields the block with the current command builder.
   # A fresh new builder is created if not already done.
   #
@@ -48,6 +58,28 @@ module Quickl
   #
   def self.program_name
     File.basename($0)
+  end
+  
+  #
+  # Checks that `cmd` has a sub-command named `name` of raises a NoSuchCommand
+  # error.
+  #
+  # @param [Class or Command] cmd a command instance of command class
+  # @param [String] the name of a sub command
+  # @return [Class] found subcommand class 
+  #
+  def self.has_subcommand!(cmd, name)
+    case cmd
+    when Class
+      unless subcmd = cmd.subcommand_by_name(name)
+        raise NoSuchCommand, "No such command #{name}" 
+      end
+      subcmd
+    when Command
+      has_subcommand!(cmd.class, name)
+    else
+      raise ArgumentError, "Not a recognized command #{cmd}"
+    end
   end
   
 end # module Quickl

@@ -137,10 +137,7 @@ module Quickl
       # (gives access to options, help, usage, ...)
       def method_missing(name, *args, &block)
         if self.class.respond_to?(name)
-          if $VERBOSE
-            STDERR << "WARN (Quickl): #{name} is deprecated, use self.class.#{name} "\
-                      "(#{caller.first})\n"
-          end
+          Quickl.deprecated(name, "self.class.#{name}", caller)
           self.class.send(name, *args, &block)
         else
           super
