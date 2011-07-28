@@ -7,10 +7,5 @@ module Quickl
       MiniClient::Say::Goodbye.usage.should == "mini-client say:goodbye"
     end
     
-    it "should be accessible on instance" do
-      MiniClient::Say::Hello.new.usage.should == "mini-client say:hello"
-      MiniClient::Say::Goodbye.new.usage.should == "mini-client say:goodbye"
-    end
-
   end # Command::usage
 end # module Quickl

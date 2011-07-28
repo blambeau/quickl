@@ -107,9 +107,9 @@ module Quickl
     
     def react!
       msg = if (self.message || "").empty?
-        command.help
+        command.class.help
       else
-        self.message.to_s + "\n" + command.help
+        self.message.to_s + "\n" + command.class.help
       end
       raise Exit.new(self.exit_code), msg, backtrace
     end

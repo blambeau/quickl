@@ -61,7 +61,7 @@ begin
     t.rcov_opts = []
 
     # Command line options to pass to ruby. See 'ruby --help' about this 
-    t.ruby_opts = []
+    t.ruby_opts = ["-w"]
 
     # Path to rspec
     t.rspec_path = "rspec"
