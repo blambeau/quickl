@@ -1,0 +1,35 @@
+Subject: [ANN] quickl 0.2.1 Released
+
+Hi all!
+
+quickl version 0.2.1 has been released!
+
+* <http://github.com/blambeau/quickl>
+
+Quickl helps you creating commandline ruby programs. From simple commands 
+with options to complex delegators with subcommands, global and local options.
+
+Changes:
+
+# 0.2.1 / 2011.06.19
+
+* Enhancements
+
+  * Delegator delegates the command execution to an execute(argv) methods,
+    therefore mimicing Single command
+  * Command provides subcommand_by_name (a class method) allowing to resolve 
+    ':' qualified command names easily. Robustness::has_command! has been
+    rewritten to use the latter method, so that it now striclty respects command
+    hierarchy  
+  * Delegator.summarized_subcommands takes an optional argument, allowing
+    to specify the list of commands for which documentation must be summarized. 
+  * The factory methods Quickl::Command and Quickl::Delegator accept an optional 
+    block which is yield with the command builder.
+  * Command::Builder has a command_parent= accessor allowing to bypass the default 
+    (infered) command strategy feature (advanced usage).
+  * Command::Builder accepts callback blocks that are called when a command is 
+    installed (advanced usage).
+
+* On the devel side
+
+  * The project structure is handled by ruby.noe 1.3.0
