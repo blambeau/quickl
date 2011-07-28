@@ -18,6 +18,7 @@ class Delegator
     options do |opt|
 
       # Capitalize user name?
+      @capitalize = false
       opt.on("--capitalize", "-c", "Capitalize user name") do 
         @capitalize = true
       end

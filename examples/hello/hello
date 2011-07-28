@@ -23,6 +23,7 @@ class Hello < Quickl::Command(__FILE__, __LINE__)
   options do |opt|
 
     # Capitalize user name?
+    @capitalize = false
     opt.on("--capitalize", "-c", "Capitalize user name") do 
       @capitalize = true
     end
