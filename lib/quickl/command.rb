@@ -141,19 +141,14 @@ module Quickl
       end
       
       #
-      # Runs the command from a requester file with command-line
-      # arguments.
+      # Run the command on command-line arguments.
       #
-      # This method is intended to be overriden and does nothing
-      # by default.
+      # This method must be implemented by subclasses.
       #
-      def run(argv, requester = nil)
-        @requester = requester
-        _run(argv)
-      rescue Quickl::Error => ex
-        handle_error(ex)
+      def run(argv = [], requester = nil)
+        raise NotImplementedError, "Command#run must be implemented by subclasses"
       end
-    
+      
     end # module InstanceMethods
     
     # Tracks child classes

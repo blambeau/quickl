@@ -3,14 +3,19 @@ module Quickl
     module InstanceMethods
      
       # Run the command by delegation
-      def _run(argv = [])
+      def run(argv = [], requester = nil)
+        @requester = requester
+        
         # My own options
         my_argv = []
         while argv.first =~ /^--/
           my_argv << argv.shift
         end
         parse_options(my_argv)
+        
         execute(argv)
+      rescue Quickl::Error => ex
+        handle_error(ex)
       end
       
       def execute(argv)

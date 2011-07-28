@@ -7,8 +7,11 @@ module Quickl
     attr_reader :args
 
     # Run the command by delegation
-    def _run(argv = [])
+    def run(argv = [], requester = nil)
+      @requester = requester
       execute(parse_options(argv))
+    rescue Quickl::Error => ex
+      handle_error(ex)
     end
     
   end # module Command::Single
