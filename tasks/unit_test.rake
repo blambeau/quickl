@@ -57,7 +57,7 @@ begin
 
     # Array of commandline options to pass to ruby when running test 
     # loader.
-    t.ruby_opts = []
+    t.ruby_opts = ["-w"]
 
     # Explicitly define the list of test files to be included in a
     # test.  +list+ is expected to be an array of file names (a
