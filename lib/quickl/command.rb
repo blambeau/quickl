@@ -133,36 +133,20 @@ module Quickl
       # Who is requesting command execution?
       attr_reader :requester
       
-      #
-      # Returns the super command of this command, if any
-      #
-      # This method is deprecated and will be removed in 0.4.0. Please use 
-      # <code>self.class.super_command</code> instead.
-      #
-      # @return [Class] the super command of this one
-      # 
-      def super_command
-        if $VERBOSE
-          STDERR << "WARN (Quickl): #super_command is deprecated, use .super_command "\
-                    "(#{caller.first})\n"
+      # Delegate unrecognized calls to the command class
+      # (gives access to options, help, usage, ...)
+      def method_missing(name, *args, &block)
+        if self.class.respond_to?(name)
+          if $VERBOSE
+            STDERR << "WARN (Quickl): #{name} is deprecated, use self.class.#{name} "\
+                      "(#{caller.first})\n"
+          end
+          self.class.send(name, *args, &block)
+        else
+          super
         end
-        self.class.super_command
       end
-      
-      # 
-      # Returns the name of the program under execution
-      #
-      # This method is deprecated and will be removed in 0.4.0. Please use 
-      # <code>self.class.program_name</code> instead.
-      #
-      def program_name
-        if $VERBOSE
-          STDERR << "WARN (Quickl): #program_name is deprecated, use .program_name "\
-                    "(#{caller.first})\n"
-        end
-        self.class.program_name
-      end
-      
+            
     end # module InstanceMethods
     
     # Tracks child classes
