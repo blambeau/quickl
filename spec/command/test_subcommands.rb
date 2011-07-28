@@ -11,6 +11,7 @@ module Quickl
       MiniClient::Say.subcommands.should eq([ 
         MiniClient::Say::Hello,
         MiniClient::Say::Goodbye,
+        MiniClient::Say::Args
       ])
     end
     

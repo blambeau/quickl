@@ -44,8 +44,17 @@ module Quickl
       end
       
       # Parses options
-      def parse_options(argv)
-        options.parse!(argv)
+      def parse_options(argv, sep_support = false)
+        if sep_support
+          rest = []
+          Quickl.split_commandline_args(argv).each do |args|
+            rest << "--" unless rest.empty?
+            rest += options.parse!(args)
+          end
+          rest
+        else
+          options.parse!(argv)
+        end
       rescue OptionParser::ParseError => ex
         raise Quickl::InvalidOption, ex.message, ex.backtrace
       end

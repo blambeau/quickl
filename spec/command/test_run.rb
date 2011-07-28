@@ -35,6 +35,16 @@ module Quickl
       mini.run(%w{--no-verbose say:hello}).should eql(:hello)
       mini.verbose.should be_false
     end
+
+    specify "when option separators are used and no special support" do
+      mini = MiniClient::Say::Args.new 
+      mini.run(%w{hello -- world}).should eql(%w{hello world})
+    end 
+    
+    specify "when option separators are used and special support" do
+      mini = MiniClient::Say::Args.new 
+      mini.run(%w{hello -- world}, true).should eql(%w{hello -- world})
+    end 
     
   end # Command::command
 end # module Quickl

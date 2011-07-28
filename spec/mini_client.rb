@@ -24,7 +24,7 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
   #
   class Help < Quickl::Command(__FILE__, __LINE__)
 
-    def execute(*args)
+    def execute(args)
       :help
     end
       
@@ -44,7 +44,7 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
     #
     class Hello < Quickl::Command(__FILE__, __LINE__)
       
-      def execute(*args)
+      def execute(args)
         :hello
       end
       
@@ -58,11 +58,25 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
     #
     class Goodbye < Quickl::Command(__FILE__, __LINE__)
 
-      def execute(*args)
+      def execute(args)
         :goodbye
       end
       
     end # class Goodbye
+
+    #
+    # Say the args
+    #
+    # SYNOPSIS
+    #   #{MiniClient.command_name} say:args
+    #
+    class Args < Quickl::Command(__FILE__, __LINE__)
+
+      def run(args, sep_support = nil)
+        parse_options(args, sep_support)
+      end
+      
+    end # class Args
 
   end # class Say
     
@@ -74,7 +88,7 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
   #
   class Requester < Quickl::Command(__FILE__, __LINE__)
 
-    def execute(*args)
+    def execute(args)
       requester
     end
     
@@ -97,7 +111,7 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
   #
   class Factored < Factor(__FILE__, __LINE__, :hello)
     
-    def execute(*args)
+    def execute(args)
       self.class.instance_eval{ @factored_arg }
     end
     
