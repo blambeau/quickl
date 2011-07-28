@@ -16,8 +16,8 @@ module Quickl
   #
   def self.Command(*args)
     command_builder do |b|
-      b.document *args
-      b.instance_module Command::Single
+      b.document(*args)
+      b.instance_module(Command::Single)
       yield(b) if block_given?
     end
     Command

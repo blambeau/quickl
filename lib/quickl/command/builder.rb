@@ -56,16 +56,16 @@ module Quickl
         end
 
         # install hierarchy
-        parent = @parent || RubyTools::parent_module(command)
+        parent = (defined?(@parent) && @parent) || RubyTools::parent_module(command)
         if parent && parent.ancestors.include?(Command)
           command.super_command = parent
           parent.subcommands << command
         end
         
         # execute callbacks
-        @callbacks.each do |blk|
+        Array(@callbacks).each do |blk|
           blk.call(command)
-        end if @callbacks
+        end if defined?(@callbacks)
       
         command
       end
