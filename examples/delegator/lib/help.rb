@@ -15,7 +15,7 @@ class Delegator
       if args.size != 1
         puts self.class.super_command.help
       else
-        cmd = has_command!(args.first, self.class.super_command)
+        cmd = Quickl.has_subcommand!(self.class.super_command, args.first)
         puts cmd.help
       end
     end
