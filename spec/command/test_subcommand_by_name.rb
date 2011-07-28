@@ -3,12 +3,12 @@ module Quickl
   describe "Command::subcommand_by_name /" do
     
     specify "when called on single command names" do
-      MiniClient.subcommand_by_name("help").should == MiniClient::Help
+      MiniClient.subcommand_by_name("help").should eq(MiniClient::Help)
       MiniClient.subcommand_by_name("noway").should be_nil
     end
     
     specify "when called on complex command names" do
-      MiniClient.subcommand_by_name("say:hello").should == MiniClient::Say::Hello
+      MiniClient.subcommand_by_name("say:hello").should eq(MiniClient::Say::Hello)
     end
     
   end # Command::command_name
