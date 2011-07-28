@@ -11,7 +11,7 @@ DESCRIPTION
 
 EOF
 
-require File.expand_path('../../spec_helper', __FILE__)
+require 'spec_helper'
 module Quickl
   describe "Command::documentation /" do
     
