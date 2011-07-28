@@ -143,7 +143,8 @@ module Quickl
       # 
       def super_command
         if $VERBOSE
-          STDERR << "WARN (Quickl): super_command is deprecated. Use self.class.super_command instead\n"
+          STDERR << "WARN (Quickl): #super_command is deprecated, use .super_command "\
+                    "(#{caller.first})\n"
         end
         self.class.super_command
       end
@@ -156,7 +157,8 @@ module Quickl
       #
       def program_name
         if $VERBOSE
-          STDERR << "WARN (Quickl): program_name is deprecated. Use self.class.program_name instead\n"
+          STDERR << "WARN (Quickl): #program_name is deprecated, use .program_name "\
+                    "(#{caller.first})\n"
         end
         self.class.program_name
       end
