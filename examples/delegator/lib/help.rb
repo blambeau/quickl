@@ -13,9 +13,9 @@ class Delegator
     # Command execution
     def execute(args)
       if args.size != 1
-        puts super_command.help
+        puts self.class.super_command.help
       else
-        cmd = has_command!(args.first, super_command)
+        cmd = has_command!(args.first, self.class.super_command)
         puts cmd.help
       end
     end
