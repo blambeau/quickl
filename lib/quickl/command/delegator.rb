@@ -5,15 +5,9 @@ module Quickl
       # Run the command by delegation
       def run(argv = [], requester = nil)
         @requester = requester
-        
-        # My own options
-        my_argv = []
-        while argv.first =~ /^-/
-          my_argv << argv.shift
-        end
+        my_argv, rest = split_argv(argv)
         parse_options(my_argv)
-        
-        execute(argv)
+        execute(rest)
       rescue Quickl::Error => ex
         handle_error(ex)
       end
@@ -24,6 +18,16 @@ module Quickl
         else
           raise Quickl::Help.new(cmd.nil? ? 0 : -1)
         end
+      end
+      
+      private 
+      
+      def split_argv(argv)
+        my_argv = []
+        while argv.first =~ /^-/
+          my_argv << argv.shift
+        end
+        [my_argv, argv]
       end
       
     end
