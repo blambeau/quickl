@@ -82,4 +82,25 @@ module Quickl
     end
   end
   
+  #
+  # Checks that `file` is a readable file or raises an error. Returns `file` on 
+  # success.
+  #
+  # @param [String] file path to a file that should exists and be readable 
+  # @param [Class] error_class the error class to use on error 
+  #        (Quickl::IOAccessError by default)
+  # @param [String] msg a dedicated error message (a default one is provided)
+  # @return [String] file on success
+  #
+  def self.valid_read_file!(file, error_class = nil, msg = nil)
+    if File.file?(file) and File.readable?(file)
+      file
+    else
+      error_class ||= Quickl::IOAccessError
+      msg ||= "Not a file or not readable: #{file}"
+      raise error_class, msg, caller
+    end
+  end
+  
+  
 end # module Quickl
