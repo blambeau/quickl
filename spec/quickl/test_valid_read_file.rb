@@ -1,8 +1,8 @@
 require 'spec_helper'
 module Quickl
-  describe "Command::Robustness#valid_read_file!" do
+  describe "Quickl#valid_read_file!" do
     
-    let(:r){ Object.new.extend(Command::Robustness) }
+    let(:r){ Quickl }
     
     describe "with default options" do
     
