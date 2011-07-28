@@ -43,7 +43,7 @@ module Quickl
     
     specify "when option separators are used and special support" do
       mini = MiniClient::Say::Args.new 
-      mini.run(%w{hello -- world}, true).should eql(%w{hello -- world})
+      mini.run(%w{hello -- world}, true).should eql([%w{hello},%w{world}])
     end 
     
   end # Command::command

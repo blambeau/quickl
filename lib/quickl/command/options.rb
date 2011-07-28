@@ -63,8 +63,7 @@ module Quickl
         if sep_support
           rest = []
           Quickl.split_commandline_args(argv).each do |args|
-            rest << "--" unless rest.empty?
-            rest += options.parse!(args)
+            rest << options.parse!(args)
           end
           rest
         else
