@@ -5,12 +5,21 @@
   * A single dash option (e.g. -v) is now correctly recognized by a Delegator
     command ("No such command -v" was previously raised) 
 
-* Deprecations
+* Deprecations 
+
+The following methods are deprecated and will be removed in 0.4.0 (run with 
+ruby -w to see where refactoring is needed). Examples have been adapted and can 
+be copy-pasted safely.
 
   * Command#method_missing auto-delegation from command instances to command 
-    classes is deprecated and will be removed in 0.4.0. Please use explicit 
-    calls to command methods on the class itself. Examples have been adapted 
-    and can be copy-pasted safely. 
+    classes is deprecated. Please use explicit calls to command methods on the 
+    class itself, or tools provided by the Quickl module itself.
+
+  * The robustness methods available in command instances, notably valid_read_file! 
+    and has_command! are deprecated and replaced by convenient helpers available 
+    as module methods of Quickl itself. Notably:
+
+        has_command!("help") -> Quickl.has_subcommand!(self, "help")
 
 * Possibly hurting changes to the internals
 

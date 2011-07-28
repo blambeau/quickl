@@ -143,7 +143,7 @@ module Quickl
           super
         end
       end
-            
+
     end # module InstanceMethods
     
     # Tracks child classes
