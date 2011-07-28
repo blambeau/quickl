@@ -1,12 +1,12 @@
 PATH
   remote: .
   specs:
-    quickl (0.2.2)
+    quickl (0.3.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    bluecloth (2.0.11)
+    bluecloth (2.1.0)
     diff-lcs (1.1.2)
     rake (0.9.2)
     rspec (2.4.0)
@@ -25,7 +25,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bluecloth (~> 2.0.9)
+  bluecloth (~> 2.1.0)
   bundler (~> 1.0)
   quickl!
   rake (~> 0.9.2)
