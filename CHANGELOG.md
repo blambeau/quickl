@@ -7,11 +7,17 @@
 
 * Enhancements
 
+  * Command#parse_options now accepts a second option that allows specifying
+    the behavior in presence of '--' option separators. Default behavior is
+    backward compatible and conforms to getopt(1). :keep and :split can be used
+    to keep separators in result, or split the latter on separators. Thanks to
+    Brian Candler for pointing to getopt(1) for specification.
+
   * Added Quickl.parse_commandline_args that converts a commandline string to
     an ARGV array. This is mainly provided for testing purposes.
 
   * Added Quickl.split_commandline_args to split ARGV on the "--" option 
-    separator 
+    separator
 
 * Deprecations 
 
