@@ -13,4 +13,9 @@ describe "Quickl.super_command" do
     it{ should eq(MiniClient::Say) }
   end
   
+  describe "with no super command" do
+    let(:cmd){ MiniClient }
+    it{ should be_nil }
+  end
+  
 end

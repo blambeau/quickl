@@ -61,7 +61,8 @@ module Quickl
   end
 
   #
-  # When `cmd` is a class, returns it. Otherwise, returns cmd.class.
+  # When `cmd` is a class, returns it. When a command instance, returns 
+  # `cmd.class`. Otherwise, raises an ArgumentError.
   #
   def self.command_class(cmd)
     case cmd
@@ -75,7 +76,7 @@ module Quickl
   end
 
   #
-  # Returns the super command of `cmd`.
+  # Returns the super command of `cmd`, or nil.
   # 
   def self.super_command(cmd)
     command_class(cmd).super_command
