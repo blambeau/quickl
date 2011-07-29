@@ -59,27 +59,42 @@ module Quickl
   def self.program_name
     File.basename($0)
   end
+
+  #
+  # When `cmd` is a class, returns it. Otherwise, returns cmd.class.
+  #
+  def self.command_class(cmd)
+    case cmd
+    when Class
+      cmd
+    when Command
+      cmd.class
+    else
+      raise ArgumentError, "Not a recognized command #{cmd}"
+    end
+  end
   
   #
-  # Checks that `cmd` has a sub-command named `name` of raises a NoSuchCommand
-  # error.
+  # Checks that `cmd` has a sub-command named `name` or raises a NoSuchCommand
+  # error. Returns found subcommand.
   #
   # @param [Class or Command] cmd a command instance of command class
   # @param [String] the name of a sub command
   # @return [Class] found subcommand class 
   #
   def self.has_subcommand!(cmd, name)
-    case cmd
-    when Class
-      unless subcmd = cmd.subcommand_by_name(name)
-        raise NoSuchCommand, "No such command #{name}" 
-      end
-      subcmd
-    when Command
-      has_subcommand!(cmd.class, name)
-    else
-      raise ArgumentError, "Not a recognized command #{cmd}"
+    subcmd = command_class(cmd).subcommand_by_name(name)
+    unless subcmd
+      raise NoSuchCommand, "No such command #{name}" 
     end
+    subcmd
+  end
+
+  #
+  # Convenient method for <code>command_class(cmd).command_name</code>
+  #
+  def self.command_name(cmd)
+    command_class(cmd).command_name
   end
   
   #
