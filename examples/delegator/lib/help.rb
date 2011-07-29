@@ -12,12 +12,9 @@ class Delegator
     
     # Command execution
     def execute(args)
-      if args.size != 1
-        puts Quickl.help(Quickl.super_command(self))
-      else
-        cmd = Quickl.subcommand!(Quickl.super_command(self), args.first)
-        puts Quickl.help(cmd)
-      end
+      sup = Quickl.super_command(self)
+      sub = (args.size != 1) ? sup : Quickl.subcommand!(sup, args.first)
+      puts Quickl.help(sub)
     end
     
   end # class Help
