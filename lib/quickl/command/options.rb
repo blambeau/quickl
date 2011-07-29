@@ -47,27 +47,29 @@ module Quickl
       # Parses options in `argv` with an OptionParser instance and returns 
       # non-options arguments.
       #
-      # When `sep_support` is true, support for option separator '--' is 
-      # provided. Returned array then contains the non-options arguments
-      # as sub arrays, following those separators.
+      # The following example illustrates the role of `sep_support`
       #
-      # Example:
+      #     parse_options %w{--verbose hello -- quickl --say and world}
+      #     # => ["hello", "quickl", "--say", "and", "world"]
       #
-      #     parse_options %w{--verbose hello -- quickl and world}
-      #     # => ["hello", "quickl", "and", "world"]
+      #     parse_options %w{--verbose hello -- quickl --say and world}, :keep
+      #     # => ["hello", "--", "quickl", "--say", "and", "world"]
       #
-      #     parse_options %w{--verbose hello -- quickl and world}, true
-      #     # => [["hello"], ["quickl", "and", "world"]]
+      #     parse_options %w{--verbose hello -- quickl --say and world}, :split
+      #     # => [["hello"], ["quickl", "--say", and", "world"]]
       #
-      def parse_options(argv, sep_support = false)
-        if sep_support
-          rest = []
-          Quickl.split_commandline_args(argv).each do |args|
-            rest << options.parse!(args)
-          end
-          rest
-        else
+      def parse_options(argv, sep_support = :none)
+        case sep_support
+        when NilClass, :none
           options.parse!(argv)
+        when :split, :keep
+          parts = Quickl.split_commandline_args(argv)
+          parts[0] = options.parse!(parts[0])
+          if sep_support == :keep
+            parts.inject(nil){|memo,arr| memo ? memo + ["--"] + arr : arr.dup}
+          else
+            parts
+          end
         end
       rescue OptionParser::ParseError => ex
         raise Quickl::InvalidOption, ex.message, ex.backtrace

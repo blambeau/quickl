@@ -72,6 +72,12 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
     #
     class Args < Quickl::Command(__FILE__, __LINE__)
 
+      options do |opt|
+        opt.on('-i', '--ioption'){}
+        opt.on('-j', '--joption'){}
+        opt.on('-k', '--koption'){}
+      end
+
       def run(args, sep_support = nil)
         parse_options(args, sep_support)
       end
