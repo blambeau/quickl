@@ -1,0 +1,104 @@
+Subject: [ANN] quickl 0.3.0 Released
+
+quickl version 0.3.0 has been released!
+
+Helper to create commandline ruby programs
+
+* <http://github.com/blambeau/quickl>
+
+Quickl helps you creating commandline ruby programs. From simple commands with 
+options to complex delegators with subcommands, global and local options.
+
+This release mostly cleans internals and makes a step toward the public API. 
+Upgrading should require your attention, see below. Quickl follows semantic 
+versioning (http://semver.org/) and has not reached 1.0.0. Best effort is made
+not to break your code when upgrading the tiny version. You should require 
+quickl as follows:
+
+    gem "quickl", "~> 0.3.0"
+
+Changes:
+
+# 0.3.0 / 2011-07-29
+
+* Upgrading from 0.2.x
+
+This release is mostly compatible with the 0.2.x branch, but may require a few 
+changes to your code to avoid deprecation warnings and prepare for 0.4.0 that 
+will break if you don't. From the most to the less likely:
+
+  * If you originally copied the Help command from examples, please do it again
+    on the new version. The execute method of Help should be:
+
+      sup = Quickl.super_command(self)
+      sub = (args.size != 1) ? sup : Quickl.sub_command!(sup, args.first)
+      puts Quickl.help(sub)
+
+  * If you use `usage`, `help`, `overview` or any similar methods in the context
+    of a command (instance or class, except in rdoc-based documentation), please
+    use the equivalent module methods provided by Quickl.
+
+  * If you use methods provided by the Robustness module, notably valid_read_file!
+    and has_subcommand!, please use module methods provided by Quickl instead.
+
+  * If you override Command#_run, please now override Command#run instead.
+
+  * If you rescue SystemExit when executing Command#run, please now rescue 
+    Quickl::Error (or any subclass) instead. No change is required if you rescue
+    when executing Command.run, or if you don't rescue on errors at all.
+
+* Bug fixes
+
+  * A single dash option (e.g. -v) is now correctly recognized by a Delegator
+    command ("No such command -v" was previously raised) 
+
+* Enhancements
+
+  * Added Quickl.[command_name,super_command,sub_command,help,overview,usage,
+    documentation] as convenient query methods on commands and their hierarchy. 
+    These helpers work both on command instances and on command classes and will 
+    be part of the public API when stabilized (the same methods on the Command 
+    class should be considered private from now on; if you use them, please 
+    upgrade).
+
+  * Added Quickl.parse_commandline_args that converts a commandline string to
+    an ARGV array. This is mainly provided for testing purposes.
+
+  * Added Quickl.split_commandline_args to split ARGV on the "--" option 
+    separator
+
+  * Command#parse_options now accepts a second option that allows specifying
+    the behavior in presence of '--' option separators. Default behavior is
+    backward compatible and conforms to getopt(1). :keep and :split can be used
+    to keep separators in result, or split the latter on separators. Thanks to
+    Brian Candler for pointing to getopt(1) for specification.
+
+* Deprecations 
+
+The following methods are deprecated and will be removed in 0.4.0 (run with 
+ruby -w to see where refactoring is needed). Examples have been adapted and can 
+be copy-pasted safely.
+
+  * Command#method_missing auto-delegation from command instances to command 
+    classes is deprecated. Please use explicit calls to command methods on the 
+    class itself, or tools provided by the Quickl module itself.
+
+  * The robustness methods available in command instances, notably valid_read_file! 
+    and has_command! are deprecated and replaced by convenient helpers available 
+    as module methods of Quickl itself. The Robustness module will disappear in
+    0.4.0.
+
+* Possibly hurting changes to the internals
+
+  * An unused and undocumented `args` attribute (attr_reader) has been removed 
+    from Single commands instances.  
+
+  * No default behavior is implemented in Command#run anymore (call was 
+    previously delegated to _run and surrounded in a begin/rescue/end block). 
+    The method is now directly implemented in Single and Delegator subclasses. 
+    This may break your code if it redefines _run.
+    
+  * Error catching is done in Command.run instead of Command#run. The way to 
+    specify how to react to errors did not change.  
+
+
