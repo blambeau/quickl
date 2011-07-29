@@ -96,6 +96,13 @@ module Quickl
   def self.command_name(cmd)
     command_class(cmd).command_name
   end
+
+  #
+  # Convenient method for <code>command_class(cmd).usage</code>
+  #
+  def self.usage(cmd)
+    command_class(cmd).usage
+  end
   
   #
   # Checks that `file` is a readable file or raises an error. Returns `file` on 
