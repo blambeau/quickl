@@ -83,16 +83,18 @@ module Quickl
   end
 
   #
-  # Checks that `cmd` has a sub-command named `name` or raises a NoSuchCommand
-  # error. Returns found subcommand.
+  # Returns the subcommand of `cmd` which is called `name`, or nil.
   #
-  # @param [Class or Command] cmd a command instance of command class
-  # @param [String] the name of a sub command
-  # @return [Class] found subcommand class 
+  def self.subcommand(cmd, name)
+    command_class(cmd).subcommand_by_name(name)
+  end
+
   #
-  def self.has_subcommand!(cmd, name)
-    subcmd = command_class(cmd).subcommand_by_name(name)
-    unless subcmd
+  # Returns the subcommand of `cmd` which is called `name`. Raises a 
+  # NoSuchCommand if not found.
+  #
+  def self.subcommand!(cmd, name)
+    unless subcmd = subcommand(cmd, name)
       raise NoSuchCommand, "No such command #{name}" 
     end
     subcmd

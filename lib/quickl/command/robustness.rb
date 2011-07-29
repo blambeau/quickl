@@ -6,8 +6,8 @@ module Quickl
       # Checks that a command whose name is given exists
       # or raises a NoSuchCommand.
       def has_command!(name, referer = self.class)
-        Quickl.deprecated("Command#has_command!", "Quickl.has_subcommand!", caller)
-        Quickl.has_subcommand!(referer, name)
+        Quickl.deprecated("Command#has_command!", "Quickl.subcommand!", caller)
+        Quickl.subcommand!(referer, name)
       end
       
       # Checks that _file_ is a readable file or raises an error.

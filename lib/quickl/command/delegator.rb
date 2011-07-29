@@ -13,8 +13,7 @@ module Quickl
       
       def execute(argv)
         if cmd = argv.shift
-          cmd = Quickl.has_subcommand!(self, cmd)
-          cmd.run(argv, self)
+          Quickl.subcommand!(self, cmd).run(argv, self)
         else
           raise Quickl::Help.new(cmd.nil? ? 0 : -1)
         end

@@ -31,9 +31,7 @@ be copy-pasted safely.
 
   * The robustness methods available in command instances, notably valid_read_file! 
     and has_command! are deprecated and replaced by convenient helpers available 
-    as module methods of Quickl itself. Notably:
-
-        has_command!("help") -> Quickl.has_subcommand!(self, "help")
+    as module methods of Quickl itself.
 
 * Possibly hurting changes to the internals
 
