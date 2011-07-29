@@ -1,4 +1,4 @@
-# 0.3.0 / FIX ME
+# 0.3.0 / 2011-07-29
 
 * Upgrading from 0.2.x
 
