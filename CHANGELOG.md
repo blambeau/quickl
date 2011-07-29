@@ -1,5 +1,31 @@
 # 0.3.0 / FIX ME
 
+* Upgrading from 0.2.x
+
+This release is mostly compatible with the 0.2.x branch, but may require a few 
+changes to your code to avoid deprecation warnings and prepare for 0.4.0 that 
+will break if yout don't. From the most to the less likely:
+
+  * If you originally copied the Help command from examples, please do it again
+    on the new version. The execute method of Help should be:
+
+      sup = Quickl.super_command(self)
+      sub = (args.size != 1) ? sup : Quickl.sub_command!(sup, args.first)
+      puts Quickl.help(sub)
+
+  * If you use `usage`, `help`, `overview` or any similar methods in the context
+    of a command (instance or class, except in rdoc-based documentation), please
+    use the equivalent module methods provided by Quickl.
+
+  * If you use methods provided by the Robustness module, notably valid_read_file!
+    and has_subcommand!, please use module methods provided by Quickl instead.
+
+  * If you override Command#_run, please now override Command#run instead.
+
+  * If you rescue SystemExit when executing Command#run, please now rescue 
+    Quickl::Error (or any subclass) instead. No change is required if you rescue
+    when executing Command.run, or if you don't rescue on errors at all.
+
 * Bug fixes
 
   * A single dash option (e.g. -v) is now correctly recognized by a Delegator
@@ -38,7 +64,8 @@ be copy-pasted safely.
 
   * The robustness methods available in command instances, notably valid_read_file! 
     and has_command! are deprecated and replaced by convenient helpers available 
-    as module methods of Quickl itself.
+    as module methods of Quickl itself. The Robustness module will disappear in
+    0.4.0.
 
 * Possibly hurting changes to the internals
 
