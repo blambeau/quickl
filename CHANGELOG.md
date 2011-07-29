@@ -4,7 +4,7 @@
 
 This release is mostly compatible with the 0.2.x branch, but may require a few 
 changes to your code to avoid deprecation warnings and prepare for 0.4.0 that 
-will break if yout don't. From the most to the less likely:
+will break if you don't. From the most to the less likely:
 
   * If you originally copied the Help command from examples, please do it again
     on the new version. The execute method of Help should be:
