@@ -1,8 +1,8 @@
 require 'spec_helper'
-describe "Quickl.subcommand(!)" do
+describe "Quickl.sub_command(!)" do
 
   describe "non bang version" do
-    subject{ Quickl.subcommand(cmd, name) }
+    subject{ Quickl.sub_command(cmd, name) }
 
     describe "on a command class with existing sub" do
       let(:cmd){ MiniClient }
@@ -24,7 +24,7 @@ describe "Quickl.subcommand(!)" do
   end
 
   describe "the bang version" do
-    subject{ Quickl.subcommand!(cmd, name) }
+    subject{ Quickl.sub_command!(cmd, name) }
 
     describe "on a command class with existing sub" do
       let(:cmd){ MiniClient }

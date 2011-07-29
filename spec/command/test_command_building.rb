@@ -9,7 +9,7 @@ module Quickl
     it "should install hierarchy correctly when command_parent= is used" do
       MiniClient::Factored.super_command.should eq(MiniClient::Requester)
       MiniClient::Requester.subcommands.should include(MiniClient::Factored)
-      lambda{ Quickl.subcommand!(MiniClient::Requester, "factored") }.should_not raise_error
+      lambda{ Quickl.sub_command!(MiniClient::Requester, "factored") }.should_not raise_error
     end
     
   end # Command::command_name

@@ -13,6 +13,12 @@
     to keep separators in result, or split the latter on separators. Thanks to
     Brian Candler for pointing to getopt(1) for specification.
 
+  * Added Quickl.[help,overview,usage,documentation,super_command,subcommand]
+    as convenient query methods on commands and their hierarchy. These helpers 
+    work both on command instances and on command classes and will be part of 
+    the public API when stabilized (the same methods on the Command class should 
+    be considered private from now on; if you use them, please upgrade).
+
   * Added Quickl.parse_commandline_args that converts a commandline string to
     an ARGV array. This is mainly provided for testing purposes.
 

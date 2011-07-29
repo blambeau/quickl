@@ -85,7 +85,7 @@ module Quickl
   #
   # Returns the subcommand of `cmd` which is called `name`, or nil.
   #
-  def self.subcommand(cmd, name)
+  def self.sub_command(cmd, name)
     command_class(cmd).subcommand_by_name(name)
   end
 
@@ -93,8 +93,8 @@ module Quickl
   # Returns the subcommand of `cmd` which is called `name`. Raises a 
   # NoSuchCommand if not found.
   #
-  def self.subcommand!(cmd, name)
-    unless subcmd = subcommand(cmd, name)
+  def self.sub_command!(cmd, name)
+    unless subcmd = sub_command(cmd, name)
       raise NoSuchCommand, "No such command #{name}" 
     end
     subcmd
