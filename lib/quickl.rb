@@ -73,7 +73,14 @@ module Quickl
       raise ArgumentError, "Not a recognized command #{cmd}"
     end
   end
-  
+
+  #
+  # Returns the super command of `cmd`.
+  # 
+  def self.super_command(cmd)
+    command_class(cmd).super_command
+  end
+
   #
   # Checks that `cmd` has a sub-command named `name` or raises a NoSuchCommand
   # error. Returns found subcommand.
@@ -102,6 +109,27 @@ module Quickl
   #
   def self.usage(cmd)
     command_class(cmd).usage
+  end
+
+  #
+  # Convenient method for <code>command_class(cmd).overview</code>
+  #
+  def self.overview(cmd)
+    command_class(cmd).overview
+  end
+  
+  #
+  # Convenient method for <code>command_class(cmd).documentation</code>
+  #
+  def self.documentation(cmd)
+    command_class(cmd).documentation
+  end
+  
+  #
+  # Alias for documentation
+  #
+  def self.help(cmd)
+    command_class(cmd).help
   end
   
   #
