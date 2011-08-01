@@ -28,4 +28,5 @@ variables:
     - {name: wlang,        version: "~> 0.10.2", groups: [release      ]}
   rake_tasks:
     unit_test:
+      libs: ["lib", "examples"]
       pattern: "examples/**/test_*.rb"
