@@ -57,7 +57,7 @@ begin
 
     # Array of commandline options to pass to ruby when running test 
     # loader.
-    t.ruby_opts = ["-w"]
+    t.ruby_opts = []
 
     # Explicitly define the list of test files to be included in a
     # test.  +list+ is expected to be an array of file names (a
@@ -68,7 +68,7 @@ begin
   end
 rescue LoadError => ex
   task :unit_test do
-    abort 'rspec is not available. In order to run spec, you must: gem install rspec'
+    abort "rake/testtask does not seem available...\n  #{ex.message}"
   end
 ensure
   desc "Run all tests"
