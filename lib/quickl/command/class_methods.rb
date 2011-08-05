@@ -6,8 +6,11 @@ module Quickl
       # The super command, if any
       attr_accessor :super_command
       
-      # Command's summary
-      attr_accessor :doc_place
+      # Extractor for documentation
+      attr_accessor :doc_extractor
+      
+      # Instantiator for documentation
+      attr_accessor :doc_instantiator
       
       # Returns the array of defined subcommands
       def subcommands
@@ -46,17 +49,12 @@ module Quickl
       
       # Loads and returns the documentation source
       def doc_src
-        @doc_src ||= unless doc_place
-          "no documentation available" 
-        else
-          file, line = doc_place
-          RubyTools::extract_file_rdoc(file, line, true)
-        end
+        @doc_src ||= doc_extractor.call(self)
       end
       
       # Returns command documentation
       def documentation
-        @documentation ||= instance_eval("%Q{#{doc_src}}", *doc_place)
+        @documentation ||= doc_instantiator.call(self, doc_src)
       end
       alias :help :documentation
       
