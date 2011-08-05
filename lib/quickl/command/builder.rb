@@ -3,8 +3,8 @@ module Quickl
     class Builder
       
       # Adds document tracking information
-      def document(file, line)
-        @file, @line = file, line
+      def document(*args)
+        @doc_place = args
       end
       
       # Adds some command class modules
@@ -51,8 +51,8 @@ module Quickl
         }
       
         # install documentation
-        if @file and @line
-          command.doc_place = [@file, @line]
+        if @doc_place
+          command.doc_place = @doc_place
         end
 
         # install hierarchy
