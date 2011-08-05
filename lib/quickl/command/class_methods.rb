@@ -9,9 +9,6 @@ module Quickl
       # Extractor for documentation
       attr_accessor :doc_extractor
       
-      # Instantiator for documentation
-      attr_accessor :doc_instantiator
-      
       # Returns the array of defined subcommands
       def subcommands
         @subcommands ||= []
@@ -47,14 +44,9 @@ module Quickl
         module2command(self)
       end
       
-      # Loads and returns the documentation source
-      def doc_src
-        @doc_src ||= doc_extractor.call(self)
-      end
-      
       # Returns command documentation
-      def documentation
-        @documentation ||= doc_instantiator.call(self, doc_src)
+      def documentation(opts = {})
+        @documentation ||= doc_extractor.call(self, opts)
       end
       alias :help :documentation
       

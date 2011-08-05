@@ -9,15 +9,10 @@ module Quickl
       # Extractor for documentation
       attr_accessor :doc_extractor
       
-      # Instantiator for documentation
-      attr_accessor :doc_instantiator
-      
       # Sets place of the documentation
       def document(file, line)
-        @doc_extractor = lambda{|cmd|
-          RubyTools::extract_file_rdoc(file, line, true) 
-        }
-        @doc_instantiator = lambda{|cmd,text|
+        @doc_extractor = lambda{|cmd, opts|
+          text = RubyTools::extract_file_rdoc(file, line, true)
           cmd.instance_eval("%Q{#{text}}", file, line)
         }
       end
@@ -61,10 +56,8 @@ module Quickl
         }
       
         # install documentation
-        self.doc_extractor    ||= lambda{|cmd| "no documentation available for #{cmd}" }
-        self.doc_instantiator ||= lambda{|cmd,text| text}
+        self.doc_extractor    ||= lambda{|cmd, opts| "no documentation available for #{cmd}" }
         command.doc_extractor = doc_extractor
-        command.doc_instantiator = doc_instantiator
 
         # install hierarchy
         self.super_command ||= RubyTools::parent_module(command)
