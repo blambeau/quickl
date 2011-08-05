@@ -55,7 +55,7 @@ module Quickl
   #
   def self.Delegator(*args)
     command_builder do |b|
-      b.document(*args)
+      b.document(*args) unless args.empty?
       b.class_module(Command::Delegator::ClassMethods)
       b.instance_module(Command::Delegator::InstanceMethods)
       yield(b) if block_given?

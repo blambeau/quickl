@@ -100,11 +100,15 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
     
   end # class Requester
 
-  def self.Factor(file, line, arg)
-    Quickl::Command(file, line) do |builder|
+  def self.Factor(arg)
+    Quickl::Command() do |builder|
       builder.command_parent = MiniClient::Requester
       builder.callback{|cmd| 
         cmd.instance_eval{ @factored_arg = arg }
+      }
+      builder.doc_extractor = lambda{|cmd,opts|
+        doc = "Factored doc"
+        opts[:upcase] ? doc.upcase : doc
       }
     end
   end
@@ -115,7 +119,7 @@ class MiniClient < Quickl::Delegator(__FILE__, __LINE__)
   # SYNOPSIS
   #   #{MiniClient.command_name} factored
   #
-  class Factored < Factor(__FILE__, __LINE__, :hello)
+  class Factored < Factor(:hello)
     
     def execute(args)
       self.class.instance_eval{ @factored_arg }

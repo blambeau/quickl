@@ -11,6 +11,11 @@ module Quickl
       MiniClient::Requester.subcommands.should include(MiniClient::Factored)
       lambda{ Quickl.sub_command!(MiniClient::Requester, "factored") }.should_not raise_error
     end
+
+    it "should support installing a specific doc extractor" do
+      MiniClient::Factored.documentation.should eq("Factored doc")
+      MiniClient::Factored.documentation(:upcase => true).should eq("FACTORED DOC")
+    end
     
   end # Command::command_name
 end # module Quickl
