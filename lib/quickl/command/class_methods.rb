@@ -46,7 +46,7 @@ module Quickl
       
       # Returns command documentation
       def documentation(opts = {})
-        @documentation ||= doc_extractor.call(self, opts)
+        doc_extractor.call(self, opts)
       end
       alias :help :documentation
       
