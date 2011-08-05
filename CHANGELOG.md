@@ -2,10 +2,13 @@
 
 * Enhancements
 
-  * The hard-coded way of extracting command documentation from source rdoc has
+  * The hard-coded way of extracting command documentation as source rdoc has
     been replaced by a Command.doc_extractor (a Proc) which can be installed 
-    through the command builder (advanced usage). Default behavior is kept the
-    same. 
+    through the command builder (advanced usage). Default behavior is kept 
+    unchanged, though.
+  * Command.documentation now takes an optional Hash of options, which is passed 
+    as second argument to the documentation extractor (the first one being the 
+    command class itself).
 
 * Breaking changes
 
