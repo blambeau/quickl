@@ -31,7 +31,6 @@ module Quickl
       def instance_modules(*mods)
         @instance_modules ||= [ 
           Command::InstanceMethods, 
-          Command::Robustness,
           Command::Options::InstanceMethods
         ]
         @instance_modules += mods

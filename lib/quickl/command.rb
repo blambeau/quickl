@@ -13,7 +13,6 @@ module Quickl
   end # class Command
 end # module Quickl
 require 'quickl/command/builder'
-require 'quickl/command/robustness'
 require 'quickl/command/options'
 require 'quickl/command/single'
 require 'quickl/command/delegator'
