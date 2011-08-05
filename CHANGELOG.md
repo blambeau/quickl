@@ -1,3 +1,18 @@
+# 0.4.0 / FIX ME
+
+* Enhancements
+
+  * The hard-coded way of extracting command documentation from source rdoc has
+    been replaced by a Command.doc_extractor (a Proc) which can be installed 
+    through the command builder (advanced usage). Default behavior is kept the
+    same. 
+
+* Breaking changes
+
+  * Command#method_missing and well as the Robustness module have been removed
+    after deprecation.
+  * Command.doc_place and Command.doc_src have been removed as well.
+
 # 0.3.0 / 2011-07-29
 
 * Upgrading from 0.2.x
