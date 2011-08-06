@@ -36,4 +36,13 @@ describe "Quickl.split_commandline_args" do
     it { should eq(expected) }
   end
 
+  describe "with a specific separator" do
+    subject{ Quickl.split_commandline_args(args, '|') }
+    let(:args){ %w{hello | hello2 hello3 | x } }
+    let(:expected){[
+      %w{hello}, %w{hello2 hello3}, %w{x}
+    ]}
+    it { should eq(expected) }
+  end
+
 end

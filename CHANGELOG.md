@@ -9,6 +9,8 @@
   * Command.documentation now takes an optional Hash of options, which is passed 
     as second argument to the documentation extractor (the first one being the 
     command class itself).
+  * Quickl.split_commandline_args now accepts the separator on which splitting
+    occurs as second argument.
 
 * Breaking changes
 

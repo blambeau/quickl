@@ -186,13 +186,14 @@ module Quickl
   end
 
   #
-  # Splits an array `args` on '--' option separator. 
+  # Splits an array `args` a separator, the option separator
+  # '--' by default.
   # 
-  def self.split_commandline_args(args)
+  def self.split_commandline_args(args, separator = '--')
     args = args.dup
     result, current = [], []
     until args.empty?
-      if (x = args.shift) == "--"
+      if (x = args.shift) == separator
         result << current
         current = []
       else
