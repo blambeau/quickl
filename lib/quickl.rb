@@ -124,15 +124,15 @@ module Quickl
   #
   # Convenient method for <code>command_class(cmd).documentation</code>
   #
-  def self.documentation(cmd)
-    command_class(cmd).documentation
+  def self.documentation(cmd, opts = {})
+    command_class(cmd).documentation(opts)
   end
   
   #
   # Alias for documentation
   #
-  def self.help(cmd)
-    command_class(cmd).help
+  def self.help(cmd, opts = {})
+    command_class(cmd).help(opts)
   end
   
   #
