@@ -1,0 +1,42 @@
+Subject: [ANN] quickl 0.4.0 Released
+
+quickl version 0.4.0 has been released!
+
+Helper to create commandline ruby programs
+
+* <http://github.com/blambeau/quickl>
+
+Quickl helps you creating commandline ruby programs. From simple commands with 
+options to complex delegators with subcommands, global and local options.
+
+This release cleans internals as announced and may break your code if you didn't
+cleanly upgrade from 0.2.x to 0.3.0. Quickl follows semantic versioning 
+(http://semver.org/) and has not reached 1.0.0. Best effort is made to avoid 
+breaking your code when upgrading the tiny version. You should require quickl as 
+follows:
+
+    gem "quickl", "~> 0.4.0"
+
+Changes:
+
+# 0.4.0 / 2011-08-15
+
+* Enhancements
+
+  * The hard-coded way of extracting command documentation as source rdoc has
+    been replaced by a Command.doc_extractor (a Proc) which can be installed 
+    through the command builder (advanced usage). Default behavior is kept 
+    unchanged, though.
+  * Command.documentation now takes an optional Hash of options, which is passed 
+    as second argument to the documentation extractor (the first one being the 
+    command class itself).
+  * Quickl.split_commandline_args now accepts the separator on which splitting
+    occurs as second argument.
+
+* Breaking changes
+
+  * Command#method_missing and well as the Robustness module have been removed
+    after deprecation.
+  * Command.doc_place and Command.doc_src have been removed as well.
+
+
