@@ -1,3 +1,9 @@
+# 0.4.2 / FIX ME
+
+* On the development side
+
+  * Bumped ruby.noe to 1.5.1
+
 # 0.4.1 / 2011-08-31
 
 * Regenerated gem using Ruby 1.8.7, to avoid Rubygems/Syck/Ruby issues (see

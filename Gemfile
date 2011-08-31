@@ -15,4 +15,3 @@ group :doc do
   gem "yard", "~> 0.7.2"
   gem "bluecloth", "~> 2.1.0"
 end
-
