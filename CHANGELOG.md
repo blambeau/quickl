@@ -1,3 +1,8 @@
+# 0.4.1 / 2011-08-31
+
+* Regenerated gem using Ruby 1.8.7, to avoid Rubygems/Syck/Ruby issues (see
+  https://github.com/blambeau/viiite/issues/2)
+
 # 0.4.0 / 2011-08-15
 
 * Enhancements
