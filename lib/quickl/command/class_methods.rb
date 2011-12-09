@@ -100,7 +100,7 @@ module Quickl
       
       # Handles a command error
       def handle_error(ex, cmd = self)
-        if react_to?(ex)
+        if react_to?(ex) && ex.respond_to?(:react!)
           begin
             ex.command = cmd
             ex.react!

@@ -1,5 +1,7 @@
 # 0.4.2 / FIX ME
 
+* Fix a bug when reacting to errors that do no define react!
+
 * On the development side
 
   * Bumped ruby.noe to 1.5.1
