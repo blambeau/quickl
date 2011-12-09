@@ -4,7 +4,7 @@
 
 * On the development side
 
-  * Bumped ruby.noe to 1.5.1
+  * Bumped ruby.noe to 1.6.0
 
 # 0.4.1 / 2011-08-31
 
