@@ -1,3 +1,7 @@
+# 0.4.3 / 2012-02-16
+
+* Ensures delegator.erb is present in the gem.
+
 # 0.4.2 / 2011-12-09
 
 * Fix a bug when reacting to errors that do no define react!
