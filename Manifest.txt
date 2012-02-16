@@ -6,7 +6,7 @@ Gemfile
 Gemfile.lock
 bin/**/*
 lib/**/*
-templates/single.erb
+templates/**/*.erb
 LICENCE.md
 Manifest.txt
 Rakefile
